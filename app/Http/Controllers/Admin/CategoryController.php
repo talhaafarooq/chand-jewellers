@@ -3,16 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $repo;
+
+    public function __construct(BaseRepositoryInterface $baseRepo)
+    {
+        $this->repo = $baseRepo;
+    }
+
     public function index()
     {
-        //
+        $categories = $this->repo->all(Category::class);
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**

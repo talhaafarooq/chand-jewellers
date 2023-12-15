@@ -6,7 +6,7 @@ use App\Repositories\Interfaces\BaseRepositoryInterface;
 
 class BaseRepository implements BaseRepositoryInterface{
     public function all($model){
-        return $model::all();
+        return $model::paginate(10);
     }
     public function store($model, $data)
     {
