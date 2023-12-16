@@ -47,6 +47,7 @@
                         </p>
                     </a>
                 </li>
+                <!-- Category Section -->
                 <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -63,13 +64,38 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
+                            <a href="{{ route('admin.categories.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add New Category</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+                <!-- Sub-Category Section -->
+                <li class="nav-item">
+                    <a href="javascript:void(0)" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Sub Categories
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.sub-categories.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sub Categories List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.sub-categories.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add New Sub Category</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link logout">
                         <i class="nav-icon fas fa-th"></i>

@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ URL::asset('dashboard') }}/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ URL::asset('dashboard') }}/plugins/summernote/summernote-bs4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ URL::asset('dashboard') }}/plugins/select2/css/select2.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -90,6 +92,11 @@
     <script src="{{ URL::asset('dashboard') }}/dist/js/custom.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ URL::asset('dashboard') }}/dist/js/pages/dashboard.js"></script>
+    <!-- Select2 -->
+    <script src="{{ URL::asset('dashboard') }}/plugins/select2/js/select2.full.min.js"></script>
+    <script>
+        $('.select2').select2();
+    </script>
     <!-- Toast message -->
     <x-toast-message />
     @yield('scripts')

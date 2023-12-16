@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
 
     // Categories
     Route::resource('categories', CategoryController::class);
+    Route::get('categories/destroy/{category_id}', [CategoryController::class,'destroy']);
+
+    // Sub-Categories
+    Route::resource('sub-categories', SubCategoryController::class);
+    Route::get('sub-categories/destroy/{sub_category_id}', [SubCategoryController::class,'destroy']);
 });

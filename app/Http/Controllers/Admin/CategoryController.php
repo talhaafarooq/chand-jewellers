@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\helpers\FileHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Http\Request;
@@ -18,55 +20,51 @@ class CategoryController extends Controller
 
     public function index()
     {
+        $search = null;
         $categories = $this->repo->all(Category::class);
-        return view('admin.categories.index',compact('categories'));
+        return view('admin.categories.index', compact('search', 'categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $category = $this->repo->store(Category::class, $request->only('name'));
+        if ($request->hasFile('image')) {
+            $fileName = FileHelper::uploadFile($request->file('image'), 'categories');
+            $category->image = $fileName;
+            $category->save();
+        }
+        return redirect()->route('admin.categories.index')->with('success', 'Category added successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $edit = $this->repo->show(Category::class, $id);
+
+        return view('admin.categories.edit', compact('edit'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $category1 = $this->repo->show(Category::class, $id);
+        $category = $this->repo->show(Category::class, $id);
+        $category->update($request->only('name'));
+        if ($request->hasFile('image')) {
+            FileHelper::removeFile($category1->image);
+            $fileName = FileHelper::uploadFile($request->file('image'), 'categories');
+            $category->image = $fileName;
+            $category->save();
+        }
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($categoryId)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $this->repo->delete(Category::class, $categoryId);
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
     }
 }
