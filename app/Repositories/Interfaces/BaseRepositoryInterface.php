@@ -8,5 +8,4 @@ interface BaseRepositoryInterface
     public function store($model, $data);
     public function show($model, $id);
     public function delete($model, $id);
-    public function list($model,$firstColumn,$secondColumn);
 }

@@ -9,9 +9,19 @@ class SubCategory extends Model
 {
     use HasFactory;
     protected $fillable = array('name', 'image', 'category_id');
+    protected $casts = [
+        'name' => 'string',
+        'image' => 'string',
+        'category_id' => 'integer'
+    ];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

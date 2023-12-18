@@ -6,6 +6,7 @@ use App\helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -66,5 +67,16 @@ class CategoryController extends Controller
     {
         $this->repo->delete(Category::class, $categoryId);
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
+    }
+
+    public function getSubCategories(Request $request)
+    {
+        if(isset($request->category_id))
+        {
+            $subCategoriesList = SubCategory::select('id','name')->where('category_id',$request->category_id)->get();
+            return response()->json($subCategoriesList);
+        }else{
+            return response()->json([]);
+        }
     }
 }

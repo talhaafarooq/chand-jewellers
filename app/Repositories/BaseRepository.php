@@ -25,9 +25,4 @@ class BaseRepository implements BaseRepositoryInterface
     {
         return $model::findOrFail($id)->delete();
     }
-
-    public function list($model,$firstColumn,$secondColumn)
-    {
-        return $model::pluck($secondColumn,$firstColumn);
-    }
 }

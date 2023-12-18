@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\helpers\FileHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryRequest;
 use App\Http\Requests\Admin\SubCategoryRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
-use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
 {
