@@ -122,6 +122,14 @@
                     </ul>
                 </li>
 
+                <!-- Settings Section -->
+                <li class="nav-item">
+                    <a href="{{ route('admin.settings.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Settings</p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link logout">
                         <i class="nav-icon fas fa-th"></i>
