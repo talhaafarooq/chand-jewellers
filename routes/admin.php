@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     // Products
     Route::resource('products', ProductController::class);
     Route::get('products/destroy/{sub_category_id}', [ProductController::class,'destroy']);
+
+
+    // Subscriber 
+    Route::resource('subscribers',SubscriberController::class);
 
      // Settings
      Route::resource('settings', SettingController::class);

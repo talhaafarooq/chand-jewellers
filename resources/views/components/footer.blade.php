@@ -1,3 +1,7 @@
+@php
+use App\Models\Settings;
+$settings = Settings::first();
+@endphp
  <!-- Begin Hiraola's Footer Area -->
  <div class="hiraola-footer_area">
     <div class="footer-top_area">
@@ -13,29 +17,27 @@
                         </div>
 
                         <div class="widget-short_desc">
-                            <p>We are a team of designers and developers that create high quality HTML Template &
-                                Woocommerce, Shopify Theme.
-                            </p>
+                            <p>{{ $settings->about_us }}</p>
                         </div>
                         <div class="hiraola-social_link">
                             <ul>
                                 <li class="facebook">
-                                    <a href="https://www.facebook.com/" data-bs-toggle="tooltip" target="_blank" title="Facebook">
+                                    <a href="{{ $settings->facebook }}" data-bs-toggle="tooltip" target="_blank" title="Facebook">
                                         <i class="fab fa-facebook"></i>
                                     </a>
                                 </li>
                                 <li class="twitter">
-                                    <a href="https://twitter.com/" data-bs-toggle="tooltip" target="_blank" title="Twitter">
+                                    <a href="{{ $settings->twitter }}" data-bs-toggle="tooltip" target="_blank" title="Twitter">
                                         <i class="fab fa-twitter-square"></i>
                                     </a>
                                 </li>
                                 <li class="google-plus">
-                                    <a href="https://www.plus.google.com/discover" data-bs-toggle="tooltip" target="_blank" title="Google Plus">
+                                    <a href="mailto: {{ $settings->email }}" data-bs-toggle="tooltip" target="_blank" title="Google Plus">
                                         <i class="fab fa-google-plus"></i>
                                     </a>
                                 </li>
                                 <li class="instagram">
-                                    <a href="https://rss.com/" data-bs-toggle="tooltip" target="_blank" title="Instagram">
+                                    <a href="{{ $settings->instagram }}" data-bs-toggle="tooltip" target="_blank" title="Instagram">
                                         <i class="fab fa-instagram"></i>
                                     </a>
                                 </li>
@@ -67,15 +69,12 @@
                                     <div class="widgets-essential_stuff">
                                         <ul>
                                             <li class="hiraola-address"><i
-                                            class="ion-ios-location"></i><span>Address:</span> The Barn,
-                                                Ullenhall, Henley
-                                                in
-                                                Arden B578 5CC, England</li>
+                                            class="ion-ios-location"></i><span>Address:</span> {{ $settings->address1 }}</li>
                                             <li class="hiraola-phone"><i class="ion-ios-telephone"></i><span>Call
-                                            Us:</span> <a href="tel://+123123321345">+123 321 345</a>
+                                            Us:</span> <a href="tel:{{ $settings->phone1 }}">{{ $settings->phone1 }}</a>
                                             </li>
                                             <li class="hiraola-email"><i
-                                            class="ion-android-mail"></i><span>Email:</span> <a href="mailto://info@yourdomain.com">info@yourdomain.com</a></li>
+                                            class="ion-android-mail"></i><span>Email:</span> <a href="mailto:{{ $settings->email }}">{{ $settings->email }}</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -89,9 +88,10 @@
                                         <p>Subscribe to our newsletters now and stay up-to-date with new collections</p>
                                     </div>
                                     <div class="newsletter-form_wrap">
-                                        <form class="subscribe-form" id="mc-form" action="#">
-                                            <input class="newsletter-input" id="mc-email" type="email" autocomplete="off" name="Enter Your Email" value="Enter Your Email" onblur="if(this.value==''){this.value='Enter Your Email'}" onfocus="if(this.value=='Enter Your Email'){this.value=''}">
-                                            <button class="newsletter-btn" id="mc-submit">
+                                        <form class="subscribe-form" action="{{ route('website.subscribe') }}" method="POST">
+                                            @csrf
+                                            <input class="newsletter-input" id="mc-email" type="email" autocomplete="off" name="email" value="Enter Your Email" onblur="if(this.value==''){this.value='Enter Your Email'}" onfocus="if(this.value=='Enter Your Email'){this.value=''}">
+                                            <button type="submit" class="newsletter-btn" id="mc-submit">
                                                 <i class="ion-android-mail"></i>
                                             </button>
                                         </form>
@@ -148,7 +148,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="copyright">
-                            <span>Copyright &copy; 2022 <a href="index.html">Hiraola.</a> All rights reserved.</span>
+                            <span>Copyright &copy; {{ date('Y') }} <a href="{{ route('website.home') }}">{{ $settings->name }}.</a> All rights reserved.</span>
                         </div>
                     </div>
                 </div>

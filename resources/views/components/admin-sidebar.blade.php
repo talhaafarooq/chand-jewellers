@@ -122,6 +122,15 @@
                     </ul>
                 </li>
 
+                <!-- Subscribers List Section -->
+                <li class="nav-item">
+                    <a href="{{ route('admin.subscribers.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Subscribers</p>
+                    </a>
+                </li>
+
+
                 <!-- Settings Section -->
                 <li class="nav-item">
                     <a href="{{ route('admin.settings.index') }}" class="nav-link">

@@ -1,3 +1,7 @@
+@php
+    use App\Models\Settings;
+    $settings = Settings::first();
+@endphp
 <!-- Begin Hiraola's Newsletter Popup Area -->
 {{-- <div class="popup_wrapper">
     <div class="test">
@@ -32,7 +36,7 @@
                             <ul>
                                 <li>
                                     <span>Telephone Enquiry:</span>
-                                    <a href="callto://+123123321345">(+123) 123 321 345</a>
+                                    <a href="tel:{{ $settings->phone1 }}">{{ $settings->phone1 }}</a>
                                 </li>
                             </ul>
                         </div>
