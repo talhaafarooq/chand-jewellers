@@ -23,11 +23,12 @@ class SettingRequest extends FormRequest
             'facebook' => 'nullable|max:255',
             'twitter' => 'nullable|max:255',
             'instagram' => 'nullable|max:255',
-            'whatsapp' => 'nullable|max:255',
+            'whatsapp' => 'required|max:255',
             'youtube' => 'nullable|max:255',
-            'map' => 'nullable|max:1000',
+            'map' => 'required|max:1000',
             'header_logo' => 'nullable|mimes:jpg,jpeg,png',
-            'footer_logo' => 'nullable|mimes:jpg,jpeg,png'
+            'footer_logo' => 'nullable|mimes:jpg,jpeg,png',
+            'currency'=>'required|string'
         ];
     }
 }

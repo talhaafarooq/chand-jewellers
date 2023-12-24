@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('header_logo')->nullable();
             $table->string('footer_logo')->nullable();
             $table->string('map',1000)->nullable();
+            $table->string('currency',20)->nullable();
             $table->timestamps();
         });
     }

@@ -75,6 +75,7 @@
                                             'id' => 'address1',
                                             'class' => 'form-control',
                                             'placeholder' => 'Address 1',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('address1')
                                             <font color="red">{{ $message }}</font>
@@ -130,6 +131,7 @@
                                             'id' => 'whatsapp',
                                             'class' => 'form-control',
                                             'placeholder' => 'Whatsapp',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('whatsapp')
                                             <font color="red">{{ $message }}</font>
@@ -152,6 +154,7 @@
                                             'id' => 'map',
                                             'class' => 'form-control',
                                             'placeholder' => 'Paste Google Map Link',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('map')
                                             <font color="red">{{ $message }}</font>
@@ -168,6 +171,18 @@
                                         {!! Form::label('footer_logo', 'Footer Logo') !!}
                                         <input type="file" name="footer_logo" id="footer_logo" class="form-control" accept="image/*">
                                         @error('footer_logo')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                        {!! Form::label('currency', 'Currency') !!}
+                                        {!! Form::text('currency', null, [
+                                            'id' => 'currency',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Rs.',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('currency')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>

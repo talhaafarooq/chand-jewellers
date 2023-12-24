@@ -251,6 +251,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="hiraola-product_slider">
+                    @foreach ($products as $product)
                     <!-- Begin Hiraola's Slide Item Area -->
                     <div class="slide-item">
                         <div class="single_product">
@@ -273,8 +274,7 @@
                             </div>
                             <div class="hiraola-product_content">
                                 <div class="product-desc_info">
-                                    <h6><a class="product-name" href="single-product.html">Pendant, Made of White
-                                            Pl...</a></h6>
+                                    <h6><a class="product-name" href="single-product.html">{{ implode(' ', str_split($product->name, 23)) }}...</a></h6>
                                     <div class="price-box">
                                         <span class="new-price">£120.80</span>
                                     </div>
@@ -299,8 +299,9 @@
                         </div>
                     </div>
                     <!-- Hiraola's Slide Item Area End Here -->
+                    @endforeach
                     <!-- Begin Hiraola's Slide Item Area -->
-                    <div class="slide-item">
+                    {{-- <div class="slide-item">
                         <div class="single_product">
                             <div class="product-img">
                                 <a href="single-product.html">
@@ -345,10 +346,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Hiraola's Slide Item Area End Here -->
                     <!-- Begin Hiraola's Slide Item Area -->
-                    <div class="slide-item">
+                    {{-- <div class="slide-item">
                         <div class="single_product">
                             <div class="product-img">
                                 <a href="single-product.html">
@@ -393,10 +394,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Hiraola's Slide Item Area End Here -->
                     <!-- Begin Hiraola's Slide Item Area -->
-                    <div class="slide-item">
+                    {{-- <div class="slide-item">
                         <div class="single_product">
                             <div class="product-img">
                                 <a href="single-product.html">
@@ -441,10 +442,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Hiraola's Slide Item Area End Here -->
                     <!-- Begin Hiraola's Slide Item Area -->
-                    <div class="slide-item">
+                    {{-- <div class="slide-item">
                         <div class="single_product">
                             <div class="product-img">
                                 <a href="single-product.html">
@@ -489,10 +490,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Hiraola's Slide Item Area End Here -->
                     <!-- Begin Hiraola's Slide Item Area -->
-                    <div class="slide-item">
+                    {{-- <div class="slide-item">
                         <div class="single_product">
                             <div class="product-img">
                                 <a href="single-product.html">
@@ -538,10 +539,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Hiraola's Slide Item Area End Here -->
                     <!-- Begin Hiraola's Slide Item Area -->
-                    <div class="slide-item">
+                    {{-- <div class="slide-item">
                         <div class="single_product">
                             <div class="product-img">
                                 <a href="single-product.html">
@@ -586,10 +587,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Hiraola's Slide Item Area End Here -->
                     <!-- Begin Hiraola's Slide Item Area -->
-                    <div class="slide-item">
+                    {{-- <div class="slide-item">
                         <div class="single_product">
                             <div class="product-img">
                                 <a href="single-product.html">
@@ -634,7 +635,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Hiraola's Slide Item Area End Here -->
                 </div>
             </div>

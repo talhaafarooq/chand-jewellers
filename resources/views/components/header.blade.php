@@ -62,8 +62,12 @@
                                 </li>
                                 <li><a href="my-account.html">My Account<i class="fa fa-chevron-down"></i></a>
                                     <ul class="ht-dropdown ht-my_account">
+                                        @if (Auth::check())
+                                        <li><a href="{{ route('user.logout') }}">Logout</a></li>
+                                        @else
                                         <li><a href="{{ route('register') }}">Register</a></li>
                                         <li class="active"><a href="{{ route('login') }}">Login</a></li>
+                                        @endif
                                     </ul>
                                 </li>
                             </ul>
@@ -181,7 +185,7 @@
                         <nav>
                             <ul>
                                 <li><a href="{{ route('website.home') }}">Home</a></li>
-                                <li class="megamenu-holder"><a href="shop-left-sidebar.html">Shop</a>
+                                {{-- <li class="megamenu-holder"><a href="shop-left-sidebar.html">Shop</a>
                                     <ul class="hm-megamenu">
                                         <li><span class="megamenu-title">Shop Page Layout</span>
                                             <ul>
@@ -225,7 +229,7 @@
                                         </li>
                                         <li class="menu-item_img"></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                                 <li><a href="blog-left-sidebar.html">Blog</a>
                                     <ul class="hm-dropdown">
                                         <li><a href="blog-left-sidebar.html">Grid View</a>
@@ -272,9 +276,9 @@
                                         <li><a href="coming-soon_page.html">Comming Soon</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="shop-left-sidebar.html">Jewellery</a></li>
+                                <li><a href="{{ route('website.about') }}">About Us</a></li>
+                                <li><a href="{{ route('website.contact') }}">Contact</a></li>
+                                {{-- <li><a href="shop-left-sidebar.html">Jewellery</a></li> --}}
                             </ul>
                         </nav>
                     </div>
