@@ -1,6 +1,7 @@
 @php
     use App\Models\Settings;
     $settings = Settings::first();
+    $cartItems = Cart::getContent();
 @endphp
 <!-- Begin Hiraola's Newsletter Popup Area -->
 {{-- <div class="popup_wrapper">
@@ -315,44 +316,30 @@
                     <h4>Shopping Cart</h4>
                 </div>
                 <ul class="minicart-list">
-                    <li class="minicart-product">
-                        <a class="product-item_remove" href="javascript:void(0)"><i class="ion-android-close"></i></a>
-                        <div class="product-item_img">
-                            <img src="{{ URL::asset('website') }}/assets/images/product/small-size/2-1.jpg" alt="Hiraola's Product Image">
-                        </div>
-                        <div class="product-item_content">
-                            <a class="product-item_title" href="shop-left-sidebar.html">Magni dolorum vel</a>
-                            <span class="product-item_quantity">1 x $120.80</span>
-                        </div>
-                    </li>
-                    <li class="minicart-product">
-                        <a class="product-item_remove" href="javascript:void(0)"><i class="ion-android-close"></i></a>
-                        <div class="product-item_img">
-                            <img src="{{ URL::asset('website') }}/assets/images/product/small-size/2-2.jpg" alt="Hiraola's Product Image">
-                        </div>
-                        <div class="product-item_content">
-                            <a class="product-item_title" href="shop-left-sidebar.html">Eius accusantium omnis</a>
-                            <span class="product-item_quantity">1 x $120.80</span>
-                        </div>
-                    </li>
-                    <li class="minicart-product">
-                        <a class="product-item_remove" href="javascript:void(0)"><i class="ion-android-close"></i></a>
-                        <div class="product-item_img">
-                            <img src="{{ URL::asset('website') }}/assets/images/product/small-size/2-3.jpg" alt="Hiraola's Product Image">
-                        </div>
-                        <div class="product-item_content">
-                            <a class="product-item_title" href="shop-left-sidebar.html">Aperiam adipisci dolorem</a>
-                            <span class="product-item_quantity">1 x $120.80</span>
-                        </div>
-                    </li>
+                    @php $i=0; @endphp
+                    @foreach($cartItems as $value)
+                        @if($i<3)
+                        <li class="minicart-product">
+                            <a class="product-item_remove" href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                            <div class="product-item_img">
+                                <img src="{{ URL::asset('storage/'.$value->attributes['image']) }}" alt="Hiraola's Product Image">
+                            </div>
+                            <div class="product-item_content">
+                                <a class="product-item_title" href="shop-left-sidebar.html">{{ $value->name }}</a>
+                                <span class="product-item_quantity">{{ $value->quantity }} x {{ $settings->currency.number_format($value->price,2) }}</span>
+                            </div>
+                        </li>
+                        @endif
+                        @php $i++; @endphp
+                    @endforeach
                 </ul>
             </div>
             <div class="minicart-item_total">
                 <span>Subtotal</span>
-                <span class="ammount">$360.00</span>
+                <span class="ammount">{{ $settings->currency.Cart::getSubTotal() }}</span>
             </div>
             <div class="minicart-btn_area">
-                <a href="cart.html" class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Minicart</a>
+                <a href="{{ route('website.cart') }}" class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Minicart</a>
             </div>
             <div class="minicart-btn_area">
                 <a href="checkout.html" class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Checkout</a>

@@ -48,7 +48,10 @@ Route::as('website.')->group(function(){
 
 
         // Add To Cart
+        Route::get('/cart',[CartController::class,'cart'])->name('cart');
         Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('add-to-cart');
+        Route::post('/update-cart',[CartController::class,'updateCart'])->name('update-cart');
+        Route::get('/remove-cart/{slug}',[CartController::class,'removeCart'])->name('remove-cart')->where('product_id', '[0-9]+');
     });
 });
 

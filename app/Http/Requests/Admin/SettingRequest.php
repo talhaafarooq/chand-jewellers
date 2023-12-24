@@ -28,7 +28,8 @@ class SettingRequest extends FormRequest
             'map' => 'required|max:1000',
             'header_logo' => 'nullable|mimes:jpg,jpeg,png',
             'footer_logo' => 'nullable|mimes:jpg,jpeg,png',
-            'currency'=>'required|string'
+            'currency'=>'required|string',
+            'shipping'=>'required'
         ];
     }
 }

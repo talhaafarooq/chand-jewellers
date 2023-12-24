@@ -10,7 +10,7 @@ class Settings extends Model
     use HasFactory;
     protected $fillable = array(
         'name', 'email', 'phone1', 'phone2', 'address1','address2', 'about_us', 'facebook', 'instagram', 'twitter','youtube',
-        'whatsapp', 'header_logo', 'footer_logo', 'map','currency'
+        'whatsapp', 'header_logo', 'footer_logo', 'map','currency','shipping'
     );
 
     protected $casts = [
@@ -29,6 +29,7 @@ class Settings extends Model
         'header_logo'=>'string',
         'footer_logo'=>'string',
         'map'=>'string',
-        'currency'=>'string'
+        'currency'=>'string',
+        'shipping'=>'float'
     ];
 }

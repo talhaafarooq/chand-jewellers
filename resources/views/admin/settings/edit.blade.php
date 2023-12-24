@@ -174,7 +174,7 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('currency', 'Currency') !!}
                                         {!! Form::text('currency', null, [
                                             'id' => 'currency',
@@ -183,6 +183,18 @@
                                             'required'=>'required'
                                         ]) !!}
                                         @error('currency')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                        {!! Form::label('shipping', 'Shipping Charges') !!}
+                                        {!! Form::text('shipping', null, [
+                                            'id' => 'shipping',
+                                            'class' => 'form-control',
+                                            'placeholder' => '100',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('shipping')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>

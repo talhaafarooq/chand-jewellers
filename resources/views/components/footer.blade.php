@@ -69,7 +69,9 @@ $settings = Settings::first();
                                     <div class="widgets-essential_stuff">
                                         <ul>
                                             <li class="hiraola-address"><i
-                                            class="ion-ios-location"></i><span>Address:</span> {{ $settings->address1 }}</li>
+                                            class="ion-ios-location"></i><span>Address 1 :</span> {{ $settings->address1 }}</li>
+                                            <li class="hiraola-address"><i
+                                            class="ion-ios-location"></i><span>Address 2 :</span> {{ $settings->address2 }}</li>
                                             <li class="hiraola-phone"><i class="ion-ios-telephone"></i><span>Call
                                             Us:</span> <a href="tel:{{ $settings->phone1 }}">{{ $settings->phone1 }}</a>
                                             </li>
