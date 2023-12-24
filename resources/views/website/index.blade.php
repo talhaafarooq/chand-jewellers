@@ -283,7 +283,7 @@
                                     </div>
                                     <div class="additional-add_action">
                                         <ul>
-                                            <li><a class="hiraola-add_compare" href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i
+                                            <li><a class="hiraola-add_compare" href="{{ route('website.add-to-wishlist',$product->id) }}" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i
                                                 class="ion-android-favorite-outline"></i></a>
                                             </li>
                                         </ul>

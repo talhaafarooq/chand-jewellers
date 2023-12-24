@@ -104,7 +104,7 @@
                                 <div class="qty-btn_area">
                                     <ul>
                                         <li><a class="qty-cart_btn" href="cart.html">Add To Cart</a></li>
-                                        <li><a class="qty-wishlist_btn" href="{{ route('website.add-to-wishlist',[$product->id]) }}" data-bs-toggle="tooltip" title="Add To Wishlist"><i class="ion-android-favorite-outline"></i></a></li>
+                                        <li><a class="qty-wishlist_btn" href="{{ route('website.add-to-wishlist',$product->id) }}" data-bs-toggle="tooltip" title="Add To Wishlist"><i class="ion-android-favorite-outline"></i></a></li>
                                         <li><a class="qty-compare_btn" href="compare.html" data-bs-toggle="tooltip" title="Compare This Product"><i class="ion-ios-shuffle-strong"></i></a></li>
                                     </ul>
                                 </div>

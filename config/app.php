@@ -172,6 +172,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
         Conner\Tagging\Providers\TaggingServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class
     ])->toArray(),
 
     /*
@@ -189,6 +190,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
     ])->toArray(),
 
 ];

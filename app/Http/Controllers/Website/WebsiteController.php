@@ -13,7 +13,7 @@ class WebsiteController extends Controller
     public function index()
     {
         $settings = Settings::select('currency')->first();
-        $newArrivalProducts = Product::select('name','slug','front_img','back_img','old_price','new_price')->take(12)->orderBy('id','desc')->get();
+        $newArrivalProducts = Product::select('id','name','slug','front_img','back_img','old_price','new_price')->take(12)->orderBy('id','desc')->get();
         return view('website.index',compact('settings','newArrivalProducts'));
     }
 
