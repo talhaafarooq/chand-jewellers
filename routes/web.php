@@ -40,7 +40,10 @@ Route::as('website.')->group(function(){
     Route::post('/customer-register/',[AuthController::class,'register'])->name('register');
 
     Route::middleware('auth','role:customer')->group(function(){
+        // Wishlist 
         Route::get('/add-to-wishlist/{product_id}',[WishlistController::class,'addToWishlist'])->where('product_id', '[0-9]+')->name('add-to-wishlist');
+        Route::get('/remove-wishlist-item/{product_id}',[WishlistController::class,'removeItemToWishlist'])->where('product_id', '[0-9]+')->name('remove-wishlist-item');
+        Route::get('/wishlist',[WishlistController::class,'wishlist'])->name('wishlist');
     });
 });
 

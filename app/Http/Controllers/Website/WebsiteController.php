@@ -48,6 +48,7 @@ class WebsiteController extends Controller
     public function productDetails($slug)
     {
         $product = Product::with('category:id,name','subCategory:id,name','productImages')->where('slug',$slug)->firstOrFail();
-        return view('website.product-detail',compact('product'));
+        $settings = Settings::select('currency')->first();
+        return view('website.product-detail',compact('product','settings'));
     }
 }

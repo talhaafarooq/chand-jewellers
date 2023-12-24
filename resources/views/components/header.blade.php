@@ -287,7 +287,7 @@
                     <div class="header-right_area">
                         <ul>
                             <li>
-                                <a href="wishlist.html" class="wishlist-btn">
+                                <a href="{{ route('website.wishlist') }}" class="wishlist-btn">
                                     <i class="ion-android-favorite-outline"></i>
                                 </a>
                             </li>
