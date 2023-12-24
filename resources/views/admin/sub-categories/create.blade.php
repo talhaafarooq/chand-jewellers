@@ -23,7 +23,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         {!! Form::label('name', 'Name') !!}
-                                        {!! Form::text('name', null, [
+                                        {!! Form::text('name', old('name'), [
                                             'id' => 'name',
                                             'class' => 'form-control',
                                             'placeholder' => 'Name',
@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                         {!! Form::label('category', 'Category') !!}
-                                        {!! Form::select('category', $categoriesList, null, ['id' => 'category', 'class' => 'form-control select2']) !!}
+                                        {!! Form::select('category', $categoriesList, old('category'), ['id' => 'category', 'class' => 'form-control select2']) !!}
                                         @error('category')
                                             <font color="red">{{ $message }}</font>
                                         @enderror

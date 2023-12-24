@@ -2,9 +2,20 @@
 @section('title', 'Add New Product')
 @section('head')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
     <style>
         #details::placeholder {
             padding-left: 10px;
+        }
+        .bootstrap-tagsinput .tag {
+            margin-right: 2px;
+            color: #ffffff;
+            background: #2196f3;
+            padding: 3px 7px;
+            border-radius: 3px;
+        }
+        .bootstrap-tagsinput {
+            width: 100%;
         }
     </style>
 @endsection
@@ -31,20 +42,20 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         {!! Form::label('code', 'Code') !!}
-                                        {!! Form::text('name', null, [
-                                            'id' => 'name',
+                                        {!! Form::text('code', old('code'), [
+                                            'id' => 'code',
                                             'class' => 'form-control',
                                             'placeholder' => 'Product Code',
                                             'autofocus' => 'autofocus',
                                             'required'=>'required'
                                         ]) !!}
-                                        @error('name')
+                                        @error('code')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         {!! Form::label('name', 'Name') !!}
-                                        {!! Form::text('name', null, [
+                                        {!! Form::text('name', old('name'), [
                                             'id' => 'name',
                                             'class' => 'form-control',
                                             'placeholder' => 'Product Name',
@@ -70,7 +81,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('category', 'Category') !!}
-                                        {!! Form::select('category', $categoriesList, null, ['id' => 'category', 'class' => 'form-control' ,'required'=>'required']) !!}
+                                        {!! Form::select('category', $categoriesList, old('category'), ['id' => 'category', 'class' => 'form-control' ,'required'=>'required']) !!}
                                         @error('category')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -87,19 +98,8 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
-                                        {!! Form::label('old_price', 'Old Price (optional)') !!}
-                                        {!! Form::text('old_price', null, [
-                                            'id' => 'old_price',
-                                            'class' => 'form-control',
-                                            'placeholder' => 'Old Price',
-                                        ]) !!}
-                                        @error('old_price')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('new_price', 'New Price') !!}
-                                        {!! Form::text('new_price', null, [
+                                        {!! Form::text('new_price', old('new_price'), [
                                             'id' => 'new_price',
                                             'class' => 'form-control',
                                             'placeholder' => 'New Price',
@@ -110,8 +110,19 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('old_price', 'Old Price (optional)') !!}
+                                        {!! Form::text('old_price', old('old_price'), [
+                                            'id' => 'old_price',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Old Price',
+                                        ]) !!}
+                                        @error('old_price')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('sku', 'Sku') !!}
-                                        {!! Form::text('sku', null, [
+                                        {!! Form::text('sku', old('sku'), [
                                             'id' => 'sku',
                                             'class' => 'form-control',
                                             'placeholder' => 'SKU',
@@ -123,7 +134,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('net_weight', 'Net Weight') !!}
-                                        {!! Form::text('net_weight', null, [
+                                        {!! Form::text('net_weight', old('net_weight'), [
                                             'id' => 'net_weight',
                                             'class' => 'form-control',
                                             'placeholder' => 'Net Weight',
@@ -135,7 +146,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('polish_weight', 'Polish Weight') !!}
-                                        {!! Form::text('polish_weight', null, [
+                                        {!! Form::text('polish_weight', old('polish_weight'), [
                                             'id' => 'polish_weight',
                                             'class' => 'form-control',
                                             'placeholder' => 'Polish Weight',
@@ -147,14 +158,14 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('karats', 'Karats') !!}
-                                        {!! Form::text('karats', null, ['id' => 'karats', 'class' => 'form-control', 'placeholder' => 'Karats', 'required'=>'required']) !!}
+                                        {!! Form::text('karats', old('karats'), ['id' => 'karats', 'class' => 'form-control', 'placeholder' => 'Karats', 'required'=>'required']) !!}
                                         @error('karats')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('alert_qty', 'Alert Qty') !!}
-                                        {!! Form::text('alert_qty', null, [
+                                        {!! Form::text('alert_qty', old('alert_qty'), [
                                             'id' => 'alert_qty',
                                             'class' => 'form-control',
                                             'placeholder' => 'Alert Qty',
@@ -171,9 +182,9 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('status', 'Status') !!}
-                                        {!! Form::select('status', ['1' => 'Active', '0' => 'InActive'], null, [
+                                        {!! Form::select('status', ['1' => 'Active', '0' => 'InActive'], old('status'), [
                                             'id' => 'status',
                                             'class' => 'form-control select2',
                                             'required'=>'required'
@@ -182,9 +193,21 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('tags', 'Tags') !!}
+                                        {!! Form::text('tags', old('tags'), [
+                                            'id' => 'tags',
+                                            'class' => 'form-control',
+                                            'required'=>'required',
+                                            'data-role'=>"tagsinput"
+                                        ]) !!}
+                                        @error('status')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                         {!! Form::label('description', 'Description') !!}
-                                        {!! Form::textarea('description', null, [
+                                        {!! Form::textarea('description', old('description'), [
                                             'id' => 'description',
                                             'class' => 'form-control',
                                             'placeholder' => 'Write short description here...',
@@ -196,7 +219,7 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                         {!! Form::label('details', 'Details') !!}
-                                        {!! Form::textarea('details', null, [
+                                        {!! Form::textarea('details', old('details'), [
                                             'id' => 'details',
                                             'class' => 'form-control tinymce-editor',
                                             'placeholder' => 'Write Product details here...',
@@ -219,6 +242,7 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
     <script src="{{ URL::asset('dashboard') }}/dist/js/tinymce.min.js" referrerpolicy="origin"></script>
     <script type="text/javascript">
         // --------------------- TinyMCE Editor Start Here ------------------------

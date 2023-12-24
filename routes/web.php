@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Website\WebsiteController;
+use App\Http\Controllers\Website\{
+    AuthController,
+    WebsiteController,
+    WishlistController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +35,12 @@ Route::as('website.')->group(function(){
     Route::get('/about-us', [WebsiteController::class, 'aboutUs'])->name('about');
     Route::get('/contact-us', [WebsiteController::class, 'contactUs'])->name('contact');
     Route::post('/subscribe', [WebsiteController::class, 'subscribeWebsite'])->name('subscribe');
+
+    Route::get('/product/{slug}',[WebsiteController::class,'productDetails'])->name('product.details')->where('slug', '[a-zA-Z0-9-]+');
+    Route::post('/customer-register/',[AuthController::class,'register'])->name('register');
+
+    Route::middleware('auth','role:customer')->group(function(){
+        Route::get('/add-to-wishlist/{product_id}',[WishlistController::class,'addToWishlist'])->where('product_id', '[0-9]+')->name('add-to-wishlist');
+    });
 });
 

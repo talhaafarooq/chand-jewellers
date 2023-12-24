@@ -23,7 +23,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         {!! Form::label('name', 'Name') !!}
-                                        {!! Form::text('name', null, [
+                                        {!! Form::text('name', old('name'), [
                                             'id' => 'name',
                                             'class' => 'form-control',
                                             'placeholder' => 'Name',

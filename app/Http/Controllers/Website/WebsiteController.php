@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Settings;
 use App\Models\Subscribers;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,9 @@ class WebsiteController extends Controller
 {
     public function index()
     {
-        $products = Product::take(12)->orderBy('id','desc')->get();
-        return view('website.index',compact('products'));
+        $settings = Settings::select('currency')->first();
+        $newArrivalProducts = Product::select('name','slug','front_img','back_img','old_price','new_price')->take(12)->orderBy('id','desc')->get();
+        return view('website.index',compact('settings','newArrivalProducts'));
     }
 
     public function aboutUs()
@@ -41,5 +43,11 @@ class WebsiteController extends Controller
         }else{
             return redirect()->back()->with('failure', 'Something went wrong.');
         }
+    }
+
+    public function productDetails($slug)
+    {
+        $product = Product::with('category:id,name','subCategory:id,name','productImages')->where('slug',$slug)->firstOrFail();
+        return view('website.product-detail',compact('product'));
     }
 }

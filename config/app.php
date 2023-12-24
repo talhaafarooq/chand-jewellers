@@ -170,7 +170,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        App\Providers\RepositoryServiceProvider::class
+        App\Providers\RepositoryServiceProvider::class,
+        Conner\Tagging\Providers\TaggingServiceProvider::class,
     ])->toArray(),
 
     /*
