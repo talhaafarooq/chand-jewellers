@@ -93,17 +93,21 @@
                                         <option value="4">XL</option>
                                     </select>
                                 </div> --}}
-                                <div class="quantity">
-                                    <label>Quantity</label>
-                                    <div class="cart-plus-minus">
-                                        <input class="cart-plus-minus-box" value="1" type="text">
-                                        <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                        <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                <form action="{{ route('website.add-to-cart') }}" method="post" id="cartForm">
+                                    @csrf
+                                    <input type="hidden" name="slug" id="slug" value="{{ $product->slug }}" required>
+                                    <div class="quantity">
+                                        <label>Quantity</label>
+                                        <div class="cart-plus-minus">
+                                            <input class="cart-plus-minus-box" name="qty" id="qty" value="1" type="text" min="1" oninput="this.value = Math.abs(this.value)" required>
+                                            <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+                                            <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                                 <div class="qty-btn_area">
                                     <ul>
-                                        <li><a class="qty-cart_btn" href="cart.html">Add To Cart</a></li>
+                                        <li><a class="qty-cart_btn" href="javascript:void(0)" onclick="document.getElementById('cartForm').submit();">Add To Cart</a></li>
                                         <li><a class="qty-wishlist_btn" href="{{ route('website.add-to-wishlist',$product->id) }}" data-bs-toggle="tooltip" title="Add To Wishlist"><i class="ion-android-favorite-outline"></i></a></li>
                                         <li><a class="qty-compare_btn" href="compare.html" data-bs-toggle="tooltip" title="Compare This Product"><i class="ion-ios-shuffle-strong"></i></a></li>
                                     </ul>

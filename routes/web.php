@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Website\{
     AuthController,
+    CartController,
     WebsiteController,
     WishlistController
 };
@@ -44,6 +45,10 @@ Route::as('website.')->group(function(){
         Route::get('/add-to-wishlist/{product_id}',[WishlistController::class,'addToWishlist'])->where('product_id', '[0-9]+')->name('add-to-wishlist');
         Route::get('/remove-wishlist-item/{product_id}',[WishlistController::class,'removeItemToWishlist'])->where('product_id', '[0-9]+')->name('remove-wishlist-item');
         Route::get('/wishlist',[WishlistController::class,'wishlist'])->name('wishlist');
+
+
+        // Add To Cart
+        Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('add-to-cart');
     });
 });
 
