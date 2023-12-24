@@ -15,7 +15,7 @@
                             @csrf
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="search" id="search"
-                                    placeholder="Search Category" value="{{ $search }}">
+                                    placeholder="Search Product" value="{{ $search }}">
                                 <div class="input-group-append" onclick="document.getElementById('productsForm').submit()">
                                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
                                 </div>

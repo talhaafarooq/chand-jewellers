@@ -11,7 +11,7 @@ class CategoryTableSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['name' => 'Gold Jewellery']
+            ['name' => 'Gold Jewellery','slug'=>'gold-jewellery']
         ];
 
         Category::insert($data);

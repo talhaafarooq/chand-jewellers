@@ -30,27 +30,47 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12">
-                                        {!! Form::label('name', 'Name') !!}
+                                        {!! Form::label('code', 'Code') !!}
                                         {!! Form::text('name', null, [
                                             'id' => 'name',
                                             'class' => 'form-control',
-                                            'placeholder' => 'Name',
+                                            'placeholder' => 'Product Code',
                                             'autofocus' => 'autofocus',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('name')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
-                                        {!! Form::label('images', 'Images') !!}
-                                        <input type="file" name="images[]" id="images" class="form-control" multiple>
-                                        @error('images')
+                                        {!! Form::label('name', 'Name') !!}
+                                        {!! Form::text('name', null, [
+                                            'id' => 'name',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Product Name',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('name')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('front_img', 'Front Image') !!}
+                                        <input type="file" name="front_img" id="front_img" class="form-control" required>
+                                        @error('front_img')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('back_img', 'Back Image') !!}
+                                        <input type="file" name="back_img" id="back_img" class="form-control" required>
+                                        @error('back_img')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('category', 'Category') !!}
-                                        {!! Form::select('category', $categoriesList, null, ['id' => 'category', 'class' => 'form-control']) !!}
+                                        {!! Form::select('category', $categoriesList, null, ['id' => 'category', 'class' => 'form-control' ,'required'=>'required']) !!}
                                         @error('category')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -60,6 +80,7 @@
                                         {!! Form::select('sub_category', ['' => 'Select Sub Category'], null, [
                                             'id' => 'sub_category',
                                             'class' => 'form-control',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('sub_category')
                                             <font color="red">{{ $message }}</font>
@@ -82,8 +103,21 @@
                                             'id' => 'new_price',
                                             'class' => 'form-control',
                                             'placeholder' => 'New Price',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('new_price')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('sku', 'Sku') !!}
+                                        {!! Form::text('sku', null, [
+                                            'id' => 'sku',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'SKU',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('sku')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
@@ -93,6 +127,7 @@
                                             'id' => 'net_weight',
                                             'class' => 'form-control',
                                             'placeholder' => 'Net Weight',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('net_weight')
                                             <font color="red">{{ $message }}</font>
@@ -104,6 +139,7 @@
                                             'id' => 'polish_weight',
                                             'class' => 'form-control',
                                             'placeholder' => 'Polish Weight',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('polish_weight')
                                             <font color="red">{{ $message }}</font>
@@ -111,7 +147,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('karats', 'Karats') !!}
-                                        {!! Form::text('karats', null, ['id' => 'karats', 'class' => 'form-control', 'placeholder' => 'Karats']) !!}
+                                        {!! Form::text('karats', null, ['id' => 'karats', 'class' => 'form-control', 'placeholder' => 'Karats', 'required'=>'required']) !!}
                                         @error('karats')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -122,8 +158,16 @@
                                             'id' => 'alert_qty',
                                             'class' => 'form-control',
                                             'placeholder' => 'Alert Qty',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('alert_qty')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('images', 'Images') !!}
+                                        <input type="file" name="images[]" id="images" class="form-control" required multiple>
+                                        @error('images')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
@@ -132,6 +176,7 @@
                                         {!! Form::select('status', ['1' => 'Active', '0' => 'InActive'], null, [
                                             'id' => 'status',
                                             'class' => 'form-control select2',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('status')
                                             <font color="red">{{ $message }}</font>
@@ -143,6 +188,7 @@
                                             'id' => 'description',
                                             'class' => 'form-control',
                                             'placeholder' => 'Write short description here...',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('description')
                                             <font color="red">{{ $message }}</font>

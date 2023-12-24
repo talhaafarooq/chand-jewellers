@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable = array('name', 'image');
+    protected $fillable = array('name','slug', 'image');
     protected $timesptams = false;
     protected $casts = [
         'name' => 'string',
+        'slug' => 'string',
         'image' => 'string'
     ];
 

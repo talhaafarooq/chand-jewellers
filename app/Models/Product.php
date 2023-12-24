@@ -9,12 +9,16 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = array(
-        'name', 'old_price', 'new_price', 'category_id', 'sub_category_id', 'description', 'details',
-        'polish', 'weight', 'karat', 'alert_qty', 'status'
+        'code','name', 'slug','front_img','back_img','old_price', 'new_price', 'category_id', 'sub_category_id', 'description', 'details',
+        'polish', 'weight', 'karat', 'alert_qty', 'status','sku'
     );
 
     protected $casts = [
+        'code' => 'string',
         'name' => 'string',
+        'slug' => 'string',
+        'front_img' => 'string',
+        'back_img' => 'string',
         'old_price' => 'float',
         'new_price' => 'float',
         'category_id' => 'integer',
@@ -26,6 +30,7 @@ class Product extends Model
         'karat' => 'string',
         'alert_qty' => 'integer',
         'status' => 'boolean',
+        'sku'=>'string'
     ];
 
     public function category()

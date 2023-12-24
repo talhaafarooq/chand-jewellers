@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -38,6 +39,7 @@ class ProductController extends Controller
     {
         $data = [
             'name' => $request->name,
+            'slug' => Str::slug($request->name),
             'category_id' => $request->category,
             'sub_category_id' => $request->sub_category,
             'old_price' => $request->old_price,
@@ -47,9 +49,20 @@ class ProductController extends Controller
             'karat' => $request->karats,
             'alert_qty' => $request->alert_qty,
             'description' => $request->description,
-            'details' => $request->details
+            'details' => $request->details,
+            'sku' => $request->sku
         ];
         $product = $this->repo->store(Product::class, $data);
+        if ($request->hasFile('front_img')) {
+            $fileName = FileHelper::uploadFile($request->file('front_img'), 'products');
+            $product->front_img = $fileName;
+            $product->save();
+        }
+        if ($request->hasFile('back_img')) {
+            $fileName = FileHelper::uploadFile($request->file('back_img'), 'products');
+            $product->back_img = $fileName;
+            $product->save();
+        }
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
                 $fileName = FileHelper::uploadFile($file, 'products');

@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class SubCategory extends Model
 {
     use HasFactory;
-    protected $fillable = array('name', 'image', 'category_id');
+    protected $fillable = array('name','slug', 'image', 'category_id');
     protected $casts = [
         'name' => 'string',
+        'slug' => 'string',
         'image' => 'string',
         'category_id' => 'integer'
     ];
