@@ -13,7 +13,7 @@
  <div class="breadcrumb-area">
     <div class="container">
         <div class="breadcrumb-content">
-            <h2>Other</h2>
+            <h2>Cart</h2>
             <ul>
                 <li><a href="{{ route('website.home') }}">Home</a></li>
                 <li class="active">Cart</li>
@@ -83,11 +83,11 @@
                             <div class="cart-page-total">
                                 <h2>Cart totals</h2>
                                 <ul>
-                                    <li>Subtotal <span>{{ $settings->currency.number_format(Cart::getSubTotal()) }}</span></li>
-                                    <li>Shipping Charges <span>{{ number_format($settings->shipping) }}</span></li>
-                                    <li>Total <span>{{ $settings->currency.number_format(Cart::getTotal()) }}</span></li>
+                                    <li>Subtotal <span>{{ $settings->currency.number_format(Cart::getSubTotal(),2) }}</span></li>
+                                    <li>Shipping Charges <span>{{ number_format($settings->shipping,2) }}</span></li>
+                                    <li>Total <span>{{ $settings->currency.number_format(Cart::getTotal()+$settings->shipping,2) }}</span></li>
                                 </ul>
-                                <a href="javascript:void(0)">Proceed to checkout</a>
+                                <a href="{{ route('website.checkout') }}">Proceed to checkout</a>
                             </div>
                         </div>
                     </div>
