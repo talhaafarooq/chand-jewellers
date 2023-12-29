@@ -1,8 +1,4 @@
-@php
-use App\Models\Settings;
-$settings = Settings::first();
-@endphp
- <!-- Begin Hiraola's Footer Area -->
+<!-- Begin Hiraola's Footer Area -->
  <div class="hiraola-footer_area">
     <div class="footer-top_area">
         <div class="container">
@@ -17,27 +13,27 @@ $settings = Settings::first();
                         </div>
 
                         <div class="widget-short_desc">
-                            <p>{{ $settings->about_us }}</p>
+                            <p>{{ SettingsHelper::info()->about_us }}</p>
                         </div>
                         <div class="hiraola-social_link">
                             <ul>
                                 <li class="facebook">
-                                    <a href="{{ $settings->facebook }}" data-bs-toggle="tooltip" target="_blank" title="Facebook">
+                                    <a href="{{ SettingsHelper::info()->facebook }}" data-bs-toggle="tooltip" target="_blank" title="Facebook">
                                         <i class="fab fa-facebook"></i>
                                     </a>
                                 </li>
                                 <li class="twitter">
-                                    <a href="{{ $settings->twitter }}" data-bs-toggle="tooltip" target="_blank" title="Twitter">
+                                    <a href="{{ SettingsHelper::info()->twitter }}" data-bs-toggle="tooltip" target="_blank" title="Twitter">
                                         <i class="fab fa-twitter-square"></i>
                                     </a>
                                 </li>
                                 <li class="google-plus">
-                                    <a href="mailto: {{ $settings->email }}" data-bs-toggle="tooltip" target="_blank" title="Google Plus">
+                                    <a href="mailto: {{ SettingsHelper::info()->email }}" data-bs-toggle="tooltip" target="_blank" title="Google Plus">
                                         <i class="fab fa-google-plus"></i>
                                     </a>
                                 </li>
                                 <li class="instagram">
-                                    <a href="{{ $settings->instagram }}" data-bs-toggle="tooltip" target="_blank" title="Instagram">
+                                    <a href="{{ SettingsHelper::info()->instagram }}" data-bs-toggle="tooltip" target="_blank" title="Instagram">
                                         <i class="fab fa-instagram"></i>
                                     </a>
                                 </li>
@@ -69,14 +65,14 @@ $settings = Settings::first();
                                     <div class="widgets-essential_stuff">
                                         <ul>
                                             <li class="hiraola-address"><i
-                                            class="ion-ios-location"></i><span>Address 1 :</span> {{ $settings->address1 }}</li>
+                                            class="ion-ios-location"></i><span>Address 1 :</span> {{ SettingsHelper::info()->address1 }}</li>
                                             <li class="hiraola-address"><i
-                                            class="ion-ios-location"></i><span>Address 2 :</span> {{ $settings->address2 }}</li>
+                                            class="ion-ios-location"></i><span>Address 2 :</span> {{ SettingsHelper::info()->address2 }}</li>
                                             <li class="hiraola-phone"><i class="ion-ios-telephone"></i><span>Call
-                                            Us:</span> <a href="tel:{{ $settings->phone1 }}">{{ $settings->phone1 }}</a>
+                                            Us:</span> <a href="tel:{{ SettingsHelper::info()->phone1 }}">{{ SettingsHelper::info()->phone1 }}</a>
                                             </li>
                                             <li class="hiraola-email"><i
-                                            class="ion-android-mail"></i><span>Email:</span> <a href="mailto:{{ $settings->email }}">{{ $settings->email }}</a></li>
+                                            class="ion-android-mail"></i><span>Email:</span> <a href="mailto:{{ SettingsHelper::info()->email }}">{{ SettingsHelper::info()->email }}</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -150,7 +146,7 @@ $settings = Settings::first();
                     </div>
                     <div class="col-lg-12">
                         <div class="copyright">
-                            <span>Copyright &copy; {{ date('Y') }} <a href="{{ route('website.home') }}">{{ $settings->name }}.</a> All rights reserved.</span>
+                            <span>Copyright &copy; {{ date('Y') }} <a href="{{ route('website.home') }}">{{ SettingsHelper::info()->name }}.</a> All rights reserved.</span>
                         </div>
                     </div>
                 </div>

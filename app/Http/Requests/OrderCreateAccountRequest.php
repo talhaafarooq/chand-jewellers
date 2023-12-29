@@ -22,6 +22,7 @@ class OrderCreateAccountRequest extends FormRequest
             'city' => 'required|min:1|max:255|string',
             'state' => 'required|min:1|max:255|string',
             'zipcode' => 'required|min:1|max:255|string',
+            'country' => 'required|min:1|max:255|string',
             'email' => 'required|min:1|max:255|email|unique:users,email',
             'phone1' => 'required|min:1|max:255|string',
             'phone2' => 'nullable|min:1|max:255|string',

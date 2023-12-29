@@ -1,6 +1,4 @@
 @php
-    use App\Models\Settings;
-    $settings = Settings::first();
     $cartItems = Cart::getContent();
 @endphp
 <!-- Begin Hiraola's Newsletter Popup Area -->
@@ -37,7 +35,7 @@
                             <ul>
                                 <li>
                                     <span>Telephone Enquiry:</span>
-                                    <a href="tel:{{ $settings->phone1 }}">{{ $settings->phone1 }}</a>
+                                    <a href="tel:{{ SettingsHelper::info()->phone1 }}">{{ SettingsHelper::info()->phone1 }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -327,7 +325,7 @@
                             </div>
                             <div class="product-item_content">
                                 <a class="product-item_title" href="shop-left-sidebar.html">{{ $value->name }}</a>
-                                <span class="product-item_quantity">{{ $value->quantity }} x {{ $settings->currency.number_format($value->price,2) }}</span>
+                                <span class="product-item_quantity">{{ $value->quantity }} x {{ SettingsHelper::info()->currency.number_format($value->price,2) }}</span>
                             </div>
                         </li>
                         @endif
@@ -337,7 +335,7 @@
             </div>
             <div class="minicart-item_total">
                 <span>Subtotal</span>
-                <span class="ammount">{{ $settings->currency.Cart::getSubTotal() }}</span>
+                <span class="ammount">{{ SettingsHelper::info()->currency.Cart::getSubTotal() }}</span>
             </div>
             <div class="minicart-btn_area">
                 <a href="{{ route('website.cart') }}" class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Minicart</a>

@@ -45,7 +45,7 @@
                                                         class="product-quantity">
                                                         × {{ $cartItems->quantity }}</strong></td>
                                                 <td class="cart-product-total"><span
-                                                        class="amount">{{ $settings->currency . number_format($cartItems->price * $cartItems->quantity) }}</span>
+                                                        class="amount">{{ SettingsHelper::info()->currency . number_format($cartItems->price * $cartItems->quantity) }}</span>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -54,19 +54,19 @@
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
                                             <td><span
-                                                    class="amount">{{ $settings->currency . number_format(Cart::getSubTotal(), 2) }}</span>
+                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getSubTotal(), 2) }}</span>
                                             </td>
                                         </tr>
                                         <tr class="cart-subtotal">
                                             <th>Shipping Charges</th>
                                             <td><span
-                                                    class="amount">{{ $settings->currency . number_format($settings->shipping, 2) }}</span>
+                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(SettingsHelper::info()->shipping, 2) }}</span>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Order Total</th>
                                             <td><strong><span
-                                                        class="amount">{{ $settings->currency . number_format(Cart::getTotal() + $settings->shipping, 2) }}</span></strong>
+                                                        class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getTotal() + SettingsHelper::info()->shipping, 2) }}</span></strong>
                                             </td>
                                         </tr>
                                     </tfoot>

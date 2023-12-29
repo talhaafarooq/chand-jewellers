@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\Settings;
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,8 +12,7 @@ class CartController extends Controller
 {
     public function cart()
     {
-        $settings = Settings::select('currency','shipping')->first();
-        return view('website.cart',compact('settings'));
+        return view('website.cart');
     }
 
     public function addToCart(Request $request)
@@ -55,7 +53,7 @@ class CartController extends Controller
             return redirect()->back()->with('failure','Something went wrong!');
         }
 
-        
+
         $cart = Cart::getContent();
         for ($i = 0; $i < count($request->slugs); $i++) {
             $product = Product::where('slug',$request->slugs[$i])->firstOrFail();

@@ -72,14 +72,17 @@
                                 <div class="col-md-12">
                                     <div class="country-select clearfix">
                                         <label>Country <span class="required">*</span></label>
-                                        <select class="myniceselect nice-select wide">
-                                            <option data-display="Pakistan" selected>Pakistan</option>
+                                        <select class="myniceselect nice-select wide" name="country" required>
+                                            <option data-display="Pakistan" value="Pakistan" selected>Pakistan</option>
                                             {{-- <option value="uk">London</option>
                                         <option value="rou">Romania</option>
                                         <option value="fr">French</option>
                                         <option value="de">Germany</option>
                                         <option value="aus">Australia</option> --}}
                                         </select>
+                                        @error('country')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -312,7 +315,7 @@
                                                         class="product-quantity">
                                                         × {{ $cartItems->quantity }}</strong></td>
                                                 <td class="cart-product-total"><span
-                                                        class="amount">{{ $settings->currency . number_format($cartItems->price * $cartItems->quantity) }}</span>
+                                                        class="amount">{{ SettingsHelper::info()->currency . number_format($cartItems->price * $cartItems->quantity) }}</span>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -327,19 +330,19 @@
                                         <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
                                             <td><span
-                                                    class="amount">{{ $settings->currency . number_format(Cart::getSubTotal(), 2) }}</span>
+                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getSubTotal(), 2) }}</span>
                                             </td>
                                         </tr>
                                         <tr class="cart-subtotal">
                                             <th>Shipping Charges</th>
                                             <td><span
-                                                    class="amount">{{ $settings->currency . number_format($settings->shipping, 2) }}</span>
+                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(SettingsHelper::info()->shipping, 2) }}</span>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Order Total</th>
                                             <td><strong><span
-                                                        class="amount">{{ $settings->currency . number_format(Cart::getTotal() + $settings->shipping, 2) }}</span></strong>
+                                                        class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getTotal() + SettingsHelper::info()->shipping, 2) }}</span></strong>
                                             </td>
                                         </tr>
                                     </tfoot>

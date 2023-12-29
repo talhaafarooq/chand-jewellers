@@ -9,7 +9,7 @@ class Settings extends Model
 {
     use HasFactory;
     protected $fillable = array(
-        'name', 'email', 'phone1', 'phone2', 'address1','address2', 'about_us', 'facebook', 'instagram', 'twitter','youtube',
+        'name', 'email', 'phone1', 'phone2', 'city','state','zipcode','address1','address2', 'about_us', 'facebook', 'instagram', 'twitter','youtube',
         'whatsapp', 'header_logo', 'footer_logo', 'map','currency','shipping','website'
     );
 
@@ -18,6 +18,9 @@ class Settings extends Model
         'email'=>'string',
         'phone1'=>'string',
         'phone2'=>'string',
+        'city'=>'string',
+        'state'=>'string',
+        'zipcode'=>'string',
         'address1'=>'string',
         'address2'=>'string',
         'about_us'=>'string',

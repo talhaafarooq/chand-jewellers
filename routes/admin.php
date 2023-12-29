@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -36,10 +37,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::resource('products', ProductController::class);
     Route::get('products/destroy/{sub_category_id}', [ProductController::class,'destroy']);
 
+    // Orders
+    Route::resource('orders', OrderController::class);
+    Route::get('orders/destroy/{order_id}', [OrderController::class,'destroy']);
 
-    // Subscriber 
+
+    // Subscriber
     Route::resource('subscribers',SubscriberController::class);
 
-     // Settings
-     Route::resource('settings', SettingController::class);
+    // Settings
+    Route::resource('settings', SettingController::class);
 });

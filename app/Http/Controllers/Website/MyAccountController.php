@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Models\Order;
-use App\Models\Settings;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,9 +14,8 @@ class MyAccountController extends Controller
 {
     public function index()
     {
-        $settings = Settings::select('currency', 'shipping')->first();
         $orders = Order::withCount('orderDetails')->withSum('orderDetails', 'price')->where('user_id', auth()->user()->id)->get();
-        return view('website.my-account',compact('settings','orders'));
+        return view('website.my-account',compact('orders'));
     }
 
     public function updatePassword(UpdatePasswordRequest $request)

@@ -39,7 +39,7 @@
                                     <img class="zoompro" src="{{ URL::asset('storage/'.$product->productImages[0]->image) }}" data-zoom-image="{{ URL::asset('storage/'.$product->productImages[0]->image) }}" alt="{{ $product->name }} Image" />
                                 </div>
                                 <div id="gallery" class="sp-img_slider">
-                                    @foreach ($product->productImages as $productImage) 
+                                    @foreach ($product->productImages as $productImage)
                                         @if ($loop->first)
                                             <a class="active" data-image="{{ URL::asset('storage/'.$productImage->image) }}" data-zoom-image="{{ URL::asset('storage/'.$productImage->image) }}" style="width: 76px;height:76px!important;">
                                                 <img src="{{ URL::asset('storage/'.$productImage->image) }}" alt="{{ $product->name }} Image">
@@ -57,11 +57,11 @@
                             <div class="sp-content">
                                 <div class="sp-heading">
                                     <h5><a href="javascript:void(0);">{{ $product->name }}</a></h5>
-                                    {{-- <h5><a href="javascript:void(0);" class="new_price">{{ $settings->currency.number_format($product->new_price,2) }}</a></h5> --}}
+                                    {{-- <h5><a href="javascript:void(0);" class="new_price">{{ SettingsHelper::info()->currency.number_format($product->new_price,2) }}</a></h5> --}}
                                     <div class="price-box">
-                                        <span class="new-price">{{ $settings->currency.number_format($product->new_price,2) }}</span>
+                                        <span class="new-price">{{ SettingsHelper::info()->currency.number_format($product->new_price,2) }}</span>
                                         @if(isset($product->old_price) && $product->old_price!=0)
-                                        <span class="old-price">{{ $settings->currency.number_format($product->old_price,2) }}</span>
+                                        <span class="old-price">{{ SettingsHelper::info()->currency.number_format($product->old_price,2) }}</span>
                                         @endif
                                     </div>
                                 </div>

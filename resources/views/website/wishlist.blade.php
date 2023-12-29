@@ -40,7 +40,7 @@
                                     <td class="hiraola-product-thumbnail"><a href="javascript:void(0)"><img src="{{ URL::asset('storage/'.$product->product->front_img) }}" width="100px" alt="{{ $product->name }} Thumbnail"></a>
                                     </td>
                                     <td class="hiraola-product-name"><a href="javascript:void(0)">{{ $product->product->name }}</a></td>
-                                    <td class="hiraola-product-price"><span class="amount">{{ $settings->currency.number_format($product->product->new_price,2) }}</span></td>
+                                    <td class="hiraola-product-price"><span class="amount">{{ SettingsHelper::info()->currency.number_format($product->product->new_price,2) }}</span></td>
                                     <td class="hiraola-product-stock-status"><span class="in-stock">in stock</span></td>
                                     <td class="hiraola-cart_btn"><a href="javascript:void(0)">add to cart</a></td>
                                 </tr>

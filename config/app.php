@@ -190,7 +190,8 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'SettingsHelper' => \App\helpers\SettingsHelper::class
     ])->toArray(),
 
 ];

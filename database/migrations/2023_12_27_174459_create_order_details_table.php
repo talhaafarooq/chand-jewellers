@@ -12,8 +12,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained();
             $table->foreignId('product_id')->constrained();
-            $table->decimal('qty');
-            $table->decimal('price');
+            $table->decimal('qty')->default(0);
+            $table->decimal('price')->default(0);
+            $table->decimal('total')->default(0);
+            $table->decimal('karats')->default(0);
+            $table->decimal('weight')->default(0);
             $table->timestamps();
         });
     }

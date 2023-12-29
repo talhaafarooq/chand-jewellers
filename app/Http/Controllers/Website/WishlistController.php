@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\Settings;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
@@ -13,8 +12,7 @@ class WishlistController extends Controller
     public function wishlist()
     {
         $wishlistProducts = Wishlist::with('product:id,name,front_img,new_price')->where('user_id',auth()->user()->id)->get();
-        $settings = Settings::select('currency')->first();
-        return view('website.wishlist',compact('wishlistProducts','settings'));
+        return view('website.wishlist',compact('wishlistProducts'));
     }
 
     public function addToWishlist($productId){

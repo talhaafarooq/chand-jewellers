@@ -80,7 +80,7 @@
                                                         <td>{{ date('M d, Y',strtotime($order->created_at)) }}</td>
                                                         <td class="text-capitalize">{{ $order->status }}</td>
                                                         {{-- <td>£162.00 for 2 items</td> --}}
-                                                        <td>{{ $settings->currency.number_format($order->order_details_sum_price,2) }} for {{ $order->order_details_count }} items</td>
+                                                        <td>{{ SettingsHelper::info()->currency.number_format($order->order_details_sum_price,2) }} for {{ $order->order_details_count }} items</td>
                                                         <td><a href="javascript:void(0)" class="hiraola-btn hiraola-btn_dark hiraola-btn_sm"><span>View</span></a>
                                                         </td>
                                                     </tr>

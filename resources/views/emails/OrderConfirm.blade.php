@@ -1,7 +1,3 @@
-@php
-    use App\Models\Settings;
-    $settings = Settings::select('website', 'phone1')->first();
-@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +13,8 @@
     <p>Thank You for Your Purchase!
         We are getting your order ready to be shipped. We will notify you when it has been dispatched.
         Tracking details will be shared soon.</p>
-    <p>View Your Order Or <a href="{{ $settings->website }}">Visit our website</a></p>
-    <p>For any query, feel free to contact us at: {{ $settings->phone1 }} (10am to 6pm)</p>
+    <p>View Your Order Or <a href="{{ SettingsHelper::info()->website }}">Visit our website</a></p>
+    <p>For any query, feel free to contact us at: {{ SettingsHelper::info()->phone1 }} (10am to 6pm)</p>
 </body>
 
 </html>

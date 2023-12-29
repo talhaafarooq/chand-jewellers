@@ -10,7 +10,7 @@ class Order extends Model
 {
     use HasFactory;
     protected $fillable = array(
-        'fname', 'lname', 'company', 'address1', 'address2', 'city', 'state', 'zipcode',
+        'fname', 'lname', 'company', 'address1', 'address2', 'city', 'state', 'zipcode','country',
         'email', 'phone1', 'phone2', 'notes', 'user_id', 'status', 'order_no', 'tracking_no', 'tracking_company'
     );
 
@@ -23,6 +23,7 @@ class Order extends Model
         'city' => 'string',
         'state' => 'string',
         'zipcode' => 'string',
+        'country' => 'string',
         'email' => 'string',
         'phone1' => 'string',
         'phone2' => 'string',

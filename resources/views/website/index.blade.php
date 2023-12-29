@@ -276,9 +276,9 @@
                                 <div class="product-desc_info">
                                     <h6><a class="product-name" href="{{ route('website.product.details',$product->slug) }}">{{ implode(' ', str_split($product->name, 23)) }}...</a></h6>
                                     <div class="price-box">
-                                        <span class="new-price">{{ $settings->currency.$product->new_price }}</span>
+                                        <span class="new-price">{{ SettingsHelper::info()->currency.$product->new_price }}</span>
                                         @if(isset($product->old_price) && $product->old_price!=0)
-                                        <span class="old-price">{{ $settings->currency.$product->old_price }}</span>
+                                        <span class="old-price">{{ SettingsHelper::info()->currency.$product->old_price }}</span>
                                         @endif
                                     </div>
                                     <div class="additional-add_action">
