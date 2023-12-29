@@ -7,6 +7,7 @@ use App\Http\Controllers\Website\{
     AuthController,
     CartController,
     CheckoutController,
+    MyAccountController,
     WebsiteController,
     WishlistController
 };
@@ -58,7 +59,9 @@ Route::as('website.')->group(function(){
         Route::get('/remove-wishlist-item/{product_id}',[WishlistController::class,'removeItemToWishlist'])->where('product_id', '[0-9]+')->name('remove-wishlist-item');
         Route::get('/wishlist',[WishlistController::class,'wishlist'])->name('wishlist');
 
-
+        // My Account
+        Route::resource('/my-account',MyAccountController::class);
+        Route::post('/my-account/update-password',[MyAccountController::class,'updatePassword'])->name('my-account.update-password');
 
     });
 });

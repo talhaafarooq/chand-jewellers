@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +11,7 @@ class Order extends Model
     use HasFactory;
     protected $fillable = array(
         'fname', 'lname', 'company', 'address1', 'address2', 'city', 'state', 'zipcode',
-        'email', 'phone1', 'phone2', 'notes', 'user_id'
+        'email', 'phone1', 'phone2', 'notes', 'user_id', 'status', 'order_no', 'tracking_no', 'tracking_company'
     );
 
     protected $casts = [
@@ -27,11 +28,20 @@ class Order extends Model
         'phone2' => 'string',
         'notes' => 'string',
         'user_id' => 'integer',
+        'status' => OrderStatusEnum::class,
+        'order_no' => 'integer',
+        'tracking_no' => 'string',
+        'tracking_company' => 'string'
     ];
 
 
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

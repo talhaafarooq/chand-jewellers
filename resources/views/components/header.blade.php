@@ -64,6 +64,7 @@
                                 <li><a href="my-account.html">My Account<i class="fa fa-chevron-down"></i></a>
                                     <ul class="ht-dropdown ht-my_account">
                                         @if (Auth::check())
+                                        <li><a href="{{ route('website.my-account.index') }}">My Account</a></li>
                                         <li><a href="{{ route('user.logout') }}">Logout</a></li>
                                         @else
                                         <li><a href="{{ route('register') }}">Register</a></li>
@@ -342,7 +343,7 @@
                 <a href="{{ route('website.cart') }}" class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Minicart</a>
             </div>
             <div class="minicart-btn_area">
-                <a href="checkout.html" class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Checkout</a>
+                <a href="{{ route('website.checkout') }}" class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Checkout</a>
             </div>
         </div>
     </div>

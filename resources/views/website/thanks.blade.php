@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 col-12">
                         <div class="your-order">
-                            <h3>Your order <span class="float-right">#CJG{{ $order->id }}</span></h3>
+                            <h3>Your order <span class="float-right">#{{ $order->order_no }}</span></h3>
                             <div class="your-order-table table-responsive">
                                 <table class="table">
                                     <thead>
@@ -49,16 +49,10 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        {{-- <tr class="cart_item">
-                                        <td class="cart-product-name"> Vestibulum suscipit<strong
-                                                class="product-quantity">
-                                                × 1</strong></td>
-                                        <td class="cart-product-total"><span class="amount">£165.00</span></td>
-                                    </tr> --}}
                                     </tbody>
                                     <tfoot>
                                         <tr class="cart-subtotal">
-                                            <th>Cart Subtotal</th>
+                                            <th>Subtotal</th>
                                             <td><span
                                                     class="amount">{{ $settings->currency . number_format(Cart::getSubTotal(), 2) }}</span>
                                             </td>
@@ -103,9 +97,9 @@
                                         <div class="card">
                                             <div class="card-header" id="#payment-2">
                                                 <h5 class="panel-title">
-                                                    <a href="javascript:void(0)" class="collapsed"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                    <a href="javascript:void(0)" class="collapsed" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseTwo" aria-expanded="false"
+                                                        aria-controls="collapseTwo">
                                                         Cash on Delivery
                                                     </a>
                                                     <p class="text-black"><b>Note:</b> Rs 500 Require in advance for order
@@ -139,7 +133,7 @@
                                     </div> --}}
                                     </div>
                                     <div class="order-button-payment">
-                                        <input value="Place order" type="submit">
+                                        <input value="Go To Home" type="button" onclick="location.href='{{ route('website.home') }}'">
                                     </div>
                                 </div>
                             </div>

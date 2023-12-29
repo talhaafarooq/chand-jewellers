@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Enums\OrderStatusEnum;
 use App\Enums\RoleEnum;
 use App\Events\SendEmailEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderCreateAccountRequest;
+use App\Mail\OrderConfirmMail;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
@@ -16,6 +18,8 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class CheckoutController extends Controller
 {
@@ -55,6 +59,14 @@ class CheckoutController extends Controller
                 Auth::attempt(['email' => $request->email, 'password' => $request->password]);
                 $userId = $user->id;
             }
+
+            $orderNo = 7000;
+            $latestOrder = Order::orderBy('order_no','desc')->first();
+            if($latestOrder)
+            {
+                $orderNo = $latestOrder->order_no + 1;
+            }
+
             $order = new Order();
             $order->fname = $request->first_name;
             $order->lname = $request->last_name;
@@ -69,6 +81,8 @@ class CheckoutController extends Controller
             $order->phone2 = $request->phone2;
             $order->notes = $request->order_note;
             $order->user_id = $userId;
+            $order->order_no = $orderNo;
+            $order->status = OrderStatusEnum::Received;
             $order->save();
 
             foreach (Cart::getContent() as $product) {
@@ -80,14 +94,16 @@ class CheckoutController extends Controller
                 $orderDetails->save();
             }
 
-            Event::dispatch(new SendEmailEvent($request->email,"Order has been placed",$order->id));
+            $orderWithUser = Order::select('id','order_no','user_id')->with('user:id,first_name,last_name')->find($order->id);
+            // Mail::to("talhafarooq522446@gmail.com")->send(new OrderConfirmMail($orderWithUser));
+            Mail::to($request->email)->send(new OrderConfirmMail($orderWithUser));
 
+            Cart::clear();
             DB::commit();
             return redirect()->route('website.thanks',$order->id)->with('success', 'Order has been placed successfully!.');
         } catch (Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('failure', 'Something went wrong! Try again');
-            // return redirect()->back()->with('failure', $ex->getMessage());
         }
         $userId = null;
     }

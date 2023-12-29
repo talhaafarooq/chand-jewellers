@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\OrderStatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,6 +24,10 @@ return new class extends Migration
             $table->string('phone2')->nullable();
             $table->text('notes')->nullable();
             $table->bigInteger('user_id')->nullable();
+            $table->enum('status',OrderStatusEnum::getValues())->default('received');
+            $table->integer('order_no')->default(0);
+            $table->string('tracking_no')->nullable();
+            $table->string('tracking_company')->nullable();
             $table->timestamps();
         });
     }

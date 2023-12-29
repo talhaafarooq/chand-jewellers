@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('map',1000)->nullable();
             $table->string('currency',20)->nullable();
             $table->decimal('shipping')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

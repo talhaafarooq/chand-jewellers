@@ -26,9 +26,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        SendEmailEvent::class=>[
-            SendMailFired::class
-        ]
     ];
 
     /**
