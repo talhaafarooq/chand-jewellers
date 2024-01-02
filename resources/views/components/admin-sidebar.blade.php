@@ -125,10 +125,27 @@
 
                 <!-- Orders Section -->
                 <li class="nav-item">
-                    <a href="{{ route('admin.orders.index') }}" class="nav-link">
+                    <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Orders</p>
+                        <p>
+                            Orders
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.orders.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Orders</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.order-report') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Report</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <!-- Subscribers List Section -->

@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     // Orders
     Route::resource('orders', OrderController::class);
     Route::get('orders/destroy/{order_id}', [OrderController::class,'destroy']);
+    Route::get('order-report', [OrderController::class,'orderReport'])->name('order-report');
+    Route::match(['get','post'],'report', [OrderController::class,'report'])->name('find-report');
 
 
     // Subscriber

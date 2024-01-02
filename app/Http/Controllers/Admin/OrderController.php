@@ -66,4 +66,25 @@ class OrderController extends Controller
         $edit->update($request->all());
         return redirect()->route('admin.orders.index')->with('success', 'Order info updated successfully.');
     }
+
+    public function orderReport()
+    {
+        return view('admin.orders.report.index');
+    }
+
+    public function report(Request $request)
+    {
+        $request->validate([
+            'from_date'=>'required|date',
+            'to_date'=>'required|date'
+        ]);
+        $fromDate = $request->from_date;
+        $toDate = $request->to_date;
+        $orders = Order::with('orderDetails','user')
+        ->whereDate('created_at','>=',$request->from_date)
+        ->whereDate('created_at','<=',$request->to_date)
+        ->get();
+
+        return view('admin.orders.report.report',compact('orders','fromDate','toDate'));
+    }
 }
