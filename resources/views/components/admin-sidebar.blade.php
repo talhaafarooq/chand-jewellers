@@ -21,7 +21,7 @@
         </div>
 
         <!-- SidebarSearch Form -->
-        <div class="form-inline">
+        {{-- <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search"
                     aria-label="Search">
@@ -31,7 +31,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -153,6 +153,14 @@
                     <a href="{{ route('admin.subscribers.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Subscribers</p>
+                    </a>
+                </li>
+
+                 <!-- Visitors Section -->
+                 <li class="nav-item">
+                    <a href="{{ route('admin.visitors.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Website Visitors</p>
                     </a>
                 </li>
 

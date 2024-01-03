@@ -119,16 +119,18 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                             <label for="status">Status</label>
                                             <select name="status" id="status" class="form-control select2" required>
-                                                <option value="received" selected>Received</option>
-                                                <option value="dispatched">Dispatched</option>
-                                                <option value="cancelled">Cancelled</option>
-                                                <option value="delivered">Delivered</option>
+                                                <option value="received" @if($edit->status->value === "received") selected @endif>Received</option>
+                                                <option value="dispatched" @if($edit->status->value === "dispatched") selected @endif>Dispatched</option>
+                                                <option value="cancelled" @if($edit->status->value === "cancelled") selected @endif>Cancelled</option>
+                                                <option value="delivered" @if($edit->status->value === "delivered") selected @endif>Delivered</option>
                                             </select>
                                             @error('status')
                                                 <font color="red">{{ $message }}</font>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 mt-2 d-none" id="tracking_no_section">
+
+
+                                        <div class="col-lg-6 col-md-6 col-sm-12 mt-2 @if($edit->status->value !== "dispatched")? d-none @endif" id="tracking_no_section">
                                             <label for="tracking_no">Tracking No</label>
                                             <input type="text" name="tracking_no" id="tracking_no" class="form-control"
                                                 value="{{ $edit->tracking_no }}">
@@ -136,7 +138,7 @@
                                                 <font color="red">{{ $message }}</font>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 mt-2 d-none" id="tracking_company_section">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 mt-2 @if($edit->status->value !== "dispatched")? d-none @endif" id="tracking_company_section">
                                             <label for="tracking_company">Tracking Company</label>
                                             <input type="text" name="tracking_company" id="tracking_company" class="form-control"
                                                 value="{{ $edit->tracking_company }}">
@@ -162,7 +164,7 @@
         $(document).ready(function(){
             $('#status').change(function(){
                 var status = $(this).val();
-                if(status == 'delivered')
+                if(status == 'dispatched')
                 {
                     $('#tracking_no_section').removeClass('d-none');
                     $('#tracking_company_section').removeClass('d-none');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubscriberController;
+use App\Http\Controllers\Admin\VisitorController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
 
     // Subscriber
     Route::resource('subscribers',SubscriberController::class);
+
+    // Website Visitors
+    Route::resource('visitors',VisitorController::class);
 
     // Settings
     Route::resource('settings', SettingController::class);

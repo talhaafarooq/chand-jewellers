@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\SendEmailEvent;
+use App\Listeners\SendEmailListener;
 use App\Listeners\SendMailFired;
 use App\Models\Category;
 use App\Models\Product;
@@ -26,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        SendEmailEvent::class=>[
+            SendEmailListener::class
+        ]
     ];
 
     /**

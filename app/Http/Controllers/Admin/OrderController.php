@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\OrderStatusEnum;
+use App\Events\SendEmailEvent;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\OrderUpdateRequest;
 use App\Models\OrderDetail;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -61,10 +64,47 @@ class OrderController extends Controller
 
     public function update($orderId,OrderUpdateRequest $request)
     {
-        // Send Emails on update status
-        $edit = Order::findOrFail($orderId);
-        $edit->update($request->all());
-        return redirect()->route('admin.orders.index')->with('success', 'Order info updated successfully.');
+        try{
+            DB::beginTransaction();
+            // Send Emails on update status
+            $edit = Order::with('orderDetails')->findOrFail($orderId);
+            $edit->update($request->all());
+            $data = [
+                'orderNo' => $edit->order_no,
+                'tracking_company'=> $edit->tracking_company,
+                'tracking_no' => $edit->tracking_no
+            ];
+
+            if($request->status == 'dispatched')
+            {
+                foreach($edit->orderDetails as $orderDetail){
+                    $orderDetail->product->alert_qty = $orderDetail->product->alert_qty - $orderDetail->qty;
+                    $orderDetail->product->save();
+                }
+                event(new SendEmailEvent("talhafarooq522446@gmail.com", "Order Dispatch", $data, "emails/OrderDispatch"));
+            }
+            if($request->status == 'cancelled')
+            {
+                foreach($edit->orderDetails as $orderDetail){
+                    $orderDetail->product->alert_qty = $orderDetail->product->alert_qty + $orderDetail->qty;
+                    $orderDetail->product->save();
+                }
+                event(new SendEmailEvent("talhafarooq522446@gmail.com", "Order Cancel", $data, "emails/OrderCancel"));
+            }
+            if($request->status == 'delivered')
+            {
+                event(new SendEmailEvent("talhafarooq522446@gmail.com", "Order Delivered", $data, "emails/OrderDeliver"));
+            }
+
+
+
+            DB::commit();
+            return redirect()->route('admin.orders.index')->with('success', 'Order info updated successfully.');
+        }catch(Exception $ex)
+        {
+            DB::rollback();
+            return redirect()->back()->with('failure',"Something went wrong!");
+        }
     }
 
     public function orderReport()
