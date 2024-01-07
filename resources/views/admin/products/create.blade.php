@@ -163,7 +163,7 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('alert_qty', 'Alert Qty') !!}
                                         {!! Form::text('alert_qty', old('alert_qty'), [
                                             'id' => 'alert_qty',
@@ -174,7 +174,7 @@
                                         @error('alert_qty')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('images', 'Images') !!}
                                         <input type="file" name="images[]" id="images" class="form-control" required multiple>
@@ -193,7 +193,7 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                         {!! Form::label('tags', 'Tags') !!}
                                         {!! Form::text('tags', old('tags'), [
                                             'id' => 'tags',

@@ -93,7 +93,6 @@ class ProductController extends Controller
     public function edit($id)
     {
         $edit = $this->repo->show(Category::class, $id);
-
         return view('admin.categories.edit', compact('edit'));
     }
 
@@ -115,5 +114,11 @@ class ProductController extends Controller
     {
         $this->repo->delete(Product::class, $id);
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
+    }
+
+    public function outOfStockProducts()
+    {
+        $totalOutOfStocksProducts = Product::where('alert_qty','<',0)->paginate(10);
+        return view('admin.products.out-of-stocks-products', compact('totalOutOfStocksProducts'));
     }
 }

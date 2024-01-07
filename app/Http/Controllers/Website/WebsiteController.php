@@ -11,7 +11,11 @@ class WebsiteController extends Controller
 {
     public function index()
     {
-        $newArrivalProducts = Product::select('id','name','slug','front_img','back_img','old_price','new_price')->take(12)->orderBy('id','desc')->get();
+        $newArrivalProducts = Product::select('id','name','slug','front_img','back_img','old_price','new_price')
+        ->where('status',0)
+        ->take(12)
+        ->orderByDesc('id')
+        ->get();
         return view('website.index',compact('newArrivalProducts'));
     }
 
@@ -45,7 +49,10 @@ class WebsiteController extends Controller
 
     public function productDetails($slug)
     {
-        $product = Product::with('category:id,name','subCategory:id,name','productImages')->where('slug',$slug)->firstOrFail();
+        $product = Product::with('category:id,name','subCategory:id,name','productImages')
+        ->where('slug',$slug)
+        ->where('status',0)
+        ->firstOrFail();
         return view('website.product-detail',compact('product'));
     }
 }

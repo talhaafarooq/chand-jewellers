@@ -1,3 +1,7 @@
+@php
+    use App\Models\Product;
+    $totalOutOfStocksProducts = Product::where('alert_qty','<',0)->count();
+@endphp
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -107,6 +111,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ URL::to('admin/out-of-stock/products') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Out of stock <span class="badge badge-pill bg-primary">{{ number_format($totalOutOfStocksProducts) }}</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.products.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
