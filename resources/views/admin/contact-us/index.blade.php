@@ -42,9 +42,9 @@
                                                     <td>{{ $contact->message }}</td>
                                                     <td>
                                                         @if ($contact->complete == 0)
-                                                            <a href="" class="btn btn-danger">InComplete</a>
+                                                            <a href="{{ route('admin.update-contact-status',$contact->id) }}" class="btn btn-danger">InComplete</a>
                                                             @else
-                                                            <a href="" class="btn btn-success">Complete</a>
+                                                            <a href="{{ route('admin.update-contact-status',$contact->id) }}" class="btn btn-success">Complete</a>
                                                         @endif
                                                     </td>
                                                 </tr>

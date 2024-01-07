@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     
     // Website Contact US
     Route::resource('contact-us',ContactController::class);
+    Route::get('contact-us/update-status/{contact_id}', [ContactController::class,'updateContactStatus'])->name('update-contact-status');
 
     // Settings
     Route::resource('settings', SettingController::class);
