@@ -166,6 +166,14 @@
                     </a>
                 </li>
 
+                <!-- Contacts Section -->
+                <li class="nav-item">
+                    <a href="{{ route('admin.contact-us.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Website Contacts</p>
+                    </a>
+                </li>
+
                  <!-- Visitors Section -->
                  <li class="nav-item">
                     <a href="{{ route('admin.visitors.index') }}" class="nav-link">

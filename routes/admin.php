@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
@@ -51,6 +52,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
 
     // Website Visitors
     Route::resource('visitors',VisitorController::class);
+    
+    // Website Contact US
+    Route::resource('contact-us',ContactController::class);
 
     // Settings
     Route::resource('settings', SettingController::class);
