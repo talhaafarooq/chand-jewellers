@@ -27,7 +27,7 @@ class SubCategoryController extends Controller
 
     public function create()
     {
-        $categoriesList = $this->repo->list(Category::class, 'id', 'name');
+        $categoriesList = Category::pluck('name', 'id');
         return view('admin.sub-categories.create', compact('categoriesList'));
     }
 

@@ -32,7 +32,8 @@
     <link rel="stylesheet" href="{{ URL::asset('dashboard') }}/plugins/select2/css/select2.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ URL::asset('dashboard') }}/dist/css/style.css">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @yield('head')
@@ -48,9 +49,7 @@
         </div> --}}
 
         <x-admin-navbar />
-
         <x-admin-sidebar />
-
         @yield('content')
         <x-admin-footer />
     </div>

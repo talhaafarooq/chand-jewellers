@@ -8,6 +8,7 @@ class ProductObserver
 {
     public function deleting(Product $product){
         $product->productImages()->delete();
+        $product->wishlists()->delete();
 
         // Delete associated orderDetails records
         $product->orderDetails()->delete();
