@@ -37,6 +37,7 @@ Route::as('website.')->group(function(){
     Route::get('/', [WebsiteController::class, 'index'])->name('home');
     Route::get('/about-us', [WebsiteController::class, 'aboutUs'])->name('about');
     Route::get('/contact-us', [WebsiteController::class, 'contactUs'])->name('contact');
+    Route::match(['get','post'],'/send-contact-message',[WebsiteController::class,'sendContactMessage'])->name('send-contact-message');
     Route::post('/subscribe', [WebsiteController::class, 'subscribeWebsite'])->name('subscribe');
 
     Route::get('/product/{slug}',[WebsiteController::class,'productDetails'])->name('product.details')->where('slug', '[a-zA-Z0-9-]+');

@@ -2,7 +2,10 @@
 @section('title', 'Add New Product')
 @section('head')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <!-- Tags Creation Input -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
+    <!-- SummerNote Text Editor -->
+    <link rel="stylesheet" href="{{ URL::asset('dashboard/summernote/summernote-bs4.min.css') }}" >
     <style>
         #details::placeholder {
             padding-left: 10px;
@@ -221,7 +224,7 @@
                                         {!! Form::label('details', 'Details') !!}
                                         {!! Form::textarea('details', old('details'), [
                                             'id' => 'details',
-                                            'class' => 'form-control tinymce-editor',
+                                            'class' => 'form-control summernote-editor',
                                             'placeholder' => 'Write Product details here...',
                                         ]) !!}
                                         @error('details')
@@ -242,26 +245,32 @@
     </div>
 @endsection
 @section('scripts')
+    <!-- Tags Input JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
-    <script src="{{ URL::asset('dashboard') }}/dist/js/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- SummerNote JS -->
+    <script src="{{ URL::asset('dashboard/summernote/summernote-bs4.min.js') }}"></script>
     <script type="text/javascript">
-        // --------------------- TinyMCE Editor Start Here ------------------------
-        tinymce.init({
-            selector: 'textarea.tinymce-editor',
-            height: 300,
-            menubar: false,
-            plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount', 'image'
+        // --------------------- SummerNote Editor Start Here ------------------------
+        $(document).ready(function() {
+          $('.summernote-editor').summernote({
+            height: '200',
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['view', ['fullscreen', 'codeview']],
             ],
-            toolbar: 'undo redo | formatselect | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
-            content_css: '//www.tiny.cloud/css/codepen.min.css'
+            disableResizeEditor: true,
+            callbacks: {
+                onInit: function() {
+                    // Remove the image button from the toolbar
+                    $('#summernote-editor').next('.note-editor').find('.note-icon-picture').remove();
+                }
+            }
+          });
         });
-        // --------------------- TinyMCE Editor End Here ------------------------
+        // --------------------- SummerNote End Here ------------------------
 
         // --------------------- Only Numbers are allowed ------------------------
         $(document).ready(function() {
