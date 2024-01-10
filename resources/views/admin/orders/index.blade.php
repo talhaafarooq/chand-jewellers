@@ -54,6 +54,7 @@
                                                         <th>Order Date</th>
                                                         <th>Customer Name</th>
                                                         <th>Phone# 1 / Phone# 2</th>
+                                                        <th>Address</th>
                                                         <th>Total Price</th>
                                                         <th>Status</th>
                                                         <th>Actions</th>
@@ -74,6 +75,7 @@
                                                                     {{ ' / N-A' }}
                                                                 @endif
                                                             </td>
+                                                            <td>{{ $order->address1 }}</td>
                                                             <td>{{ SettingsHelper::info()->currency . number_format($order->order_details_sum_price) }}
                                                             </td>
                                                             <td class="text-capitalize">
@@ -186,6 +188,7 @@
                                                         <th>Order Date</th>
                                                         <th>Customer Name</th>
                                                         <th>Phone# 1 / Phone# 2</th>
+                                                        <th>Address</th>
                                                         <th>Total Price</th>
                                                         <th>Status</th>
                                                         <th>Actions</th>
@@ -206,6 +209,7 @@
                                                                     {{ ' / N-A' }}
                                                                 @endif
                                                             </td>
+                                                            <td>{{ $order->address1 }}</td>
                                                             <td>{{ SettingsHelper::info()->currency . number_format($order->order_details_sum_price) }}
                                                             </td>
                                                             <td class="text-capitalize">
@@ -320,6 +324,7 @@
                                                         <th>Order Date</th>
                                                         <th>Customer Name</th>
                                                         <th>Phone# 1 / Phone# 2</th>
+                                                        <th>Address</th>
                                                         <th>Total Price</th>
                                                         <th>Status</th>
                                                         <th>Actions</th>
@@ -340,6 +345,7 @@
                                                                     {{ ' / N-A' }}
                                                                 @endif
                                                             </td>
+                                                            <td>{{ $order->address1 }}</td>
                                                             <td>{{ SettingsHelper::info()->currency . number_format($order->order_details_sum_price) }}
                                                             </td>
                                                             <td class="text-capitalize">
@@ -454,6 +460,7 @@
                                                         <th>Order Date</th>
                                                         <th>Customer Name</th>
                                                         <th>Phone# 1 / Phone# 2</th>
+                                                        <th>Address</th>
                                                         <th>Total Price</th>
                                                         <th>Status</th>
                                                         <th>Actions</th>
@@ -474,6 +481,7 @@
                                                                     {{ ' / N-A' }}
                                                                 @endif
                                                             </td>
+                                                            <td>{{ $order->address1 }}</td>
                                                             <td>{{ SettingsHelper::info()->currency . number_format($order->order_details_sum_price) }}
                                                             </td>
                                                             <td class="text-capitalize">
@@ -588,6 +596,7 @@
                                                         <th>Order Date</th>
                                                         <th>Customer Name</th>
                                                         <th>Phone# 1 / Phone# 2</th>
+                                                        <th>Address</th>
                                                         <th>Total Price</th>
                                                         <th>Status</th>
                                                         <th>Actions</th>
@@ -608,6 +617,7 @@
                                                                     {{ ' / N-A' }}
                                                                 @endif
                                                             </td>
+                                                            <td>{{ $order->address1 }}</td>
                                                             <td>{{ SettingsHelper::info()->currency . number_format($order->order_details_sum_price) }}
                                                             </td>
                                                             <td class="text-capitalize">

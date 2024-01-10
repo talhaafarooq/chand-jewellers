@@ -19,34 +19,34 @@ class HomeController extends Controller
         $totalOrders = Order::count();
         $totalSubscribers = Subscribers::count();
         $totalVisitors = Visitor::count();
-        $allOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+        $allOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2','address1', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
             ->with('user','orderDetails.product')
             ->orderBy('id', 'desc')
             ->take(5)
             ->paginate(5);
-        $receivedOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+        $receivedOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2','address1', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
             ->with('user','orderDetails.product')
             ->where('status', OrderStatusEnum::Received)
             ->orderBy('id', 'desc')
             ->take(5)
             ->paginate(5);
-        $dispatchOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+        $dispatchOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2','address1', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
             ->with('user','orderDetails.product')
             ->where('status', OrderStatusEnum::Dispatched)
             ->orderBy('id', 'desc')
             ->take(5)
             ->paginate(5);
-        $cancelOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+        $cancelOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2','address1', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
             ->with('user','orderDetails.product')
             ->where('status', OrderStatusEnum::Cancelled)
             ->orderBy('id', 'desc')
             ->take(5)
             ->paginate(5);
-        $deliveredOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+        $deliveredOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2','address1', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
             ->with('user','orderDetails.product')
             ->where('status', OrderStatusEnum::Delivered)
