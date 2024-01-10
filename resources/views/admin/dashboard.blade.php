@@ -98,19 +98,6 @@
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    {{-- <div class="col-lg-3 col-6">
-                        <div class="small-box bg-secondary">
-                            <div class="inner">
-                                <h3>{{ number_format($totalContatUs) }}</h3>
-                                <p>Total Contacts</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="{{ route('admin.contact-us.index') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div> --}}
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
@@ -121,6 +108,19 @@
                                 <i class="ion ion-pie-graph"></i>
                             </div>
                             <a href="{{ route('admin.visitors.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-secondary">
+                            <div class="inner">
+                                <h3>{{ number_format($totalOutOfStocksProducts) }}</h3>
+                                <p>Total Out of stock</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="{{ URL::to('admin/out-of-stock/products') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>

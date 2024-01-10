@@ -21,10 +21,14 @@ return new class extends Migration
             $table->string('address2')->nullable();
             $table->string('about_us');
             $table->string('facebook')->nullable();
-            $table->string('instagram')->nullable();
-            $table->string('twitter')->nullable();
+            $table->string('instagram1')->nullable();
+            $table->string('instagram2')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('youtube')->nullable();
+            $table->string('tiktok1')->nullable();
+            $table->string('tiktok2')->nullable();
+            $table->string('snack1')->nullable();
+            $table->string('snack2')->nullable();
             $table->string('header_logo')->nullable();
             $table->string('footer_logo')->nullable();
             $table->string('map',1000)->nullable();

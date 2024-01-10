@@ -104,28 +104,6 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
-                                        {!! Form::label('twitter', 'Twitter Link') !!}
-                                        {!! Form::text('twitter', null, [
-                                            'id' => 'twitter',
-                                            'class' => 'form-control',
-                                            'placeholder' => 'Twitter',
-                                        ]) !!}
-                                        @error('twitter')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
-                                        {!! Form::label('instagram', 'Instagram Link') !!}
-                                        {!! Form::text('instagram', null, [
-                                            'id' => 'instagram',
-                                            'class' => 'form-control',
-                                            'placeholder' => 'Instagram',
-                                        ]) !!}
-                                        @error('instagram')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('whatsapp', 'Whatsapp Link') !!}
                                         {!! Form::text('whatsapp', null, [
                                             'id' => 'whatsapp',
@@ -134,6 +112,72 @@
                                             'required'=>'required'
                                         ]) !!}
                                         @error('whatsapp')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('instagram1', 'Instagram Link 1') !!}
+                                        {!! Form::text('instagram1', null, [
+                                            'id' => 'instagram1',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Instagram 1 Link',
+                                        ]) !!}
+                                        @error('instagram1')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('instagram2', 'Instagram Link 2') !!}
+                                        {!! Form::text('instagram2', null, [
+                                            'id' => 'instagram2',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Instagram 2 Link',
+                                        ]) !!}
+                                        @error('instagram2')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('tiktok1', 'Tiktok Link 1') !!}
+                                        {!! Form::text('tiktok1', null, [
+                                            'id' => 'tiktok1',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Tiktok Link 1',
+                                        ]) !!}
+                                        @error('tiktok1')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('tiktok2', 'Tiktok Link 2') !!}
+                                        {!! Form::text('tiktok2', null, [
+                                            'id' => 'tiktok2',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Tiktok Link 2',
+                                        ]) !!}
+                                        @error('tiktok2')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('snack1', 'Snack Link 1') !!}
+                                        {!! Form::text('snack1', null, [
+                                            'id' => 'snack1',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Snack Link 1',
+                                        ]) !!}
+                                        @error('snack1')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                        {!! Form::label('snack2', 'Snack Link 2') !!}
+                                        {!! Form::text('snack2', null, [
+                                            'id' => 'snack2',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Snack Link 2',
+                                        ]) !!}
+                                        @error('snack2')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
@@ -186,7 +230,7 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('shipping', 'Shipping Charges') !!}
                                         {!! Form::text('shipping', null, [
                                             'id' => 'shipping',

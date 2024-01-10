@@ -19,6 +19,7 @@ class HomeController extends Controller
         $totalOrders = Order::count();
         $totalSubscribers = Subscribers::count();
         $totalVisitors = Visitor::count();
+        $totalOutOfStocksProducts = Product::where('alert_qty','<',0)->count();
         $allOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2','address1', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
             ->with('user','orderDetails.product')
@@ -58,6 +59,7 @@ class HomeController extends Controller
             'totalOrders',
             'totalSubscribers',
             'totalVisitors',
+            'totalOutOfStocksProducts',
             'allOrders',
             'receivedOrders',
             'dispatchOrders',

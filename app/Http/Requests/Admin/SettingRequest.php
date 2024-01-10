@@ -21,15 +21,19 @@ class SettingRequest extends FormRequest
             'address1' => 'required|max:255',
             'address2' => 'nullable|max:255',
             'facebook' => 'nullable|max:255',
-            'twitter' => 'nullable|max:255',
-            'instagram' => 'nullable|max:255',
+            'instagram1' => 'nullable|max:255',
+            'instagram2' => 'nullable|max:255',
+            'tiktok1' => 'nullable|max:255',
+            'tiktok2' => 'nullable|max:255',
+            'snack1' => 'nullable|max:255',
+            'snack2' => 'nullable|max:255',
             'whatsapp' => 'required|max:255',
             'youtube' => 'nullable|max:255',
             'map' => 'required|max:1000',
             'header_logo' => 'nullable|mimes:jpg,jpeg,png',
             'footer_logo' => 'nullable|mimes:jpg,jpeg,png',
-            'currency'=>'required|string',
-            'shipping'=>'required'
+            'currency' => 'required|string',
+            'shipping' => 'required'
         ];
     }
 }
