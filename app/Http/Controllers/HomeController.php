@@ -16,24 +16,53 @@ class HomeController extends Controller
 {
     public function adminDashboard()
     {
-        $totalCategories = Category::count();
-        $totalSubCategories = SubCategory::count();
-        $totalProducts = Product::count();
         $totalOrders = Order::count();
-        $totalNewOrders = Order::where('status',OrderStatusEnum::Received)->count();
         $totalSubscribers = Subscribers::count();
-        $totalContatUs = ContactUs::count();
         $totalVisitors = Visitor::count();
+        $allOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+            ->withSum('orderDetails', 'price')
+            ->with('user','orderDetails.product')
+            ->orderBy('id', 'desc')
+            ->take(5)
+            ->paginate(5);
+        $receivedOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+            ->withSum('orderDetails', 'price')
+            ->with('user','orderDetails.product')
+            ->where('status', OrderStatusEnum::Received)
+            ->orderBy('id', 'desc')
+            ->take(5)
+            ->paginate(5);
+        $dispatchOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+            ->withSum('orderDetails', 'price')
+            ->with('user','orderDetails.product')
+            ->where('status', OrderStatusEnum::Dispatched)
+            ->orderBy('id', 'desc')
+            ->take(5)
+            ->paginate(5);
+        $cancelOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+            ->withSum('orderDetails', 'price')
+            ->with('user','orderDetails.product')
+            ->where('status', OrderStatusEnum::Cancelled)
+            ->orderBy('id', 'desc')
+            ->take(5)
+            ->paginate(5);
+        $deliveredOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
+            ->withSum('orderDetails', 'price')
+            ->with('user','orderDetails.product')
+            ->where('status', OrderStatusEnum::Delivered)
+            ->orderBy('id', 'desc')
+            ->take(5)
+            ->paginate(5);
         return view('admin.dashboard',
         compact(
-            'totalCategories',
-            'totalSubCategories',
-            'totalProducts',
             'totalOrders',
-            'totalNewOrders',
             'totalSubscribers',
-            'totalContatUs',
-            'totalVisitors'
+            'totalVisitors',
+            'allOrders',
+            'receivedOrders',
+            'dispatchOrders',
+            'cancelOrders',
+            'deliveredOrders'
         ));
     }
 }

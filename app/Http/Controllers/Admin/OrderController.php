@@ -16,37 +16,38 @@ class OrderController extends Controller
 {
     public function index()
     {
+        $search = null;
         $allOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
-            ->with('user')
+            ->with('user','orderDetails.product')
             ->orderBy('id', 'desc')
             ->paginate(10);
         $receivedOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
-            ->with('user')
+            ->with('user','orderDetails.product')
             ->where('status', OrderStatusEnum::Received)
             ->orderBy('id', 'desc')
             ->paginate(10);
         $dispatchOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
-            ->with('user')
+            ->with('user','orderDetails.product')
             ->where('status', OrderStatusEnum::Dispatched)
             ->orderBy('id', 'desc')
             ->paginate(10);
         $cancelOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
-            ->with('user')
+            ->with('user','orderDetails.product')
             ->where('status', OrderStatusEnum::Cancelled)
             ->orderBy('id', 'desc')
             ->paginate(10);
         $deliveredOrders = Order::select('id', 'order_no', 'fname', 'lname', 'phone1', 'phone2', 'status', 'user_id', 'created_at')
             ->withSum('orderDetails', 'price')
-            ->with('user')
+            ->with('user','orderDetails.product')
             ->where('status', OrderStatusEnum::Delivered)
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        return view('admin.orders.index', compact('allOrders', 'receivedOrders', 'dispatchOrders', 'cancelOrders', 'deliveredOrders'));
+        return view('admin.orders.index', compact('search','allOrders', 'receivedOrders', 'dispatchOrders', 'cancelOrders', 'deliveredOrders'));
     }
 
     public function show($orderId)
