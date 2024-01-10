@@ -67,7 +67,15 @@
                                     @enderror
                                 </div>
                                 <div class="col-12">
+                                    <label for="terms_conditions">
+                                        <input type="checkbox" name="terms_conditions" id="terms_conditions"> I accept all terms & conditions
+                                    </label>
+                                </div>
+                                <div class="col-12" style="margin-top: -20px;">
                                     <button type="submit" class="hiraola-register_btn">Register</button>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <span class="shop-account">Already have an account? <a href="{{ route('login') }}" class="text-primary">Login Now</a></span>
                                 </div>
                             </div>
                         </div>

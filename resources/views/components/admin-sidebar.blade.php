@@ -1,6 +1,6 @@
 @php
     use App\Models\Product;
-    $totalOutOfStocksProducts = Product::where('alert_qty','<',0)->count();
+    $totalOutOfStocksProducts = Product::where('qty','<',0)->count();
 @endphp
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">

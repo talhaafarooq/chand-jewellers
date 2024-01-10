@@ -53,7 +53,7 @@ class ProductController extends Controller
                 'weight' => $request->net_weight,
                 'polish' => $request->polish_weight,
                 'karat' => $request->karats,
-                'alert_qty' => $request->alert_qty,
+                'qty' => $request->qty,
                 'description' => $request->description,
                 'details' => $request->details,
                 'sku' => $request->sku
@@ -118,7 +118,7 @@ class ProductController extends Controller
 
     public function outOfStockProducts()
     {
-        $totalOutOfStocksProducts = Product::where('alert_qty','<',0)->paginate(10);
+        $totalOutOfStocksProducts = Product::where('qty','<',0)->paginate(10);
         return view('admin.products.out-of-stocks-products', compact('totalOutOfStocksProducts'));
     }
 }

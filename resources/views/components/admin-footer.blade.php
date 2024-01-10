@@ -1,9 +1,9 @@
 <!-- /.content-wrapper -->
-<footer class="main-footer">
+<footer class="main-footer text-black">
     <strong>Copyright &copy; <a href="{{ SettingsHelper::info()->website }}" target="_blank" class="text-decoration-none">{{ SettingsHelper::info()->name }}</a></strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.2.0
+        <b>Version 3.2.0</b>
     </div>
 </footer>
 

@@ -38,10 +38,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Name</th>
-                                                        <th>Sku</th>
                                                         <th>Category / Sub Category</th>
                                                         <th>Old Price / New Price</th>
-                                                        {{-- <th>Alert Qty</th> --}}
+                                                        <th>Qty</th>
                                                         <th>Status</th>
                                                         <th>Actions</th>
                                                     </tr>
@@ -50,10 +49,9 @@
                                                 @forelse ($products as $product)
                                                 <tr>
                                                     <td>{{ $product->name }}</td>
-                                                    <td>{{ $product->sku }}</td>
                                                     <td>{{ $product->category->name }} / {{ $product->subCategory->name }}</td>
                                                     <td>{{ $product->old_price }} / {{ $product->new_price }}</td>
-                                                    {{-- <td>{{ $product->alert_qty }}</td> --}}
+                                                    <td>{{ $product->qty }}</td>
                                                     <td>
                                                         @if ($product->status==0)
                                                         <span class="badge bg-success">Active</span>

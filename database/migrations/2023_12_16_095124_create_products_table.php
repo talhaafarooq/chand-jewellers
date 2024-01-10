@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('weight')->nullable();
             $table->string('karat')->nullable();
             $table->string('sku')->nullable();
-            $table->integer('alert_qty')->nullable();
+            $table->integer('qty')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

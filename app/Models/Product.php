@@ -11,7 +11,7 @@ class Product extends Model
     use HasFactory, Taggable;
     protected $fillable = array(
         'code', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price', 'category_id', 'sub_category_id', 'description', 'details',
-        'polish', 'weight', 'karat', 'alert_qty', 'status', 'sku'
+        'polish', 'weight', 'karat', 'qty', 'status', 'sku'
     );
 
     protected $casts = [
@@ -29,7 +29,7 @@ class Product extends Model
         'polish' => 'string',
         'weight' => 'string',
         'karat' => 'string',
-        'alert_qty' => 'integer',
+        'qty' => 'integer',
         'status' => 'boolean',
         'sku' => 'string'
     ];
