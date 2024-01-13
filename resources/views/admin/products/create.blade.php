@@ -43,7 +43,7 @@
                             ]) !!}
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12">
                                         {!! Form::label('code', 'Code') !!}
                                         {!! Form::text('code', old('code'), [
                                             'id' => 'code',
@@ -55,16 +55,29 @@
                                         @error('code')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         {!! Form::label('name', 'Name') !!}
                                         {!! Form::text('name', old('name'), [
                                             'id' => 'name',
                                             'class' => 'form-control',
                                             'placeholder' => 'Product Name',
-                                            'required'=>'required'
+                                            'required'=>'required',
+                                            'autofocus' => 'autofocus'
                                         ]) !!}
                                         @error('name')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        {!! Form::label('qty', 'Quantity') !!}
+                                        {!! Form::text('qty', old('qty'), [
+                                            'id' => 'qty',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Quantity',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('qty')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
@@ -123,7 +136,7 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('sku', 'Sku') !!}
                                         {!! Form::text('sku', old('sku'), [
                                             'id' => 'sku',
@@ -134,8 +147,8 @@
                                         @error('sku')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    </div> --}}
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('net_weight', 'Net Weight') !!}
                                         {!! Form::text('net_weight', old('net_weight'), [
                                             'id' => 'net_weight',
@@ -146,8 +159,8 @@
                                         @error('net_weight')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    </div> --}}
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('polish_weight', 'Polish Weight') !!}
                                         {!! Form::text('polish_weight', old('polish_weight'), [
                                             'id' => 'polish_weight',
@@ -158,26 +171,15 @@
                                         @error('polish_weight')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    </div> --}}
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('karats', 'Karats') !!}
                                         {!! Form::text('karats', old('karats'), ['id' => 'karats', 'class' => 'form-control', 'placeholder' => 'Karats', 'required'=>'required']) !!}
                                         @error('karats')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
-                                    </div>
-                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
-                                        {!! Form::label('alert_qty', 'Alert Qty') !!}
-                                        {!! Form::text('alert_qty', old('alert_qty'), [
-                                            'id' => 'alert_qty',
-                                            'class' => 'form-control',
-                                            'placeholder' => 'Alert Qty',
-                                            'required'=>'required'
-                                        ]) !!}
-                                        @error('alert_qty')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
                                     </div> --}}
+
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('images', 'Images') !!}
                                         <input type="file" name="images[]" id="images" class="form-control" required multiple>
@@ -204,7 +206,19 @@
                                             'required'=>'required',
                                             'data-role'=>"tagsinput"
                                         ]) !!}
-                                        @error('status')
+                                        @error('tags')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                        {!! Form::label('highlights', 'Highlights') !!}
+                                        {!! Form::textarea('highlights', old('highlights'), [
+                                            'id' => 'highlights',
+                                            'class' => 'form-control summernote-editor',
+                                            'placeholder' => 'Write short description here...',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('highlights')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
@@ -212,22 +226,10 @@
                                         {!! Form::label('description', 'Description') !!}
                                         {!! Form::textarea('description', old('description'), [
                                             'id' => 'description',
-                                            'class' => 'form-control',
-                                            'placeholder' => 'Write short description here...',
-                                            'required'=>'required'
+                                            'class' => 'form-control summernote-editor',
+                                            'placeholder' => 'Write Product description here...',
                                         ]) !!}
                                         @error('description')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
-                                        {!! Form::label('details', 'Details') !!}
-                                        {!! Form::textarea('details', old('details'), [
-                                            'id' => 'details',
-                                            'class' => 'form-control summernote-editor',
-                                            'placeholder' => 'Write Product details here...',
-                                        ]) !!}
-                                        @error('details')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
@@ -302,7 +304,7 @@
             $('#category').change(function() {
                 var category_id = $(this).val();
                 if (!category_id) {
-
+                    $('#sub_category').html(`<option value="" selected>Select Sub Category</option>`);
                 } else {
                     $.ajax({
                         url: `{{ route('admin.get-subcategories-list') }}`,

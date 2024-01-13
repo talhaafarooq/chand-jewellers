@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Website\{
     AuthController,
     CartController,
@@ -29,6 +30,7 @@ use App\Http\Controllers\Website\{
 
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout'])->name('user.logout');
+Route::get('/check/auth', [HomeController::class, 'checkUserAuth']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

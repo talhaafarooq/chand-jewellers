@@ -26,6 +26,7 @@ class User extends Authenticatable
         'is_block',
         'email',
         'password',
+        'address'
     ];
 
     /**
@@ -47,6 +48,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected $appends = ['full_name'];
 
     public function getFullNameAttribute()
     {

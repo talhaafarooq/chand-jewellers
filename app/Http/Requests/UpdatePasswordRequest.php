@@ -14,8 +14,10 @@ class UpdatePasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name'=>'required|min:1|max:50|string',
-            'last_name'=>'required|min:1|max:50|string'
+            'first_name' => 'required|min:1|max:50|string',
+            'last_name' => 'required|min:1|max:50|string',
+            'address' => 'required|min:1|max:255',
+            'cell_no' => 'required|min:1|max:255'
         ];
     }
 }

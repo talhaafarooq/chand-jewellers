@@ -53,34 +53,54 @@
                         <div class="contact-form">
                             <form id="contact-form1" action="{{ route('website.send-contact-message') }}" method="POST">
                                 @csrf
-                                <div class="form-group">
-                                    <label>Your Name <span class="required">*</span></label>
-                                    <input type="text" name="name" required>
-                                    @error('name')
-                                        <font color="red">{{ $error }}</font>
-                                    @enderror
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Your Name <span class="required">*</span></label>
+                                            <input type="text" name="name" required>
+                                            @error('name')
+                                                <font color="red">{{ $error }}</font>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Your Email <span class="required">*</span></label>
+                                            <input type="email" name="email" required>
+                                            @error('email')
+                                                <font color="red">{{ $error }}</font>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Subject <span class="required">*</span></label>
+                                            <input type="text" name="subject" required>
+                                            @error('subject')
+                                                <font color="red">{{ $error }}</font>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Cell No <span class="required">*</span></label>
+                                            <input type="text" name="cell_no">
+                                            @error('cell_no')
+                                                <font color="red">{{ $error }}</font>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group form-group-2">
+                                            <label>Your Message <span class="required">*</span></label>
+                                            <textarea name="message" required></textarea>
+                                            @error('message')
+                                                <font color="red">{{ $error }}</font>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Your Email <span class="required">*</span></label>
-                                    <input type="email" name="email" required>
-                                    @error('email')
-                                        <font color="red">{{ $error }}</font>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>Subject *</label>
-                                    <input type="text" name="subject" required>
-                                    @error('subject')
-                                        <font color="red">{{ $error }}</font>
-                                    @enderror
-                                </div>
-                                <div class="form-group form-group-2">
-                                    <label>Your Message *</label>
-                                    <textarea name="message" required></textarea>
-                                    @error('message')
-                                        <font color="red">{{ $error }}</font>
-                                    @enderror
-                                </div>
+
                                 <div class="form-group">
                                     <button type="submit" value="submit" id="submit" class="hiraola-contact-form_btn"
                                         name="submit">send</button>
@@ -92,7 +112,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container mt-3">
             {{-- <div id="google-map"></div> --}}
             <div class="row">
                 <div class="col-12">

@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory, Taggable;
     protected $fillable = array(
-        'code', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price', 'category_id', 'sub_category_id', 'description', 'details',
+        'code', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price', 'category_id', 'sub_category_id', 'highlights', 'description',
         'polish', 'weight', 'karat', 'qty', 'status', 'sku'
     );
 
@@ -24,8 +24,8 @@ class Product extends Model
         'new_price' => 'float',
         'category_id' => 'integer',
         'sub_category_id' => 'integer',
+        'highlights' => 'string',
         'description' => 'string',
-        'details' => 'string',
         'polish' => 'string',
         'weight' => 'string',
         'karat' => 'string',

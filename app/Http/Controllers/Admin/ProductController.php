@@ -43,20 +43,15 @@ class ProductController extends Controller
             DB::beginTransaction();
 
             $data = [
-                'code' => $request->code,
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
                 'category_id' => $request->category,
                 'sub_category_id' => $request->sub_category,
                 'old_price' => $request->old_price,
                 'new_price' => $request->new_price,
-                'weight' => $request->net_weight,
-                'polish' => $request->polish_weight,
-                'karat' => $request->karats,
                 'qty' => $request->qty,
-                'description' => $request->description,
-                'details' => $request->details,
-                'sku' => $request->sku
+                'highlights' => $request->highlights,
+                'description' => $request->description
             ];
             $tags = explode(",", $request->tags);
             $product = $this->repo->store(Product::class, $data);
@@ -92,22 +87,69 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $edit = $this->repo->show(Category::class, $id);
-        return view('admin.categories.edit', compact('edit'));
+        $edit = $this->repo->show(Product::class, $id);
+        $categoriesList = Category::pluck('name', 'id');
+        $tags = $edit->tags->pluck('name')->toArray(); // Extract only the tag names as an array
+        return view('admin.products.edit', compact('edit','categoriesList','tags'));
     }
 
-    public function update(CategoryRequest $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        $category1 = $this->repo->show(Category::class, $id);
-        $category = $this->repo->show(Category::class, $id);
-        $category->update($request->only('name'));
-        if ($request->hasFile('image')) {
-            FileHelper::removeFile($category1->image);
-            $fileName = FileHelper::uploadFile($request->file('image'), 'categories');
-            $category->image = $fileName;
-            $category->save();
+        try {
+            DB::beginTransaction();
+
+            $data = [
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'category_id' => $request->category,
+                'sub_category_id' => $request->sub_category,
+                'old_price' => $request->old_price,
+                'new_price' => $request->new_price,
+                'qty' => $request->qty,
+                'highlights' => $request->highlights,
+                'description' => $request->description
+            ];
+            $tags = explode(",", $request->tags);
+            $edit1 = $this->repo->show(Product::class, $id);
+            $edit = $this->repo->show(Product::class, $id);
+            // Remove existing tags
+            $edit->untag();
+            $edit->update($data);
+            $edit->tag($tags);
+            if ($request->hasFile('front_img')) {
+                FileHelper::removeFile($edit->front_img);
+                $fileName = FileHelper::uploadFile($request->file('front_img'), 'products');
+                $edit->front_img = $fileName;
+                $edit->save();
+            }
+            if ($request->hasFile('back_img')) {
+                FileHelper::removeFile($edit->back_img);
+                $fileName = FileHelper::uploadFile($request->file('back_img'), 'products');
+                $edit->back_img = $fileName;
+                $edit->save();
+            }
+            if ($request->hasFile('images')) {
+                // Remove old product images from storage and database
+                $edit->images->each(function ($image) {
+                    FileHelper::removeFile($image->image);
+                    $image->delete();
+                });
+                foreach ($request->file('images') as $file) {
+                    $fileName = FileHelper::uploadFile($file, 'products');
+                    $productImage = new ProductImage();
+                    $productImage->product_id = $edit->id;
+                    $productImage->image = $fileName;
+                    $productImage->save();
+                }
+            }
+
+            DB::commit();
+            return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+        }catch(Exception $ex)
+        {
+            DB::rollback();
+            return redirect()->back()->with('failure', $ex->getMessage());
         }
-        return redirect()->route('admin.products.index')->with('success', 'Category updated successfully.');
     }
 
     public function destroy($id)

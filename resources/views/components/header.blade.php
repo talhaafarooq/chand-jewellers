@@ -59,7 +59,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="my-account.html">My Account<i class="fa fa-chevron-down"></i></a>
+                                <li><a href="{{ route('website.my-account.index') }}">My Account<i class="fa fa-chevron-down"></i></a>
                                     <ul class="ht-dropdown ht-my_account">
                                         @if (Auth::check())
                                         <li><a href="{{ route('website.my-account.index') }}">My Account</a></li>
@@ -265,7 +265,7 @@
                                 </li>
                                 <li><a href="index.html">Pages</a>
                                     <ul class="hm-dropdown">
-                                        <li><a href="my-account.html">My Account</a></li>
+                                        <li><a href="{{ route('website.my-account.index') }}">My Account</a></li>
                                         <li><a href="login-register.html">Login | Register</a></li>
                                         <li><a href="wishlist.html">Wishlist</a></li>
                                         <li><a href="cart.html">Cart</a></li>
@@ -325,7 +325,7 @@
                             </div>
                             <div class="product-item_content">
                                 <a class="product-item_title" href="shop-left-sidebar.html">{{ $value->name }}</a>
-                                <span class="product-item_quantity">{{ $value->quantity }} x {{ SettingsHelper::info()->currency.number_format($value->price,2) }}</span>
+                                <span class="product-item_quantity">{{ $value->quantity }} x {{ SettingsHelper::info()->currency.number_format($value->price) }}</span>
                             </div>
                         </li>
                         @endif
@@ -607,7 +607,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="my-account.html">
+                                    <a href="{{ route('website.my-account.index') }}">
                                         <span class="mm-text">My Account</span>
                                     </a>
                                 </li>
@@ -665,7 +665,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="my-account.html">
+                                    <a href="{{ route('website.my-account.index') }}">
                                         <span class="mm-text">My Account</span>
                                     </a>
                                 </li>

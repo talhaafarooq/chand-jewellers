@@ -50,7 +50,7 @@
                                     </td>
                                     <td class="hiraola-product-thumbnail"><a href="javascript:void(0)"><img src="{{ URL::asset('storage/'.$product->attributes['image']) }}" width="100px" alt="{{ $product->name }} Thumbnail"></a></td>
                                     <td class="hiraola-product-name"><a href="javascript:void(0)">{{ $product->name }}</a></td>
-                                    <td class="hiraola-product-price"><span class="amount">{{ SettingsHelper::info()->currency.number_format($product->price,2) }}</span></td>
+                                    <td class="hiraola-product-price"><span class="amount">{{ SettingsHelper::info()->currency.number_format($product->price) }}</span></td>
                                     <td class="quantity">
                                         <label>Quantity</label>
                                         <div class="cart-plus-minus">
@@ -59,7 +59,7 @@
                                             <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
                                         </div>
                                     </td>
-                                    <td class="product-subtotal"><span class="amount">{{ SettingsHelper::info()->currency.number_format($product->price*$product->quantity,2) }}</span></td>
+                                    <td class="product-subtotal"><span class="amount">{{ SettingsHelper::info()->currency.number_format($product->price*$product->quantity) }}</span></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -83,9 +83,9 @@
                             <div class="cart-page-total">
                                 <h2>Cart totals</h2>
                                 <ul>
-                                    <li>Subtotal <span>{{ SettingsHelper::info()->currency.number_format(Cart::getSubTotal(),2) }}</span></li>
-                                    <li>Shipping Charges <span>{{ number_format(SettingsHelper::info()->shipping,2) }}</span></li>
-                                    <li>Total <span>{{ SettingsHelper::info()->currency.number_format(Cart::getTotal()+SettingsHelper::info()->shipping,2) }}</span></li>
+                                    <li>Subtotal <span>{{ SettingsHelper::info()->currency.number_format(Cart::getSubTotal()) }}</span></li>
+                                    <li>Shipping Charges <span>{{ number_format(SettingsHelper::info()->shipping) }}</span></li>
+                                    <li>Total <span>{{ SettingsHelper::info()->currency.number_format(Cart::getTotal()+SettingsHelper::info()->shipping) }}</span></li>
                                 </ul>
                                 <a href="{{ route('website.checkout') }}">Proceed to checkout</a>
                             </div>

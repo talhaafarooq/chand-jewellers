@@ -33,7 +33,7 @@ class WebsiteController extends Controller
 
     public function sendContactMessage(ContactRequest $request)
     {
-        ContactUs::create($request->only('name', 'email', 'subject', 'message'));
+        ContactUs::create($request->only('name', 'email', 'subject','cell_no', 'message'));
         return redirect()->back()->with('successs',"Hello $request->name! Your message has been received. We will get back to you at email.");
     }
 

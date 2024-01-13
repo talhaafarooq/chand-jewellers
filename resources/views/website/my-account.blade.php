@@ -39,14 +39,14 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="account-orders-tab" data-bs-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">Orders</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" id="account-address-tab" data-bs-toggle="tab" href="#account-address" role="tab" aria-controls="account-address" aria-selected="false">Addresses</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link" id="account-details-tab" data-bs-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">Account Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="account-logout-tab" href="login-register.html" role="tab" aria-selected="false">Logout</a>
+                                    <a class="nav-link" id="account-logout-tab" href="{{ route('user.logout') }}" role="tab" aria-selected="false">Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -55,7 +55,7 @@
                                 <div class="tab-pane fade show active" id="account-dashboard" role="tabpanel" aria-labelledby="account-dashboard-tab">
                                     <div class="myaccount-dashboard">
                                         <p>Hello <b>{{ Auth::user()->full_name }}</b> <a href="{{ route('user.logout') }}">Sign
-                                                out</a>)</p>
+                                                out</a></p>
                                         <p>From your account dashboard you can view your recent orders, manage your shipping and
                                             billing addresses and <a href="javascript:void(0)">edit your password and account
                                                 details</a>.</p>
@@ -80,7 +80,7 @@
                                                         <td>{{ date('M d, Y',strtotime($order->created_at)) }}</td>
                                                         <td class="text-capitalize">{{ $order->status }}</td>
                                                         {{-- <td>£162.00 for 2 items</td> --}}
-                                                        <td>{{ SettingsHelper::info()->currency.number_format($order->order_details_sum_price,2) }} for {{ $order->order_details_count }} items</td>
+                                                        <td>{{ SettingsHelper::info()->currency.number_format($order->order_details_sum_price) }} for {{ $order->order_details_count }} items</td>
                                                         <td><a href="javascript:void(0)" class="hiraola-btn hiraola-btn_dark hiraola-btn_sm"><span>View</span></a>
                                                         </td>
                                                     </tr>
@@ -95,7 +95,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="account-address" role="tabpanel" aria-labelledby="account-address-tab">
+                                {{-- <div class="tab-pane fade" id="account-address" role="tabpanel" aria-labelledby="account-address-tab">
                                     <div class="myaccount-address">
                                         <p>The following addresses will be used on the checkout page by default.</p>
                                         <div class="row">
@@ -113,7 +113,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="tab-pane fade" id="account-details" role="tabpanel" aria-labelledby="account-details-tab">
                                     <div class="myaccount-details">
                                         <form action="{{ route('website.my-account.update-password') }}" class="hiraola-form" method="POST">
@@ -136,6 +136,20 @@
                                                 <div class="single-input">
                                                     <label for="account-details-email">Email*</label>
                                                     <input type="email" id="account-details-email" value="{{ auth()->user()->email }}" disabled>
+                                                </div>
+                                                <div class="single-input">
+                                                    <label for="account-details-address">Address*</label>
+                                                    <input type="text" id="account-details-address" name="address" value="{{ auth()->user()->address }}" required>
+                                                    @error('address')
+                                                        <font color="red">{{ $message }}</font>
+                                                    @enderror
+                                                </div>
+                                                <div class="single-input">
+                                                    <label for="account-details-cell">Cell No*</label>
+                                                    <input type="text" id="account-details-cell" name="cell_no" value="{{ auth()->user()->phone_no }}" required>
+                                                    @error('cell_no')
+                                                        <font color="red">{{ $message }}</font>
+                                                    @enderror
                                                 </div>
                                                 <div class="single-input">
                                                     <label for="account-details-oldpass">Current Password(leave blank to leave

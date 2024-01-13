@@ -21,11 +21,18 @@ class ProductRequest extends FormRequest
             'sub_category'=>'required|integer|exists:sub_categories,id',
             'old_price'=>'nullable|integer',
             'new_price'=>'required|integer',
-            'net_weight'=>'required|numeric',
-            'polish_weight'=>'required|numeric',
-            'karats'=>'required|numeric',
-            'description'=>'required|max:500',
-            'details'=>'required'
+            // 'net_weight'=>'required|numeric',
+            // 'polish_weight'=>'required|numeric',
+            // 'karats'=>'required|numeric',
+            'highlights'=>'required|max:500',
+            'description'=>'required'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'description.required'=>'The highlights field is required'
         ];
     }
 }

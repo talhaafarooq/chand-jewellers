@@ -105,28 +105,33 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Company Name (optional)</label>
-                                        <input placeholder="" name="company" id="company" type="text"
-                                            value="{{ old('company') }}">
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
-                                        <label>Address 1<span class="required">*</span></label>
-                                        <input name="address1" id="address1" type="text" value="{{ old('address1') }}" required>
-                                        @error('address1')
+                                        <label>Cell No 1<span class="required">*</span></label>
+                                        <input type="text" name="phone1" id="phone1"
+                                            value="{{ old('phone1') }}" required>
+                                        @error('phone1')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
-                                        <label>Address 2 (optional)</label>
-                                        <input name="address2" id="address2" type="text" value="{{ old('address2') }}">
+                                        <label>Cell No 2 (optional)</label>
+                                        <input type="text" name="phone2" id="phone2"
+                                            value="{{ old('phone2') }}">
+                                        @error('phone2')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
                                     </div>
                                 </div>
+                                {{-- <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Company Name (optional)</label>
+                                        <input placeholder="" name="company" id="company" type="text"
+                                            value="{{ old('company') }}">
+                                    </div>
+                                </div> --}}
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>City <span class="required">*</span></label>
@@ -147,7 +152,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Postcode / Zip <span class="required">*</span></label>
                                         <input type="text" name="zipcode" id="zipcode" placeholder="50700"
@@ -156,7 +161,7 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Email Address <span class="required">*</span></label>
@@ -167,26 +172,22 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
-                                        <label>Phone 1<span class="required">*</span></label>
-                                        <input type="text" name="phone1" id="phone1"
-                                            value="{{ old('phone1') }}" required>
-                                        @error('phone1')
+                                        <label>Complete Address<span class="required">*</span></label>
+                                        <input name="address1" id="address1" type="text" value="{{ old('address1') }}" required>
+                                        @error('address1')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="checkout-form-list">
-                                        <label>Phone 2 (optional)</label>
-                                        <input type="text" name="phone2" id="phone2"
-                                            value="{{ old('phone2') }}">
-                                        @error('phone2')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
+                                        <label>Address 2 (optional)</label>
+                                        <input name="address2" id="address2" type="text" value="{{ old('address2') }}">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-12">
                                     <div class="checkout-form-list create-acc">
                                         <input id="cbox" type="checkbox" name="create_account" value="1">
@@ -304,8 +305,8 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="cart-product-name">Product</th>
-                                            <th class="cart-product-total">Total</th>
+                                            <th class="cart-product-name" style="text-align: left;font-weight:bold;">Product</th>
+                                            <th class="cart-product-total" style="text-align: left;font-weight:bold;">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -330,19 +331,19 @@
                                         <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
                                             <td><span
-                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getSubTotal(), 2) }}</span>
+                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getSubTotal()) }}</span>
                                             </td>
                                         </tr>
                                         <tr class="cart-subtotal">
                                             <th>Shipping Charges</th>
                                             <td><span
-                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(SettingsHelper::info()->shipping, 2) }}</span>
+                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(SettingsHelper::info()->shipping) }}</span>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Order Total</th>
                                             <td><strong><span
-                                                        class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getTotal() + SettingsHelper::info()->shipping, 2) }}</span></strong>
+                                                        class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getTotal() + SettingsHelper::info()->shipping) }}</span></strong>
                                             </td>
                                         </tr>
                                     </tfoot>

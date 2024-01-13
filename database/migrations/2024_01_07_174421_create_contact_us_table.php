@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('subject');
+            $table->string('cell_no')->nullable();
             $table->text('message');
             $table->boolean('complete')->default(0)->comment('0=InComplete,1=Complete');
             $table->timestamps();

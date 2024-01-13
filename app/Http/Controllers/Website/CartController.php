@@ -37,7 +37,7 @@ class CartController extends Controller
                 'slug' => $product->slug,
             )
         ]);
-        return redirect()->back()->with('success','Item add to cart successfully!');
+        return redirect()->back()->with('success','Item added to cart successfully!');
     }
 
     public function updateCart(Request $request)

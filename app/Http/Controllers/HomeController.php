@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Enums\OrderStatusEnum;
-use App\Models\Category;
-use App\Models\ContactUs;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\SubCategory;
 use App\Models\Subscribers;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function checkUserAuth()
+    {
+        if(auth()->user()->role == 'admin')
+        {
+            return redirect()->route('admin.dashboard');
+        }else if(auth()->user()->role == 'customer')
+        {
+            return redirect()->route('website.home');
+        }
+        abort(404);
+    }
+
     public function adminDashboard()
     {
         $totalOrders = Order::count();

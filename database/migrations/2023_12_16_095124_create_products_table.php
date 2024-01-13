@@ -19,8 +19,8 @@ return new class extends Migration
             $table->decimal('new_price')->default(0);
             $table->foreignId('category_id')->constrained();
             $table->foreignId('sub_category_id')->constrained();
+            $table->text('highlights')->nullable();
             $table->text('description')->nullable();
-            $table->text('details')->nullable();
             $table->string('polish')->nullable();
             $table->string('weight')->nullable();
             $table->string('karat')->nullable();
