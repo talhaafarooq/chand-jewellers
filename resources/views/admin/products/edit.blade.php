@@ -42,6 +42,7 @@
                                 'enctype' => 'multipart/form-data',
                             ]) !!}
                             <div class="card-body">
+                                @include('errors')
                                 <div class="row">
                                     {{-- <div class="col-lg-6 col-md-6 col-sm-12">
                                             {!! Form::label('code', 'Code') !!}
@@ -58,7 +59,7 @@
                                         </div> --}}
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         {!! Form::label('name', 'Name') !!}
-                                        {!! Form::text('name', old('name'), [
+                                        {!! Form::text('name', null, [
                                             'id' => 'name',
                                             'class' => 'form-control',
                                             'placeholder' => 'Product Name',
@@ -71,7 +72,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         {!! Form::label('qty', 'Quantity') !!}
-                                        {!! Form::text('qty', old('qty'), [
+                                        {!! Form::text('qty', null, [
                                             'id' => 'qty',
                                             'class' => 'form-control',
                                             'placeholder' => 'Quantity',
@@ -83,21 +84,21 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('front_img', 'Front Image') !!}
-                                        <input type="file" name="front_img" id="front_img" class="form-control" required>
+                                        <input type="file" name="front_img" id="front_img" class="form-control" accept=".jpg, .jpeg, .png">
                                         @error('front_img')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('back_img', 'Back Image') !!}
-                                        <input type="file" name="back_img" id="back_img" class="form-control" required>
+                                        <input type="file" name="back_img" id="back_img" class="form-control" accept=".jpg, .jpeg, .png">
                                         @error('back_img')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('category', 'Category') !!}
-                                        {!! Form::select('category', $categoriesList, old('category'), [
+                                        {!! Form::select('category', $categoriesList, $edit->category_id, [
                                             'id' => 'category',
                                             'class' => 'form-control',
                                             'required' => 'required',
@@ -119,7 +120,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('new_price', 'New Price') !!}
-                                        {!! Form::text('new_price', old('new_price'), [
+                                        {!! Form::text('new_price', null, [
                                             'id' => 'new_price',
                                             'class' => 'form-control',
                                             'placeholder' => 'New Price',
@@ -131,7 +132,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('old_price', 'Old Price (optional)') !!}
-                                        {!! Form::text('old_price', old('old_price'), [
+                                        {!! Form::text('old_price', null, [
                                             'id' => 'old_price',
                                             'class' => 'form-control',
                                             'placeholder' => 'Old Price',
@@ -186,15 +187,14 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('images', 'Images') !!}
-                                        <input type="file" name="images[]" id="images" class="form-control" required
-                                            multiple>
+                                        <input type="file" name="images[]" id="images" class="form-control"  accept=".jpg, .jpeg, .png" multiple>
                                         @error('images')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('status', 'Status') !!}
-                                        {!! Form::select('status', ['1' => 'Active', '0' => 'InActive'], old('status'), [
+                                        {!! Form::select('status', ['1' => 'Active', '0' => 'InActive'], null, [
                                             'id' => 'status',
                                             'class' => 'form-control select2',
                                             'required' => 'required',
@@ -205,8 +205,8 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                         {!! Form::label('tags', 'Tags') !!}
-                                        {!! Form::text('tags1',implode(',', $tags), [
-                                            'id' => 'tags1',
+                                        {!! Form::text('tags',implode(',', $tags), [
+                                            'id' => 'tags',
                                             'class' => 'form-control',
                                             'required' => 'required',
                                             'data-role' => 'tagsinput',
@@ -217,7 +217,7 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                         {!! Form::label('highlights', 'Highlights') !!}
-                                        {!! Form::textarea('highlights', old('highlights'), [
+                                        {!! Form::textarea('highlights', null, [
                                             'id' => 'highlights',
                                             'class' => 'form-control summernote-editor',
                                             'placeholder' => 'Write short description here...',
@@ -229,7 +229,7 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                         {!! Form::label('description', 'Description') !!}
-                                        {!! Form::textarea('description', old('description'), [
+                                        {!! Form::textarea('description', null, [
                                             'id' => 'description',
                                             'class' => 'form-control summernote-editor',
                                             'placeholder' => 'Write Product description here...',
@@ -241,7 +241,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary pl-5 pr-5">Submit</button>
                             </div>
                             {!! Form::close() !!}
                         </div>

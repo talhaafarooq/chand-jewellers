@@ -51,7 +51,8 @@ class ProductController extends Controller
                 'new_price' => $request->new_price,
                 'qty' => $request->qty,
                 'highlights' => $request->highlights,
-                'description' => $request->description
+                'description' => $request->description,
+                'created_by'=>auth()->user()->id
             ];
             $tags = explode(",", $request->tags);
             $product = $this->repo->store(Product::class, $data);
@@ -107,7 +108,8 @@ class ProductController extends Controller
                 'new_price' => $request->new_price,
                 'qty' => $request->qty,
                 'highlights' => $request->highlights,
-                'description' => $request->description
+                'description' => $request->description,
+                'updated_by'=>auth()->user()->id
             ];
             $tags = explode(",", $request->tags);
             $edit1 = $this->repo->show(Product::class, $id);

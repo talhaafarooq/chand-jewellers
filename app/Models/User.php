@@ -26,7 +26,8 @@ class User extends Authenticatable
         'is_block',
         'email',
         'password',
-        'address'
+        'address',
+        'created_by'
     ];
 
     /**
@@ -54,5 +55,10 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
+    }
+
+    public function scopeRole($query,$value)
+    {
+        return $query->where('role',$value);
     }
 }

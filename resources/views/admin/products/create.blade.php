@@ -83,14 +83,14 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('front_img', 'Front Image') !!}
-                                        <input type="file" name="front_img" id="front_img" class="form-control" required>
+                                        <input type="file" name="front_img" id="front_img" class="form-control" accept=".jpg, .jpeg, .png" required>
                                         @error('front_img')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('back_img', 'Back Image') !!}
-                                        <input type="file" name="back_img" id="back_img" class="form-control" required>
+                                        <input type="file" name="back_img" id="back_img" class="form-control" accept=".jpg, .jpeg, .png" required>
                                         @error('back_img')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -182,7 +182,7 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('images', 'Images') !!}
-                                        <input type="file" name="images[]" id="images" class="form-control" required multiple>
+                                        <input type="file" name="images[]" id="images" class="form-control"  accept=".jpg, .jpeg, .png" required multiple>
                                         @error('images')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -236,7 +236,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" name="action" value="create">Submit</button>
+                                <button type="submit" class="btn btn-primary pl-5 pr-5" name="action" value="create">Submit</button>
                             </div>
                             {!! Form::close() !!}
                         </div>

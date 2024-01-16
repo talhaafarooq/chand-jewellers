@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role',20);
             $table->boolean('is_block')->default(0);
+            $table->integer('created_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -1,15 +1,18 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubscriberController;
+use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Admin\VisitorController;
-use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +26,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
+// Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'check_role']], function () {
     Route::get('dashboard', [HomeController::class, 'adminDashboard'])->name('dashboard');
 
     // Categories
@@ -52,10 +56,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
 
     // Website Visitors
     Route::resource('visitors',VisitorController::class);
-    
+
     // Website Contact US
     Route::resource('contact-us',ContactController::class);
     Route::get('contact-us/update-status/{contact_id}', [ContactController::class,'updateContactStatus'])->name('update-contact-status');
+
+    // Roles & Permissions
+    Route::resource('roles', RolePermissionController::class);
+    Route::get('/roles/destroy/{id}', [RolePermissionController::class, 'destroy']);
+
+    // User Management
+    Route::resource('user-management', UserManagementController::class);
+    Route::get('/user-management/destroy/{id}', [UserManagementController::class, 'destroy']);
 
     // Settings
     Route::resource('settings', SettingController::class);

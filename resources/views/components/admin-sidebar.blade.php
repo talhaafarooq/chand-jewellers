@@ -182,26 +182,55 @@
                     </a>
                 </li>
 
-                <!-- Roles Management Section -->
+                 <!-- Role Management -->
+                 {{-- @canAny('view-admin-role', 'create-admin-role') --}}
+                 <li class="nav-item">
+                     <a href="javascript:void(0)" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                         <p>
+                             Role Management
+                             <i class="fas fa-angle-down right"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         {{-- @can('view-admin-role') --}}
+                             <li class="nav-item">
+                                 <a href="{{ URL::to('admin/roles') }}" class="nav-link">
+                                     <p>&emsp;Roles List</p>
+                                 </a>
+                             </li>
+                         {{-- @endcan --}}
+                         {{-- @can('create-admin-role') --}}
+                             <li class="nav-item">
+                                 <a href="{{ URL::to('admin/roles/create') }}" class="nav-link">
+                                     <p>&emsp;Create New Role</p>
+                                 </a>
+                             </li>
+                         {{-- @endcan --}}
+                     </ul>
+                 </li>
+             {{-- @endcanAny --}}
+
+                <!-- Users Management Section -->
                 <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Role Management
+                            Users Management
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.orders.index') }}" class="nav-link">
+                            <a href="{{ route('admin.user-management.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Roles List</p>
+                                <p>Users List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.order-report') }}" class="nav-link">
+                            <a href="{{ route('admin.user-management.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Add New Role</p>
+                                <p>Add New User</p>
                             </a>
                         </li>
                     </ul>

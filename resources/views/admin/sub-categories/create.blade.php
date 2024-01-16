@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" name="action" value="create">Submit</button>
+                                <button type="submit" class="btn btn-primary pl-5 pr-5" name="action" value="create">Submit</button>
                             </div>
                             {!! Form::close() !!}
                         </div>

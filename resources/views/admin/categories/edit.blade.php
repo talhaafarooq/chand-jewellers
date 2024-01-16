@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary pl-5 pr-5">Submit</button>
                                 </div>
                                 {!! Form::close() !!}
                         </div>

@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategoryTableSeeder::class,
             SubCategoryTableSeeder::class,
-            SettingSeeder::class
+            SettingSeeder::class,
+            RolePermissionSeeder::class
         ]);
     }
 }

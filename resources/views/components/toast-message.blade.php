@@ -5,7 +5,7 @@
         toast: true,
         icon: 'success',
         title: 'General Title',
-        animation: false,
+        animation: true,
         position: 'top-right',
         showConfirmButton: false,
         timer: 3000,

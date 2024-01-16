@@ -15,7 +15,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name'=>'required|string|min:1|max:255',
-            'images'=>'required|max:2048|array',
+            'images'=>'required_if:action,create|max:2048|array',
             'images.*'=>'mimes:jpg,jpeg,png',
             'category'=>'required|integer|exists:categories,id',
             'sub_category'=>'required|integer|exists:sub_categories,id',

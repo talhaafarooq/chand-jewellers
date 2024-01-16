@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\OrderStatusEnum;
+use App\Enums\UserTypeEnum;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Subscribers;
@@ -13,7 +14,7 @@ class HomeController extends Controller
 {
     public function checkUserAuth()
     {
-        if(auth()->user()->role == 'admin')
+        if(auth()->user()->role == UserTypeEnum::Admin->value || auth()->user()->role == UserTypeEnum::AdminUser->value)
         {
             return redirect()->route('admin.dashboard');
         }else if(auth()->user()->role == 'customer')
