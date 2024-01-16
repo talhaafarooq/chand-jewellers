@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         if(auth()->user()->role == UserTypeEnum::Admin->value || auth()->user()->role == UserTypeEnum::AdminUser->value)
         {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('success','Successfully loggedIn!');
         }else if(auth()->user()->role == 'customer')
         {
             return redirect()->route('website.home');

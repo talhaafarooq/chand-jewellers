@@ -11,7 +11,7 @@ class CheckRole
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->user()->role == UserTypeEnum::AdminUser->value)
+        if($request->user()->role == UserTypeEnum::Admin->value || $request->user()->role == UserTypeEnum::AdminUser->value)
         {
             return $next($request);
         }
