@@ -33,7 +33,8 @@ class SettingRequest extends FormRequest
             'header_logo' => 'nullable|mimes:jpg,jpeg,png',
             'footer_logo' => 'nullable|mimes:jpg,jpeg,png',
             'currency' => 'required|string',
-            'shipping' => 'required'
+            'shipping' => 'required',
+            'advance_charges' => 'required'
         ];
     }
 }

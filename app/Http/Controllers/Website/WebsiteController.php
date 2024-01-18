@@ -10,6 +10,7 @@ use App\Models\Feedback;
 use App\Models\Product;
 use App\Models\Subscribers;
 use Illuminate\Http\Request;
+use Cart;
 
 class WebsiteController extends Controller
 {
@@ -93,5 +94,25 @@ class WebsiteController extends Controller
         } else {
             return redirect()->back()->with('failure', 'Something went wrong.');
         }
+    }
+
+    public function buyNow($slug)
+    {
+        $product = Product::where('slug', $slug)->status(0)->first();
+        if($product)
+        {
+            Cart::add([
+                'id' => $product->id,
+                'name' => $product->name,
+                'quantity' => 1,
+                'price' => $product->new_price == null ? 0 : $product->new_price,
+                'attributes' => array(
+                    'image' => $product->front_img,
+                    'slug' => $product->slug,
+                )
+            ]);
+            return redirect()->route('website.checkout')->with('success','Item added to cart successfully!');
+        }
+        abort(404);
     }
 }

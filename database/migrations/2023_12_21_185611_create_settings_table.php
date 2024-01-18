@@ -33,7 +33,8 @@ return new class extends Migration
             $table->string('footer_logo')->nullable();
             $table->string('map',1000)->nullable();
             $table->string('currency',20)->nullable();
-            $table->decimal('shipping')->nullable();
+            $table->decimal('shipping')->default(0);
+            $table->decimal('advance_charges')->default(0);
             $table->string('website')->nullable();
             $table->timestamps();
         });

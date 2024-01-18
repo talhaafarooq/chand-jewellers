@@ -69,7 +69,7 @@ class CheckoutController extends Controller
             $order->address2 = $request->address2;
             $order->city = $request->city;
             $order->state = $request->state;
-            $order->zipcode = $request->zipcode;
+            // $order->zipcode = $request->zipcode;
             $order->country = $request->country;
             $order->email = $request->email;
             $order->phone1 = $request->phone1;
@@ -85,8 +85,6 @@ class CheckoutController extends Controller
                 $orderDetails = new OrderDetail();
                 $orderDetails->order_id = $order->id;
                 $orderDetails->product_id = $myProduct->id;
-                $orderDetails->karats = $myProduct->karat;
-                $orderDetails->weight = $myProduct->weight;
                 $orderDetails->qty = $product->quantity;
                 $orderDetails->price = $product->price;
                 $orderDetails->total = $product->price * $product->quantity;
@@ -94,8 +92,8 @@ class CheckoutController extends Controller
             }
 
             $orderWithUser = Order::select('id', 'order_no', 'user_id')->with('user:id,first_name,last_name')->find($order->id);
-            // Mail::to("talhafarooq522446@gmail.com")->send(new OrderConfirmMail($orderWithUser));
-            Mail::to($request->email)->send(new OrderConfirmMail($orderWithUser));
+            Mail::to("talhafarooq522446@gmail.com")->send(new OrderConfirmMail($orderWithUser));
+            // Mail::to($request->email)->send(new OrderConfirmMail($orderWithUser));
 
             Cart::clear();
             DB::commit();
@@ -104,12 +102,12 @@ class CheckoutController extends Controller
             DB::rollback();
             return redirect()->back()->with('failure', 'Something went wrong! Try again');
         }
-        $userId = null;
     }
 
     public function thanks($orderId)
     {
-        $order = Order::with('orderDetails')->findOrFail($orderId);
-        return view('website.thanks', compact('order'));
+        $order = Order::with('orderDetails.product')->findOrFail($orderId);
+        $subTotal = $order->orderDetails->sum('price');
+        return view('website.thanks', compact('order', 'subTotal'));
     }
 }

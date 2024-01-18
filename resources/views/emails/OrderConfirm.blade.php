@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h4>Order# {{ $data['orderNo'] }}</h4>
+    <h4>Order# {{ $data['order_no'] }}</h4>
     <p>Thank You for Your Purchase!
         We are getting your order ready to be shipped. We will notify you when it has been dispatched.
         Tracking details will be shared soon.</p>

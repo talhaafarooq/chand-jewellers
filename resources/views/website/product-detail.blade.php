@@ -132,8 +132,13 @@
                             </form>
                             <div class="qty-btn_area">
                                 <ul>
-                                    <li><a class="qty-cart_btn" href="javascript:void(0)"
-                                            onclick="document.getElementById('cartForm').submit();">Add To Cart</a></li>
+                                    <li>
+                                        <a class="qty-cart_btn" href="javascript:void(0)"
+                                            onclick="document.getElementById('cartForm').submit();">Add To Cart</a>
+                                    </li>
+                                    <li>
+                                        <a class="qty-cart_btn" href="{{ URL::to('buynow/' . $product->slug) }}">Buy Now</a>
+                                    </li>
                                     <li><a class="qty-wishlist_btn"
                                             href="{{ route('website.add-to-wishlist', $product->id) }}"
                                             data-bs-toggle="tooltip" title="Add To Wishlist"><i

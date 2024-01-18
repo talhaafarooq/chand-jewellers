@@ -242,6 +242,18 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                        {!! Form::label('advance_charges', 'Advance Charges') !!}
+                                        {!! Form::text('advance_charges', null, [
+                                            'id' => 'advance_charges',
+                                            'class' => 'form-control',
+                                            'placeholder' => '0',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('advance_charges')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer">

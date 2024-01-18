@@ -1,5 +1,12 @@
 @extends('layouts.website')
 @section('title', 'Chand Jewellers - Checkout')
+@section('head')
+    <style>
+        input{
+            color: black;
+        }
+    </style>
+@endsection
 @section('content')
     <!-- Begin Hiraola's Breadcrumb Area -->
     <div class="breadcrumb-area">
@@ -21,7 +28,7 @@
                 <div class="col-12">
                     <div class="coupon-accordion">
                         @if (!Auth::check())
-                            <h3>Returning customer? <span id="showlogin"><a href="{{ route('login') }}">Click here to
+                            <h3>Regular customer? <span id="showlogin"><a href="{{ route('login') }}">Click here to
                                         login</a></span></h3>
                         @endif
                         {{-- <div id="checkout-login" class="coupon-content">
@@ -194,7 +201,7 @@
                                         <label>Create an account?</label>
                                     </div>
                                     <div id="cbox-info" class="checkout-form-list create-account">
-                                        <p>Create an account by entering the information below. If you are a returning
+                                        <p>Create an account by entering the information below. If you are a regular
                                             customer please login at the top of the page.</p>
                                         <label>Account password <span class="required">*</span></label>
                                         <input placeholder="password" type="password" name="password" id="password">
@@ -379,7 +386,7 @@
                                                         aria-expanded="false" aria-controls="collapseTwo">
                                                         Cash on Delivery
                                                     </a>
-                                                    <p class="text-black"><b>Note:</b> Rs 500 Require in advance for order
+                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->currency }} {{ number_format(SettingsHelper::info()->advance_charges) }} Required in advance for order
                                                         confirmation</p>
                                                 </h5>
                                             </div>

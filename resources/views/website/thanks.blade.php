@@ -34,18 +34,18 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="cart-product-name">Product</th>
-                                            <th class="cart-product-total">Total</th>
+                                            <th class="cart-product-name" style="text-align: left;font-weight:bold;">Product</th>
+                                            <th class="cart-product-total" style="text-align: left;font-weight:bold;">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (Cart::getContent() as $cartItems)
+                                        @foreach ($order->orderDetails as $order)
                                             <tr class="cart_item">
-                                                <td class="cart-product-name"> {{ $cartItems->name }}<strong
+                                                <td class="cart-product-name"> {{ $order->product->name }}<strong
                                                         class="product-quantity">
-                                                        × {{ $cartItems->quantity }}</strong></td>
+                                                        × {{ $order->qty }}</strong></td>
                                                 <td class="cart-product-total"><span
-                                                        class="amount">{{ SettingsHelper::info()->currency . number_format($cartItems->price * $cartItems->quantity) }}</span>
+                                                        class="amount">{{ SettingsHelper::info()->currency . number_format($order->price * $order->qty) }}</span>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -54,19 +54,19 @@
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
                                             <td><span
-                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getSubTotal(), 2) }}</span>
+                                                    class="amount">{{ SettingsHelper::info()->currency . number_format($subTotal) }}</span>
                                             </td>
                                         </tr>
                                         <tr class="cart-subtotal">
                                             <th>Shipping Charges</th>
                                             <td><span
-                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(SettingsHelper::info()->shipping, 2) }}</span>
+                                                    class="amount">{{ SettingsHelper::info()->currency . number_format(SettingsHelper::info()->shipping) }}</span>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Order Total</th>
                                             <td><strong><span
-                                                        class="amount">{{ SettingsHelper::info()->currency . number_format(Cart::getTotal() + SettingsHelper::info()->shipping, 2) }}</span></strong>
+                                                        class="amount">{{ SettingsHelper::info()->currency . number_format($subTotal + SettingsHelper::info()->shipping) }}</span></strong>
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -100,9 +100,9 @@
                                                     <a href="javascript:void(0)" class="collapsed" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseTwo" aria-expanded="false"
                                                         aria-controls="collapseTwo">
-                                                        Cash on Delivery
+                                                        Please Confirm your order.
                                                     </a>
-                                                    <p class="text-black"><b>Note:</b> Rs 500 Require in advance for order
+                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->currency }} {{ number_format(SettingsHelper::info()->advance_charges) }} Required in advance for order
                                                         confirmation</p>
                                                 </h5>
                                             </div>

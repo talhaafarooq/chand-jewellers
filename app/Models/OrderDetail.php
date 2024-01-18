@@ -8,16 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetail extends Model
 {
     use HasFactory;
-    protected $fillable = array('order_id', 'product_id', 'qty', 'price', 'total', 'karats', 'weight');
+    protected $fillable = array('order_id', 'product_id', 'qty', 'price', 'total');
 
     protected $casts = [
         'order_id' => 'integer',
         'product_id' => 'integer',
         'qty' => 'float',
         'price' => 'float',
-        'total' => 'float',
-        'karats' => 'float',
-        'weight' => 'float'
+        'total' => 'float'
     ];
 
     public function product()
