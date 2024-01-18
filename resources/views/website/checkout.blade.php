@@ -96,7 +96,7 @@
                                     <div class="checkout-form-list">
                                         <label>First Name <span class="required">*</span></label>
                                         <input name="first_name" id="first_name" type="text" placeholder="John"
-                                            value="{{ old('first_name') }}" required>
+                                            value="{{ auth::user() ? auth()->user()->first_name: old('first_name') }}" required>
                                         @error('first_name')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -106,7 +106,7 @@
                                     <div class="checkout-form-list">
                                         <label>Last Name <span class="required">*</span></label>
                                         <input name="last_name" id="last_name" type="text" placeholder="Doe"
-                                            value="{{ old('last_name') }}" required>
+                                            value="{{ auth::user() ? auth()->user()->last_name: old('last_name') }}" required>
                                         @error('last_name')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -116,7 +116,7 @@
                                     <div class="checkout-form-list">
                                         <label>Cell No 1<span class="required">*</span></label>
                                         <input type="text" name="phone1" id="phone1"
-                                            value="{{ old('phone1') }}" required>
+                                            value="{{ auth::user() ? auth()->user()->phone_no: old('phone1') }}" required>
                                         @error('phone1')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -173,7 +173,7 @@
                                     <div class="checkout-form-list">
                                         <label>Email Address <span class="required">*</span></label>
                                         <input placeholder="example@example.com" type="email" name="email"
-                                            id="email" value="{{ old('email') }}" required>
+                                            id="email" value="{{ auth::user() ? auth()->user()->email: old('email') }}" required>
                                         @error('email')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -183,7 +183,7 @@
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Complete Address<span class="required">*</span></label>
-                                        <input name="address1" id="address1" type="text" value="{{ old('address1') }}" required>
+                                        <input name="address1" id="address1" type="text" value="{{ auth::user() ? auth()->user()->address: old('address1') }}" required>
                                         @error('address1')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -195,6 +195,7 @@
                                         <input name="address2" id="address2" type="text" value="{{ old('address2') }}">
                                     </div>
                                 </div> --}}
+                                @if (auth()->guest())
                                 <div class="col-md-12">
                                     <div class="checkout-form-list create-acc">
                                         <input id="cbox" type="checkbox" name="create_account" value="1">
@@ -210,6 +211,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                                @endif
                             </div>
                             <div class="different-address">
                                 {{-- <div class="ship-different-title">
