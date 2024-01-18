@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Feedback extends Model
 {
     use HasFactory;
-    protected $fillable = array('product_id','name', 'email', 'website', 'message', 'rating');
+    protected $fillable = array('product_id', 'name', 'email', 'website', 'message', 'rating');
     protected $casts = [
         'product_id' => 'integer',
         'name' => 'string',
@@ -17,4 +17,9 @@ class Feedback extends Model
         'message' => 'string',
         'rating' => 'integer'
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RolePermissionController;
@@ -68,6 +69,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'c
     // User Management
     Route::resource('user-management', UserManagementController::class);
     Route::get('/user-management/destroy/{id}', [UserManagementController::class, 'destroy']);
+
+    // Product Feedbacks
+    Route::resource('feedbacks', FeedbackController::class);
+    Route::get('/feedbacks/destroy/{id}', [FeedbackController::class, 'destroy']);
 
     // Settings
     Route::resource('settings', SettingController::class);

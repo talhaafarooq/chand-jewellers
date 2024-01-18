@@ -182,6 +182,14 @@
                     </a>
                 </li>
 
+                <!-- Feedbacks Section -->
+                <li class="nav-item">
+                    <a href="{{ route('admin.feedbacks.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Product Feedbacks</p>
+                    </a>
+                </li>
+
                  <!-- Role Management -->
                  {{-- @canAny('view-admin-role', 'create-admin-role') --}}
                  <li class="nav-item">
