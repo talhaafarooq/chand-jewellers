@@ -43,6 +43,7 @@ Route::as('website.')->group(function(){
     Route::post('/subscribe', [WebsiteController::class, 'subscribeWebsite'])->name('subscribe');
 
     Route::get('/product/{slug}',[WebsiteController::class,'productDetails'])->name('product.details')->where('slug', '[a-zA-Z0-9-]+');
+    Route::match(['get','post'],'/submit-feedback',[WebsiteController::class,'submitFeedback'])->name('submit-feedback');
     Route::post('/customer-register/',[AuthController::class,'register'])->name('register');
 
     // Add To Cart

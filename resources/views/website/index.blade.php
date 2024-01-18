@@ -257,8 +257,8 @@
                         <div class="single_product">
                             <div class="product-img">
                                 <a href="{{ route('website.product.details',$product->slug) }}">
-                                    <img class="primary-img" src="{{ URL::asset('website') }}/assets/images/product/medium-size/1-1.jpg" alt="Hiraola's Product Image">
-                                    <img class="secondary-img" src="{{ URL::asset('website') }}/assets/images/product/medium-size/1-2.jpg" alt="Hiraola's Product Image">
+                                    <img class="primary-img" src="{{ URL::asset('storage/'.$product->front_img) }}" alt="Hiraola's Product Image">
+                                    <img class="secondary-img" src="{{ URL::asset('storage/'.$product->back_img) }}" alt="Hiraola's Product Image">
                                 </a>
                                 <span class="sticker">New</span>
                                 <div class="add-actions">

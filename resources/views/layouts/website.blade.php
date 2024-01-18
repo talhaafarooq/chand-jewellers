@@ -69,7 +69,6 @@
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ URL::asset('website') }}/assets/css/style.css">
-    <!-- <link rel="stylesheet" href="{{ URL::asset('website') }}/assets/css/style.min.css"> -->
     @yield('head')
 </head>
 

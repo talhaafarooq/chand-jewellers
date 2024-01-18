@@ -58,4 +58,14 @@ class Product extends Model
     {
         return $this->hasMany(Wishlist::class);
     }
+
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class,'product_id');
+    }
+
+    public function scopeStatus($query,$value)
+    {
+        $query->where('status',$value);
+    }
 }

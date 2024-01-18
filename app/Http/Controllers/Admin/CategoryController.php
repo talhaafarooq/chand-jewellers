@@ -17,6 +17,11 @@ class CategoryController extends Controller
     public function __construct(BaseRepositoryInterface $baseRepo)
     {
         $this->repo = $baseRepo;
+        // $this->middleware('permission:create-category', ['only' => ['create','store']]);
+        $this->middleware('permission:view-categories',['only'=>'index']);
+        $this->middleware('permission:create-category',['only'=>'create','store']);
+        $this->middleware('permission:edit-category',['only'=>'edit','update']);
+        $this->middleware('permission:delete-category',['only'=>'delete']);
     }
 
     public function index()
@@ -45,7 +50,6 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $edit = $this->repo->show(Category::class, $id);
-
         return view('admin.categories.edit', compact('edit'));
     }
 
