@@ -24,11 +24,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Name</th>
-                                                        <th>Sku</th>
                                                         <th>Category / Sub Category</th>
                                                         <th>Old Price / New Price</th>
-                                                        <th>Alert Qty</th>
                                                         <th>Status</th>
+                                                        @canAny(['update-product','delete-product'])
+                                                        <th>Actions</th>
+                                                        @endcanAny
                                                     </tr>
                                                 </thead>
                                                <tbody>
@@ -38,7 +39,6 @@
                                                     <td>{{ $product->sku }}</td>
                                                     <td>{{ $product->category->name }} / {{ $product->subCategory->name }}</td>
                                                     <td>{{ $product->old_price }} / {{ $product->new_price }}</td>
-                                                    <td>{{ $product->alert_qty }}</td>
                                                     <td>
                                                         @if ($product->status==0)
                                                         <span class="badge bg-success">Active</span>
@@ -46,10 +46,16 @@
                                                         <span class="badge bg-danger">InActive</span>
                                                         @endif
                                                     </td>
+                                                    @canAny(['update-product','delete-product'])
                                                     <td>
+                                                        @can('delete-product')
                                                         <button type="button" name="{{ $product->id }}" class="btn btn-danger btn-sm remove-product"><i class="fa fa-times"></i></button>
+                                                        @endcan
+                                                        @can('update-product')
                                                         <a href="{{ route('admin.products.edit',$product->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil text-white"></i></button>
+                                                        @endcan
                                                     </td>
+                                                    @endcanAny
                                                 </tr>
                                                 @empty
                                                 <tr>

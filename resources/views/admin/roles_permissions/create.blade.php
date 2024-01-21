@@ -362,6 +362,51 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Products Feedbacks permissions -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                                            <h5>Products Feedbacks</h5>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <label for="website_feedbacks_create">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="website_feedbacks_create"
+                                                                            value="create-website-feedback">
+                                                                        Create
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <label for="website_feedbacks_read">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="website_feedbacks_read"
+                                                                            value="view-website-feedbacks"> Read
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <label for="website_feedbacks_update">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="website_feedbacks_update"
+                                                                            value="update-website-feedback">
+                                                                        Update
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <label for="website_feedbacks_delete">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="website_feedbacks_delete"
+                                                                            value="delete-website-feedback">
+                                                                        Delete
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <!-- Roles management permissions -->
                                             <div class="card">

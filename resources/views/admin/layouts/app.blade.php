@@ -93,8 +93,27 @@
     <script src="{{ URL::asset('dashboard') }}/dist/js/pages/dashboard.js"></script>
     <!-- Select2 -->
     <script src="{{ URL::asset('dashboard') }}/plugins/select2/js/select2.full.min.js"></script>
+    <!-- Select & Logout & Swal Notification -->
     <script>
         $('.select2').select2();
+        $(document).ready(function() {
+            $(document).on('click', '.logout', function() {
+                Swal.fire({
+                    title: "Are You Sure?",
+                    text: "Are you sure you want to logout?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes!',
+                    confirmButtonColor: '#28A745',
+                    cancelButtonText: 'No!',
+                    cancelButtonColor: '#DC3545',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href = `{{ route('user.logout') }}`;
+                    }
+                });
+            });
+        });
     </script>
     <!-- Toast message -->
     <x-toast-message />

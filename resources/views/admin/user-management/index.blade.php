@@ -25,9 +25,9 @@
                                 <div class="input-group-append" onclick="document.getElementById('userForm').submit()">
                                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
                                 </div>
-                                 {{-- @can('create-admin-user') --}}
+                                 @can('create-user')
                                     <a href="{{ route('admin.user-management.create') }}" class="btn btn-primary ml-2"><i class="fa fa-plus"></i> Add New Users</a>
-                                    {{-- @endcan --}}
+                                    @endcan
                             </div>
                         </form>
                     </div>
@@ -45,9 +45,9 @@
                                             <th>PhoneNo</th>
                                             <th>Role</th>
                                             <th>Status</th>
-                                            {{-- @canAny('update-admin-user', 'delete-admin-user') --}}
+                                            @canAny(['update-user', 'delete-user'])
                                             <th>Action</th>
-                                            {{-- @endcanAny --}}
+                                            @endcanAny
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,18 +72,20 @@
                                                     <span class="badge bg-danger">InActive</span>
                                                     @endif
                                                 </td>
+                                                @canAny(['update-user', 'delete-user'])
                                                 <td>
-                                                    {{-- @can('update-admin-user') --}}
+                                                    @can('update-user')
                                                     <a href="{{ route('admin.user-management.edit',$user->id) }}" class="btn btn-primary btn-sm">
                                                         <i class="fa fa-pencil text-white"></i>
                                                     </a>
-                                                    {{-- @endcan --}}
-                                                    {{-- @can('delete-admin-user') --}}
+                                                    @endcan
+                                                    @can('delete-user')
                                                     <a href="javascript:void(0)" class="btn btn-danger btn-sm remove-user"
                                                         name="{{ $user->id }}"><i class="fa fa-times"></i>
                                                     </a>
-                                                    {{-- @endcan --}}
+                                                    @endcan
                                                 </td>
+                                                @endcanAny
                                             </tr>
                                         @empty
                                         @endforelse

@@ -62,6 +62,11 @@ class RolePermissionSeeder extends Seeder
             'view-setting',
             'update-setting',
             'delete-setting',
+
+            'create-website-feedback',
+            'view-website-feedbacks',
+            'update-website-feedback',
+            'delete-website-feedback',
         ];
 
         foreach ($permissions as $permission) {

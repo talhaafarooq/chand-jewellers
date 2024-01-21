@@ -57,8 +57,21 @@ class User extends Authenticatable
         return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
 
-    public function scopeRole($query,$value)
+    public function scopeRole($query, $value)
     {
-        return $query->where('role',$value);
+        return $query->where('role', $value);
     }
+
+    // public function canAny($permissions, $arguments = [])
+    // {
+    //     $permissions = is_array($permissions) ? $permissions : explode('|', $permissions);
+
+    //     foreach ($permissions as $permission) {
+    //         if ($this->can($permission)) {
+    //             return true;
+    //         }
+    //     }
+
+    //     return false;
+    // }
 }

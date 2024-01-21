@@ -8,15 +8,15 @@
     </style>
 @endsection
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header"></section>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header"></section>
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12"></div>
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12"></div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <form action="" method="get" id="RoleForm">
                             @csrf
@@ -26,51 +26,65 @@
                                 <div class="input-group-append" onclick="document.getElementById('RoleForm').submit()">
                                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
                                 </div>
-                                    <a href="{{ route('admin.roles.create') }}" class="btn btn-info ml-2"><i class="fa fa-plus"></i> Add New Role</a>
+                                @can('create-role')
+                                    <a href="{{ route('admin.roles.create') }}" class="btn btn-info ml-2"><i
+                                            class="fa fa-plus"></i> Add New Role</a>
+                                @endcan
                             </div>
                         </form>
                     </div>
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Roles List</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Sr.</th>
-                                            <th>Name</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($roles as $key=>$role)
-                                        <tr>
-                                            <td>{{ ++$key }}</td>
-                                            <td>{{ $role->name }}</td>
-                                            <td>
-                                                <button type="button" name="{{ $role->id }}" class="btn btn-danger btn-sm remove-role"><i class="fa fa-times"></i></button>
-                                                <a href="{{ route('admin.roles.edit',$role->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil text-white"></i></button>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td colspan="3" class="text-danger text-center font-weight-bold">No Permissions...</td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Roles List</h4>
                             </div>
-                            {!! $roles->links('pagination::bootstrap-5') !!}
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                @canAny(['update-role', 'delete-role'])
+                                                    <th>Action</th>
+                                                @endcanAny
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($roles as $key=>$role)
+                                                <tr>
+                                                    <td>{{ $role->name }}</td>
+                                                    @canAny(['update-role', 'delete-role'])
+                                                        <td>
+                                                            @can('delete-role')
+                                                                <button type="button" name="{{ $role->id }}"
+                                                                    class="btn btn-danger btn-sm remove-role"><i
+                                                                        class="fa fa-times"></i></button>
+                                                            @endcan
+                                                            @can('update-role')
+                                                                <a href="{{ route('admin.roles.edit', $role->id) }}"
+                                                                    class="btn btn-primary btn-sm"><i
+                                                                        class="fa fa-pencil text-white"></i></a>
+                                                            @endcan
+                                                        </td>
+                                                    @endcanAny
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="2" class="text-danger text-center font-weight-bold">No
+                                                        Permissions...</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {!! $roles->links('pagination::bootstrap-5') !!}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 @endsection
 @section('scripts')
     <!-- Role Remove | Swal Notification-->

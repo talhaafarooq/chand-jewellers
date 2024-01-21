@@ -23,6 +23,11 @@ class ProductController extends Controller
     public function __construct(BaseRepositoryInterface $baseRepo)
     {
         $this->repo = $baseRepo;
+        // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
+        $this->middleware('check.permissions:view-products', ['only' => ['index','outOfStockProducts']]);
+        $this->middleware('check.permissions:create-product', ['only' => ['create', 'store']]);
+        $this->middleware('check.permissions:update-product', ['only' => ['edit', 'update','changePrices']]);
+        $this->middleware('check.permissions:delete-product', ['only' => 'destroy']);
     }
 
     public function index()

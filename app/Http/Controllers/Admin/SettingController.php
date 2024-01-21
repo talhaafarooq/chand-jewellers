@@ -16,12 +16,15 @@ class SettingController extends Controller
     public function __construct(BaseRepositoryInterface $baseRepo)
     {
         $this->repo = $baseRepo;
+        // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
+        $this->middleware('check.permissions:view-setting', ['only' => 'index']);
+        $this->middleware('check.permissions:update-setting', ['only' => ['update']]);
     }
 
     public function index()
     {
         $edit = $this->repo->show(Settings::class, 1);
-        return view('admin.settings.edit',compact('edit'));
+        return view('admin.settings.edit', compact('edit'));
     }
 
     public function update(SettingRequest $request, $id)
@@ -32,13 +35,13 @@ class SettingController extends Controller
         if ($request->hasFile('header_logo')) {
             FileHelper::removeFile($settings1->header_logo);
             $fileName = FileHelper::uploadFile($request->file('header_logo'), 'settings');
-            $settings->header_logo = time().$fileName;
+            $settings->header_logo = time() . $fileName;
             $settings->save();
         }
         if ($request->hasFile('footer_logo')) {
             FileHelper::removeFile($settings1->footer_logo);
             $fileName = FileHelper::uploadFile($request->file('footer_logo'), 'settings');
-            $settings->footer_logo = time().$fileName;
+            $settings->footer_logo = time() . $fileName;
             $settings->save();
         }
         return redirect()->route('admin.settings.index')->with('success', 'Settings updated successfully.');

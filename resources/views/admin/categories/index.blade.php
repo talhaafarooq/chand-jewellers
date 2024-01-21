@@ -19,7 +19,9 @@
                                 <div class="input-group-append" onclick="document.getElementById('categoryForm').submit()">
                                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
                                 </div>
-                                    <a href="{{ route('admin.categories.create') }}" class="btn btn-info ml-2"><i class="fa fa-plus"></i> Add New Category</a>
+                                @can('create-category')
+                                <a href="{{ route('admin.categories.create') }}" class="btn btn-info ml-2"><i class="fa fa-plus"></i> Add New Category</a>
+                                @endcan
                             </div>
                         </form>
                     </div>
@@ -38,17 +40,25 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Name</th>
+                                                        @canAny(['edit-category','delete-category'])
                                                         <th>Actions</th>
+                                                        @endcanAny
                                                     </tr>
                                                 </thead>
                                                <tbody>
                                                 @forelse ($categories as $category)
                                                 <tr>
                                                     <td>{{ $category->name }}</td>
+                                                    @canAny(['edit-category','delete-category'])
                                                     <td>
+                                                        @can('delete-category')
                                                         <button type="button" name="{{ $category->id }}" class="btn btn-danger btn-sm remove-category"><i class="fa fa-times"></i></button>
-                                                        <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil text-white"></i></button>
+                                                        @endcan
+                                                        @can('edit-category')
+                                                        <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil text-white"></i></a>
+                                                        @endcan
                                                     </td>
+                                                    @endcanAny
                                                 </tr>
                                                 @empty
                                                 <tr>

@@ -17,11 +17,11 @@ class CategoryController extends Controller
     public function __construct(BaseRepositoryInterface $baseRepo)
     {
         $this->repo = $baseRepo;
-        // $this->middleware('permission:create-category', ['only' => ['create','store']]);
-        $this->middleware('permission:view-categories',['only'=>'index']);
-        $this->middleware('permission:create-category',['only'=>'create','store']);
-        $this->middleware('permission:edit-category',['only'=>'edit','update']);
-        $this->middleware('permission:delete-category',['only'=>'delete']);
+        // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
+        $this->middleware('check.permissions:view-categories', ['only' => 'index']);
+        $this->middleware('check.permissions:create-category', ['only' => ['create', 'store']]);
+        $this->middleware('check.permissions:edit-category', ['only' => ['edit', 'update']]);
+        $this->middleware('check.permissions:delete-category', ['only' => 'destroy']);
     }
 
     public function index()
@@ -75,11 +75,10 @@ class CategoryController extends Controller
 
     public function getSubCategories(Request $request)
     {
-        if(isset($request->category_id))
-        {
-            $subCategoriesList = SubCategory::select('id','name')->where('category_id',$request->category_id)->get();
+        if (isset($request->category_id)) {
+            $subCategoriesList = SubCategory::select('id', 'name')->where('category_id', $request->category_id)->get();
             return response()->json($subCategoriesList);
-        }else{
+        } else {
             return response()->json([]);
         }
     }

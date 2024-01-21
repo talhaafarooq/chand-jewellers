@@ -19,7 +19,9 @@
                                 <div class="input-group-append" onclick="document.getElementById('subCategoryForm').submit()">
                                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
                                 </div>
-                                    <a href="{{ route('admin.sub-categories.create') }}" class="btn btn-info ml-2"><i class="fa fa-plus"></i> Add New Sub Category</a>
+                                @can('create-subcategory')
+                                <a href="{{ route('admin.sub-categories.create') }}" class="btn btn-info ml-2"><i class="fa fa-plus"></i> Add New Sub Category</a>
+                                @endcan
                             </div>
                         </form>
                     </div>
@@ -39,7 +41,9 @@
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>Category</th>
+                                                        @canAny(['update-subcategory','delete-product'])
                                                         <th>Actions</th>
+                                                        @endcanAny
                                                     </tr>
                                                 </thead>
                                                <tbody>
@@ -47,10 +51,16 @@
                                                 <tr>
                                                     <td>{{ $subCategory->name }}</td>
                                                     <td>{{ $subCategory->category->name }}</td>
+                                                    @canAny(['update-subcategory','delete-product'])
                                                     <td>
+                                                        @can('delete-product')
                                                         <button type="button" name="{{ $subCategory->id }}" class="btn btn-danger btn-sm remove-subcategory"><i class="fa fa-times"></i></button>
+                                                        @endcan
+                                                        @can('update-subcategory')
                                                         <a href="{{ route('admin.sub-categories.edit',$subCategory->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil text-white"></i></button>
+                                                        @endcan
                                                     </td>
+                                                    @endcanAny
                                                 </tr>
                                                 @empty
                                                 <tr>

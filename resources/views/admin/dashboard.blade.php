@@ -851,5 +851,13 @@
                 }
             });
         });
+        @if (Session::has('access_denied'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Access Denied...',
+            text: '{{ Session::get('access_denied') }}'
+        });
+        @endif
     </script>
+
 @endsection

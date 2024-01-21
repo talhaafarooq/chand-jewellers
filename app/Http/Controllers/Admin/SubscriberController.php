@@ -14,6 +14,8 @@ class SubscriberController extends Controller
     public function __construct(BaseRepositoryInterface $baseRepo)
     {
         $this->repo = $baseRepo;
+        // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
+        $this->middleware('check.permissions:view-website-subscribers', ['only' => 'index']);
     }
 
     public function index()

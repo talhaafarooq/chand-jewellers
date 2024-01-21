@@ -1,424 +1,4 @@
-{{-- @extends('admin.layouts.app')
-@section('title', 'Role Management/Edit Role')
-@section('content')
-    <section class="content-header"></section>
-    <div class="container-fluid">
-        <section class="content">
-            <form action="{{ URL::to('admin/roles/'. $edit->id) }}" method="post">
-                @csrf
-                @method('PATCH')
-                <div class="row" style="margin-top: -20px;">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="d-flex justify-content-start align-items-center m-2">
-                            <a class="btn btn-info mr-2" href="{{ URL::to('admin/roles') }}">
-                                <i class="fa fa-arrow-left"></i>
-                            </a>
-                            <h5 style="position: relative;top:3px;"><span><b>Role Management</b></span> / <small>Edit Role</small></h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="row m-1">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <label for="role_name">Role Name *</label>
-                        <input type="text" name="role_name" id="role_name" class="form-control"
-                            placeholder="Role Name" value="{{ explode("-",$edit->name)[1] }}" required>
-                        @error('role_name')
-                            <font color="red">{{ $message }}</font>
-                        @enderror
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
-                        <h4><b>Role Permissions *</b></h4>
-                        <!-- Access All permissions -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <h5>Administrator Access</h5>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                        <label for="selectAll">
-                                            <input type="checkbox" name="all" id="selectAll">
-                                            Select All
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Customer permissions -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <h5>Customers</h5>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label for="customer_create">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="customer_create"
-                                                        value="create-admin-customer"
-                                                        {{ in_array('create-admin-customer', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Create
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="customer_read">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="customer_read" value="view-admin-customers"
-                                                        {{ in_array('view-admin-customers', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Read
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="customer_update">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="customer_update"
-                                                        value="update-admin-customer"
-                                                        {{ in_array('update-admin-customer', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Update
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="customer_delete">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="customer_delete"
-                                                        value="delete-admin-customer"
-                                                        {{ in_array('delete-admin-customer', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Delete
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Drivers permissions -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <h5>Drivers</h5>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label for="driver_create">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="driver_create" value="create-admin-driver"
-                                                        {{ in_array('create-admin-driver', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Create
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="driver_read">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="driver_read" value="view-admin-drivers"
-                                                        {{ in_array('view-admin-drivers', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Read
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="driver_update">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="driver_update" value="update-admin-driver"
-                                                        {{ in_array('update-admin-driver', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Update
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="driver_delete">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="driver_delete" value="delete-admin-driver"
-                                                        {{ in_array('delete-admin-driver', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Delete
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                         <!-- Users management permissions -->
-                         <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <h5>Users Management</h5>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label for="admin_user_create">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="admin_user_create" value="create-admin-user"
-                                                        {{ in_array('create-admin-user', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Create
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="admin_user_read">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="admin_user_read" value="view-admin-user"
-                                                        {{ in_array('view-admin-user', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}> Read
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="admin_user_update">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="admin_user_update" value="update-admin-user"
-                                                        {{ in_array('update-admin-user', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Update
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="admin_user_delete">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="admin_user_delete" value="delete-admin-user"
-                                                        {{ in_array('delete-admin-user', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Delete
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Drivers subscription permissions -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <h5>Driver Subscription</h5>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label for="driver_subscription_create">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="driver_subscription_create"
-                                                        value="create-admin-driver-subscription"
-                                                        {{ in_array('create-admin-driver-subscription', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Create
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="driver_subscription_read">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="driver_subscription_read"
-                                                        value="view-admin-driver-subscription"
-                                                        {{ in_array('view-admin-driver-subscription', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Read
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="driver_subscription_update">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="driver_subscription_update"
-                                                        value="update-admin-driver-subscription"
-                                                        {{ in_array('update-admin-driver-subscription', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Update
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="driver_subscription_delete">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="driver_subscription_delete"
-                                                        value="delete-admin-driver-subscription"
-                                                        {{ in_array('delete-admin-driver-subscription', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Delete
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Customer subscription permissions -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <h5>Customer Subscription</h5>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label for="customer_subscription_create">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="customer_subscription_create"
-                                                        value="create-admin-customer-subscription"
-                                                        {{ in_array('create-admin-customer-subscription', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Create
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="customer_subscription_read">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="customer_subscription_read"
-                                                        value="view-admin-customer-subscription"
-                                                        {{ in_array('view-admin-customer-subscription', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Read
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="customer_subscription_update">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="customer_subscription_update"
-                                                        value="update-admin-customer-subscription"
-                                                        {{ in_array('update-admin-customer-subscription', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Update
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="customer_subscription_delete">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="customer_subscription_delete"
-                                                        value="delete-admin-customer-subscription"
-                                                        {{ in_array('delete-admin-customer-subscription', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Delete
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Subscription Features management permissions -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <h5>Subscription Feature</h5>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label for="subscription_feature_create">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="subscription_feature_create" value="create-admin-subscription-feature"
-                                                        {{ in_array('create-admin-subscription-feature', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Create
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="subscription_feature_read">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="subscription_feature_read" value="view-admin-subscription-feature"
-                                                        {{ in_array('view-admin-subscription-feature', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}> Read
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="subscription_feature_update">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="subscription_feature_update" value="update-admin-subscription-feature"
-                                                        {{ in_array('update-admin-subscription-feature', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Update
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="subscription_feature_delete">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="subscription_feature_delete" value="delete-admin-subscription-feature"
-                                                        {{ in_array('delete-admin-subscription-feature', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Delete
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                         <!-- Roles management permissions -->
-                         <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <h5>Role</h5>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label for="role_create">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="role_create" value="create-admin-role"
-                                                        {{ in_array('create-admin-role', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Create
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="role_read">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="role_read" value="view-admin-role"
-                                                        {{ in_array('view-admin-role', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Read
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="role_update">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="role_update" value="update-admin-role"
-                                                        {{ in_array('update-admin-role', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Update
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label for="role_delete">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="role_delete" value="delete-admin-role"
-                                                        {{ in_array('delete-admin-role', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
-                                                    Delete
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row m-1">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <button type="submit" class="btn btn-info pl-5 pr-5 mb-5" name="action" value="update">Update</button>
-                    </div>
-                </div>
-            </form>
-        </section>
-    </div>
-@endsection
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#role_name').keydown(function(e){
-                if (e.key === '-') {
-                    e.preventDefault();
-                }
-            });
-            $('#selectAll').change(function() {
-                // Check or uncheck all checkboxes with name 'permissions[]'
-                $('input[name="permissions[]"]').prop('checked', $(this).prop('checked'));
-            });
-
-            // If any checkbox with name 'permissions[]' is unchecked, uncheck 'selectAll'
-            $('input[name="permissions[]"]').change(function() {
-                if (!$('input[name="permissions[]"]:not(:checked)').length) {
-                    $('#selectAll').prop('checked', true);
-                } else {
-                    $('#selectAll').prop('checked', false);
-                }
-            });
-        });
-    </script>
-@endsection
- --}}
- @extends('admin.layouts.app')
+@extends('admin.layouts.app')
 @section('title', 'Role Management/Edit Role')
 @section('content')
     <div class="content-wrapper">
@@ -775,6 +355,52 @@
                                                                         <input type="checkbox" name="permissions[]"
                                                                             id="website_visitors_delete"
                                                                             value="delete-website-visitor" {{ in_array('delete-website-visitor', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
+                                                                        Delete
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Products Feedbacks permissions -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                                            <h5>Products Feedbacks</h5>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <label for="website_feedbacks_create">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="website_feedbacks_create"
+                                                                            value="create-website-feedback" {{ in_array('create-website-feedback', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
+                                                                        Create
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <label for="website_feedbacks_read">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="website_feedbacks_read"
+                                                                            value="view-website-feedbacks" {{ in_array('view-website-feedbacks', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}> Read
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <label for="website_feedbacks_update">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="website_feedbacks_update"
+                                                                            value="update-website-feedback" {{ in_array('update-website-feedback', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
+                                                                        Update
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <label for="website_feedbacks_delete">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="website_feedbacks_delete"
+                                                                            value="delete-website-feedback" {{ in_array('delete-website-feedback', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
                                                                         Delete
                                                                     </label>
                                                                 </div>

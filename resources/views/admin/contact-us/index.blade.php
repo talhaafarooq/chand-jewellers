@@ -31,7 +31,9 @@
                                                 <th>Cell NO</th>
                                                 <th>Subject</th>
                                                 <th>Message</th>
+                                                @can('update-website-contact')
                                                 <th>Status</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -48,6 +50,7 @@
                                                     </td>
                                                     <td>{{ $contact->subject }}</td>
                                                     <td>{{ $contact->message }}</td>
+                                                    @can('update-website-contact')
                                                     <td>
                                                         @if ($contact->complete == 0)
                                                             <a href="{{ route('admin.update-contact-status', $contact->id) }}"
@@ -57,6 +60,7 @@
                                                                 class="btn btn-danger">InComplete</a>
                                                         @endif
                                                     </td>
+                                                    @endcan
                                                 </tr>
                                             @empty
                                                 <tr>

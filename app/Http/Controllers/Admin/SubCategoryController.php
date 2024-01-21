@@ -16,6 +16,11 @@ class SubCategoryController extends Controller
     public function __construct(BaseRepositoryInterface $baseRepo)
     {
         $this->repo = $baseRepo;
+        // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
+        $this->middleware('check.permissions:view-subcategories', ['only' => 'index']);
+        $this->middleware('check.permissions:create-subcategory', ['only' => ['create', 'store']]);
+        $this->middleware('check.permissions:update-subcategory', ['only' => ['edit', 'update']]);
+        $this->middleware('check.permissions:delete-subcategory', ['only' => 'destroy']);
     }
 
     public function index()
@@ -50,7 +55,7 @@ class SubCategoryController extends Controller
     public function edit($id)
     {
         $edit = $this->repo->show(SubCategory::class, $id);
-        $categoriesList = $this->repo->list(Category::class, 'id', 'name');
+        $categoriesList = Category::pluck('name', 'id');
         return view('admin.sub-categories.edit', compact('edit','categoriesList'));
     }
 

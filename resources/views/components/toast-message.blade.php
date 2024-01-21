@@ -34,30 +34,6 @@
             icon: 'error',
             title: 'Access Denied...',
             text: "{{ Session::get('access_granted') }}"
-        })
-    @endif
-</script>
-
-
-<!-- Logout | Swal Notification-->
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.logout', function() {
-            Swal.fire({
-                title: "Are You Sure?",
-                text: "Are you sure you want to logout?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes!',
-                confirmButtonColor: '#28A745',
-                cancelButtonText: 'No!',
-                cancelButtonColor: '#DC3545',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = `{{ route('user.logout') }}`;
-                }
-            });
         });
-    });
-
+    @endif
 </script>

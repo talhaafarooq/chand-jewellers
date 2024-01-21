@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
+        $this->middleware('check.permissions:view-orders', ['only' => ['index','show','orderReport','report']]);
+        $this->middleware('check.permissions:update-order', ['only' => ['edit', 'update']]);
+    }
+
     public function index()
     {
         $search = null;

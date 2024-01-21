@@ -19,7 +19,9 @@
                                 <div class="input-group-append" onclick="document.getElementById('productsForm').submit()">
                                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
                                 </div>
-                                    <a href="{{ route('admin.products.create') }}" class="btn btn-info ml-2"><i class="fa fa-plus"></i> Add New Product</a>
+                                @can('create-product')
+                                <a href="{{ route('admin.products.create') }}" class="btn btn-info ml-2"><i class="fa fa-plus"></i> Add New Product</a>
+                                @endcan
                             </div>
                         </form>
                     </div>
@@ -42,7 +44,9 @@
                                                         <th>Old Price / New Price</th>
                                                         <th>Qty</th>
                                                         <th>Status</th>
+                                                        @canAny(['update-product','delete-product'])
                                                         <th>Actions</th>
+                                                        @endcanAny
                                                     </tr>
                                                 </thead>
                                                <tbody>
@@ -59,10 +63,16 @@
                                                         <span class="badge bg-danger">InActive</span>
                                                         @endif
                                                     </td>
+                                                    @canAny(['update-product','delete-product'])
                                                     <td>
+                                                        @can('delete-product')
                                                         <button type="button" name="{{ $product->id }}" class="btn btn-danger btn-sm remove-product"><i class="fa fa-times"></i></button>
+                                                        @endcan
+                                                        @can('update-product')
                                                         <a href="{{ route('admin.products.edit',$product->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil text-white"></i></button>
+                                                        @endcan
                                                     </td>
+                                                    @endcanAny
                                                 </tr>
                                                 @empty
                                                 <tr>

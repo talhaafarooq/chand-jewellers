@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
+        $this->middleware('check.permissions:view-website-contacts', ['only' => 'index']);
+        $this->middleware('check.permissions:update-website-contact', ['only' => ['updateContactStatus']]);
+    }
+
     public function index()
     {
         $contactUsList = ContactUs::orderByDesc('id')->paginate(10);

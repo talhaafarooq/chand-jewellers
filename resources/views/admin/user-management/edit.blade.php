@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         <label for="email">Email Address</label>
-                                        <input type="email" name="email" id="email" class="form-control" required
+                                        <input type="email" name="email" id="email" class="form-control"
                                             placeholder="example@example.com" value="{{ $user->email }}" readonly>
                                         @error('email')
                                             <font color="red">{{ $message }}</font>
@@ -86,7 +86,7 @@
                                         <select name="role" id="role" class="form-control select2" required>
                                             @foreach ($roles as $role)
                                                 <option value="{{ $role->name }}"
-                                                    {{ $role->name == $user->role ? 'selected' : '' }}>
+                                                    {{ $role->name == $user->roles[0]->name ? 'selected' : '' }}>
                                                     {{ $role->name }}
                                                 </option>
                                             @endforeach

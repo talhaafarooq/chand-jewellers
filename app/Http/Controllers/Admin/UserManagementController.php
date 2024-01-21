@@ -12,100 +12,76 @@ use Spatie\Permission\Models\Role;
 
 class UserManagementController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
+        $this->middleware('check.permissions:view-users', ['only' => 'index']);
+        $this->middleware('check.permissions:create-user', ['only' => ['create', 'store']]);
+        $this->middleware('check.permissions:update-user', ['only' => ['edit','update']]);
+        $this->middleware('check.permissions:delete-user', ['only' => 'destroy']);
+    }
+
     public function index()
     {
-        // if(auth()->user()->can('view-admin-user'))
-        // {
-            $search = null;
-            $users = User::with('roles')->role(UserTypeEnum::AdminUser)->orderBy('id', 'desc')->paginate(10);
-            return view('admin.user-management.index',compact('search','users'));
-        // }else{
-        //     return redirect()->back()->with('access_granted','User does not have permission.');
-        // }
+        $search = null;
+        $users = User::with('roles')->role(UserTypeEnum::AdminUser)->orderBy('id', 'desc')->paginate(10);
+        return view('admin.user-management.index', compact('search', 'users'));
     }
 
     public function create()
     {
-        // if(auth()->user()->can('create-admin-user'))
-        // {
-            $roles = Role::select('id','name')->where('type','admin')->get();
-            return view('admin.user-management.create',compact('roles'));
-        // }else{
-        //     return redirect()->back()->with('access_granted','User does not have permission.');
-        // }
+        $roles = Role::select('id', 'name')->where('type', 'admin')->get();
+        return view('admin.user-management.create', compact('roles'));
     }
 
     public function store(UserManagementRequest $request)
     {
-        // if(auth()->user()->can('create-admin-user'))
-        // {
-            $user = new User();
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->email = $request->email;
-            $user->password = $request->password;
-            $user->phone_no = $request->phone;
-            $user->created_by = auth()->user()->id;
-            $user->role = UserTypeEnum::AdminUser;
-            $user->is_block = $request->status;
-            $user->save();
-            $user->assignRole($request->role);
-            return redirect()->route('admin.user-management.index')->with('success', 'User created successfully');
-        // }else{
-        //     return redirect()->back()->with('access_granted','User does not have permission.');
-        // }
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->phone_no = $request->phone;
+        $user->created_by = auth()->user()->id;
+        $user->role = UserTypeEnum::AdminUser;
+        $user->type = $request->role;
+        $user->is_block = $request->status;
+        $user->save();
+        $user->assignRole($request->role);
+        return redirect()->route('admin.user-management.index')->with('success', 'User created successfully');
     }
 
     public function edit($id)
     {
-        // if(auth()->user()->can('update-admin-user'))
-        // {
-            $user = User::findOrFail($id);
-            // $roles = Role::select('name','name')->where('user_type','admin')->get();
-            $roles = Role::where('type', 'admin')->get();
-            return view('admin.user-management.edit',compact('user','roles'));
-        // }else{
-        //     return redirect()->back()->with('access_granted','User does not have permission.');
-        // }
+        $user = User::findOrFail($id);
+        $roles = Role::where('type', 'admin')->get();
+        return view('admin.user-management.edit', compact('user', 'roles'));
     }
 
     public function update(UpdateUserManagementRequest $request, $id)
     {
-        // if(auth()->user()->can('update-admin-user'))
-        // {
-            $user1 = User::findOrFail($id);
-
-            $user = User::findOrFail($id);
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->phone_no = $request->phone;
-            $user->is_block = $request->status;
+        $user = User::findOrFail($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->phone_no = $request->phone;
+        $user->is_block = $request->status;
+        $user->save();
+        if (isset($request->new_password)) {
+            $this->validate($request, ['new_password' => 'min:8|max:16']);
+            $user->password = $request->new_password;
             $user->save();
-            if(isset($request->new_password))
-            {
-                $this->validate($request,['new_password'=>'min:8|max:16']);
-                $user->password = $request->new_password;
-                $user->save();
-            }
+        }
 
-            $user->roles()->detach();
-            $user->assignRole($request->role);
-            return redirect()->route('admin.user-management.index')->with('success', 'User updated successfully');
-        // }else{
-        //     return redirect()->back()->with('access_granted','User does not have permission.');
-        // }
+        $user->roles()->detach();
+        $user->assignRole($request->role);
+        return redirect()->route('admin.user-management.index')->with("success", "User updated successfully");
     }
 
     public function destroy($id)
     {
-        // if(auth()->user()->can('delete-admin-user'))
-        // {
-            $user = User::findOrFail($id);
-            $user->roles()->detach();
-            $user->delete();
-            return redirect()->route('admin.user-management.index')->with('success', 'User deleted successfully');
-        // }else{
-        //     return redirect()->back()->with('access_granted','User does not have permission.');
-        // }
+        $user = User::findOrFail($id);
+        $user->roles()->detach();
+        $user->delete();
+        return redirect()->route('admin.user-management.index')->with('success', 'User deleted successfully');
     }
 }

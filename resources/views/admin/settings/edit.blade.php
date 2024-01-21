@@ -256,9 +256,11 @@
                                     </div>
                                 </div>
                             </div>
+                            @can('update-setting')
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary pl-5 pr-5">Submit</button>
                             </div>
+                            @endcan
                             {!! Form::close() !!}
                         </div>
                     </div>
