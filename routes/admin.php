@@ -44,6 +44,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'c
     Route::resource('products', ProductController::class);
     Route::get('products/destroy/{sub_category_id}', [ProductController::class,'destroy']);
     Route::get('out-of-stock/products', [ProductController::class,'outOfStockProducts']);
+    Route::get('change-prices', [ProductController::class,'changePrices'])->name('products.change-prices');
+    Route::post('update-prices/products', [ProductController::class,'updatePrices'])->name('products.update-prices');
 
     // Orders
     Route::resource('orders', OrderController::class);

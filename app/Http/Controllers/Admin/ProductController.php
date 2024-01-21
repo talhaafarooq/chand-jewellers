@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
+use App\Http\Requests\Admin\PriceRequest;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
@@ -164,5 +165,17 @@ class ProductController extends Controller
     {
         $totalOutOfStocksProducts = Product::where('qty','<',0)->paginate(10);
         return view('admin.products.out-of-stocks-products', compact('totalOutOfStocksProducts'));
+    }
+
+    public function changePrices()
+    {
+        return view('admin.products.change-prices');
+    }
+
+    public function updatePrices(PriceRequest $request)
+    {
+        Product::query()->increment('new_price', $request->price);
+        Product::query()->increment('old_price', $request->price);
+        return redirect()->back()->with('success','All Products Prices are updated!');
     }
 }

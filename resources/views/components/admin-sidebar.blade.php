@@ -129,6 +129,12 @@
                                 <p>Add New Product</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.products.change-prices') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Change Prices</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
