@@ -50,8 +50,8 @@
 
     <!-- Phone and WhatsApp buttons -->
     <div class="contact-buttons">
-        <a href="tel:+123456789"><i class="fas fa-phone" style="font-size: 15px;margin-top: -5px;"></i></a>
-        <a href="https://wa.me/123456789"><i class="fab fa-whatsapp" style="font-size: 22px;margin-top: -7px;"></i></a>
+        <a href="tel:{{ SettingsHelper::info()->phone1 }}"><i class="fas fa-phone" style="font-size: 15px;margin-top: -5px;"></i></a>
+        <a href="{{ SettingsHelper::info()->whatsapp }}" target="_blank"><i class="fab fa-whatsapp" style="font-size: 22px;margin-top: -7px;"></i></a>
     </div>
 
 
