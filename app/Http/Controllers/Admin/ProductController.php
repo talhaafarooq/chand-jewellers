@@ -138,16 +138,19 @@ class ProductController extends Controller
             }
             if ($request->hasFile('images')) {
                 // Remove old product images from storage and database
-                $edit->images->each(function ($image) {
-                    FileHelper::removeFile($image->image);
-                    $image->delete();
-                });
-                foreach ($request->file('images') as $file) {
-                    $fileName = FileHelper::uploadFile($file, 'products');
-                    $productImage = new ProductImage();
-                    $productImage->product_id = $edit->id;
-                    $productImage->image = $fileName;
-                    $productImage->save();
+                if(isset($edit->images))
+                {
+                    $edit->images->each(function ($image) {
+                        FileHelper::removeFile($image->image);
+                        $image->delete();
+                    });
+                    foreach ($request->file('images') as $file) {
+                        $fileName = FileHelper::uploadFile($file, 'products');
+                        $productImage = new ProductImage();
+                        $productImage->product_id = $edit->id;
+                        $productImage->image = $fileName;
+                        $productImage->save();
+                    }
                 }
             }
 
