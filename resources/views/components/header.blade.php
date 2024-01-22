@@ -8,10 +8,11 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="ht-left_area">
-                        <div class="welcome_text">
-                            <p>Free shipping on all domestic orders with coupon code
+                        <div class="welcome_text" style="padding-bottom: 0px;">
+                            {{-- <p>Free shipping on all domestic orders with coupon code
                                 <span>"Earrings0920"</span>
-                            </p>
+                            </p> --}}
+                            <marquee behavior="scroll" direction="left">This is advertising line.</marquee>
                         </div>
                     </div>
                 </div>
