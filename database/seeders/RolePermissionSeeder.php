@@ -67,6 +67,11 @@ class RolePermissionSeeder extends Seeder
             'view-website-feedbacks',
             'update-website-feedback',
             'delete-website-feedback',
+
+            'create-about',
+            'view-about',
+            'update-about',
+            'delete-about',
         ];
 
         foreach ($permissions as $permission) {

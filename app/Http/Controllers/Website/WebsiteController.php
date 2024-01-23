@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Http\Requests\FeedbackRequest;
+use App\Models\AboutUs;
 use App\Models\ContactUs;
 use App\Models\Feedback;
 use App\Models\Product;
@@ -26,7 +27,8 @@ class WebsiteController extends Controller
 
     public function aboutUs()
     {
-        return view('website.about');
+        $aboutUs = AboutUs::findOrFail(1);
+        return view('website.about',compact('aboutUs'));
     }
 
     public function contactUs()

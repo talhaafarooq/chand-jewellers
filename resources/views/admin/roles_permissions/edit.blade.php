@@ -535,6 +535,48 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- About Us permissions -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                                            <h5>About Us</h5>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <label for="about_create">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="about_create" value="create-about" {{ in_array('create-about', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
+                                                                        Create
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <label for="about_read">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="about_read" value="view-about" {{ in_array('view-about', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}> Read
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <label for="about_update">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="about_update" value="update-about" {{ in_array('update-about', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
+                                                                        Update
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <label for="about_delete">
+                                                                        <input type="checkbox" name="permissions[]"
+                                                                            id="about_delete" value="delete-about" {{ in_array('delete-about', $edit->permissions->pluck('name')->toArray()) ? 'checked' : '' }}>
+                                                                        Delete
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

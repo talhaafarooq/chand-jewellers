@@ -304,6 +304,16 @@
                 </li>
                 @endcan
 
+                <!-- About Us Section -->
+                @can('view-about')
+                <li class="nav-item">
+                    <a href="{{ route('admin.aboutus.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>About Us</p>
+                    </a>
+                </li>
+                @endcan
+
                 <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link logout">
                         <i class="nav-icon fas fa-th"></i>
