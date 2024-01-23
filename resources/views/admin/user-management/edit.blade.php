@@ -98,8 +98,8 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                         <label for="status">Status</label>
                                         <select name="status" id="status" class="form-control select2" required>
-                                            <option value="0">Active</option>
-                                            <option value="1">InActive</option>
+                                            <option value="0" {{ $user->is_block==0?'selected':'' }}>Active</option>
+                                            <option value="1" {{ $user->is_block==1?'selected':'' }}>InActive</option>
                                         </select>
                                         @error('status')
                                             <font color="red">{{ $message }}</font>

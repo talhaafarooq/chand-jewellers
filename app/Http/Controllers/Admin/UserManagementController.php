@@ -44,7 +44,7 @@ class UserManagementController extends Controller
         $user->phone_no = $request->phone;
         $user->created_by = auth()->user()->id;
         $user->role = UserTypeEnum::AdminUser;
-        $user->type = $request->role;
+        // $user->type = $request->role;
         $user->is_block = $request->status;
         $user->save();
         $user->assignRole($request->role);

@@ -14,7 +14,8 @@ class PriceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'price'=>'required|numeric'
+            'type' => 'required|in:0,1',
+            'price' => 'required|numeric'
         ];
     }
 }

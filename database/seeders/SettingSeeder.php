@@ -34,6 +34,8 @@ class SettingSeeder extends Seeder
             'website' => 'https://www.chandjewellersgujrat.com',
             'shipping'=>'500',
             'advance_charges'=>'500',
+            'cod'=>'500',
+            'advertising'=>'500',
         ]);
     }
 }

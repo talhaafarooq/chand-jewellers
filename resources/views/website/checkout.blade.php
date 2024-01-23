@@ -75,23 +75,7 @@
                     <div class="col-lg-6 col-12">
                         <div class="checkbox-form">
                             <h3>Billing Details</h3>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="country-select clearfix">
-                                        <label>Country <span class="required">*</span></label>
-                                        <select class="myniceselect nice-select wide" name="country" required>
-                                            <option data-display="Pakistan" value="Pakistan" selected>Pakistan</option>
-                                            {{-- <option value="uk">London</option>
-                                        <option value="rou">Romania</option>
-                                        <option value="fr">French</option>
-                                        <option value="de">Germany</option>
-                                        <option value="aus">Australia</option> --}}
-                                        </select>
-                                        @error('country')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
-                                    </div>
-                                </div>
+                            <div class="row">                                
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>First Name <span class="required">*</span></label>
@@ -128,6 +112,42 @@
                                         <input type="text" name="phone2" id="phone2"
                                             value="{{ old('phone2') }}">
                                         @error('phone2')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Email Address <span class="required">*</span></label>
+                                        <input placeholder="example@example.com" type="email" name="email"
+                                            id="email" value="{{ auth::user() ? auth()->user()->email: old('email') }}" required>
+                                        @error('email')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="country-select clearfix" style="margin-top: 4px;">
+                                        <label>Country <span class="required">*</span></label>
+                                        <select class="myniceselect nice-select wide" name="country" required>
+                                            <option data-display="Pakistan" value="Pakistan" selected>Pakistan</option>
+                                            {{-- <option value="uk">London</option>
+                                        <option value="rou">Romania</option>
+                                        <option value="fr">French</option>
+                                        <option value="de">Germany</option>
+                                        <option value="aus">Australia</option> --}}
+                                        </select>
+                                        @error('country')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Complete Address<span class="required">*</span></label>
+                                        <input name="address1" id="address1" type="text" value="{{ auth::user() ? auth()->user()->address: old('address1') }}" required>
+                                        @error('address1')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
@@ -169,26 +189,7 @@
                                         @enderror
                                     </div>
                                 </div> --}}
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list">
-                                        <label>Email Address <span class="required">*</span></label>
-                                        <input placeholder="example@example.com" type="email" name="email"
-                                            id="email" value="{{ auth::user() ? auth()->user()->email: old('email') }}" required>
-                                        @error('email')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list">
-                                        <label>Complete Address<span class="required">*</span></label>
-                                        <input name="address1" id="address1" type="text" value="{{ auth::user() ? auth()->user()->address: old('address1') }}" required>
-                                        @error('address1')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
-                                    </div>
-                                </div>
+                                
                                 {{-- <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Address 2 (optional)</label>
@@ -296,7 +297,7 @@
                             </div> --}}
                                 <div class="order-notes">
                                     <div class="checkout-form-list checkout-form-list-2">
-                                        <label>Order Notes</label>
+                                        <label>Order Note (if any)</label>
                                         <textarea name="order_note" id="checkout-mess" cols="30" rows="10"
                                             placeholder="Notes about your order, e.g. special notes for delivery." value="{{ old('order_note') }}"></textarea>
                                         @error('order_note')
@@ -388,8 +389,9 @@
                                                         aria-expanded="false" aria-controls="collapseTwo">
                                                         Cash on Delivery
                                                     </a>
-                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->currency }} {{ number_format(SettingsHelper::info()->advance_charges) }} Required in advance for order
-                                                        confirmation</p>
+                                                    {{-- <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->currency }} {{ number_format(SettingsHelper::info()->advance_charges) }} Required in advance for order
+                                                        confirmation</p> --}}
+                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->cod }}</p>
                                                 </h5>
                                             </div>
                                             {{-- <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">

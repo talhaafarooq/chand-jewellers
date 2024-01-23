@@ -36,6 +36,8 @@ return new class extends Migration
             $table->decimal('shipping')->default(0);
             $table->decimal('advance_charges')->default(0);
             $table->string('website')->nullable();
+            $table->string('cod')->nullable();
+            $table->string('advertising',2000)->nullable();
             $table->timestamps();
         });
     }

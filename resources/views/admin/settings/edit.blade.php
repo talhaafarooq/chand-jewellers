@@ -242,7 +242,7 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('advance_charges', 'Advance Charges') !!}
                                         {!! Form::text('advance_charges', null, [
                                             'id' => 'advance_charges',
@@ -251,6 +251,30 @@
                                             'required'=>'required'
                                         ]) !!}
                                         @error('advance_charges')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div> --}}
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                        {!! Form::label('cod', 'COD') !!}
+                                        {!! Form::text('cod', null, [
+                                            'id' => 'cod',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Cash On Delivery',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('cod')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                        {!! Form::label('advertising', 'Advertising Line') !!}
+                                        {!! Form::text('advertising', null, [
+                                            'id' => 'advertising',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'This is advertising line.',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('advertising')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>

@@ -102,8 +102,9 @@
                                                         aria-controls="collapseTwo">
                                                         Please Confirm your order.
                                                     </a>
-                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->currency }} {{ number_format(SettingsHelper::info()->advance_charges) }} Required in advance for order
-                                                        confirmation</p>
+                                                    {{-- <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->currency }} {{ number_format(SettingsHelper::info()->advance_charges) }} Required in advance for order
+                                                        confirmation</p> --}}
+                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->cod }}</p>
                                                 </h5>
                                             </div>
                                             {{-- <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">

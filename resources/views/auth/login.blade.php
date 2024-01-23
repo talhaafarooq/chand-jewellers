@@ -1,5 +1,5 @@
 @extends('layouts.website')
-@section('title','Login')
+@section('title', 'Login')
 @section('head')
     <style>
         .checkbox .forget-pass a {
@@ -35,24 +35,29 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Email Address*</label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     @error('email')
-                                    <font color="red">{{ $message }}</font>
-                                @enderror
+                                        <font color="red">{{ $message }}</font>
+                                    @enderror
+                                    @if (Session::has('account_block'))
+                                        <font color="red">{{ Session::get('account_block') }}</font>
+                                    @endif
                                 </div>
                                 <div class="col-md-12">
                                     <label>Password</label>
                                     <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="current-password">
                                     @error('password')
-                                    <font color="red">{{ $message }}</font>
-                                @enderror
+                                        <font color="red">{{ $message }}</font>
+                                    @enderror
                                 </div>
                                 <div class="col-md-8">
                                     <div class="check-box">
-                                        <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        <input type="checkbox" id="remember" name="remember"
+                                            {{ old('remember') ? 'checked' : '' }}>
                                         <label for="remember">Remember me</label>
                                     </div>
                                 </div>
@@ -65,8 +70,9 @@
                                     <button type="submit" class="hiraola-register_btn">Login</button>
                                 </div>
                                 <div class="text-center mt-3">
-                                    <span class="shop-account">Dont't have an account? <a href="{{ route('register') }}" class="text-primary">Sign Up
-                                        Free</a></span>
+                                    <span class="shop-account">Dont't have an account? <a href="{{ route('register') }}"
+                                            class="text-primary">Sign Up
+                                            Free</a></span>
                                 </div>
                             </div>
                         </div>

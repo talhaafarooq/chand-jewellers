@@ -94,7 +94,8 @@
                                     <li><i class="fa fa-star-of-david"></i></li>
                                     <li><i class="fa fa-star-of-david"></i></li>
                                     <li><i class="fa fa-star-of-david"></i></li>
-                                    <li class="silver-color"><i class="fa fa-star-of-david"></i></li>
+                                    <li><i class="fa fa-star-of-david"></i></li>
+                                    {{-- <li class="silver-color"><i class="fa fa-star-of-david"></i></li> --}}
                                 </ul>
                             </div>
                             <div class="sp-essential_stuff">
@@ -102,9 +103,15 @@
                                     {{-- <li>EX Tax: <a href="javascript:void(0)"><span>£453.35</span></a></li> --}}
                                     <li>Category <a href="javascript:void(0);">{{ $product->category->name }} /
                                             <small>{{ $product->subCategory->name }}</small></a></li>
-                                    <li>Product Code: <a href="javascript:void(0);">{{ $product->code }}</a></li>
-                                    <li>Reward Points: <a href="javascript:void(0);">600</a></li>
-                                    <li>Availability: <a href="javascript:void(0);">In Stock</a></li>
+                                    {{-- <li>Product Code: <a href="javascript:void(0);">{{ $product->code }}</a></li> --}}
+                                    {{-- <li>Reward Points: <a href="javascript:void(0);">600</a></li> --}}
+                                    <li>Availability:
+                                        @if ($product->qty<=0)
+                                        <a href="javascript:void(0);" class="text-danger"><b>Out Of Stock</b></a>
+                                        @else
+                                        <a href="javascript:void(0);" class="text-success"><b>In Stock</b></a>
+                                        @endif 
+                                    </li>
                                 </ul>
                             </div>
                             {{-- <div class="product-size_box">
@@ -249,12 +256,11 @@
                                                                             <span>
                                                                                 <select class="star-rating" name="rating"
                                                                                     required>
-                                                                                    <option value="1" selected>1
-                                                                                    </option>
+                                                                                    <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
                                                                                     <option value="4">4</option>
-                                                                                    <option value="5">5</option>
+                                                                                    <option value="5" selected>5</option>
                                                                                 </select>
                                                                             </span>
                                                                         </div>

@@ -182,8 +182,16 @@ class ProductController extends Controller
 
     public function updatePrices(PriceRequest $request)
     {
-        Product::query()->increment('new_price', $request->price);
-        Product::query()->increment('old_price', $request->price);
+        if($request->type==0)
+        {
+            Product::query()->increment('new_price', $request->price);
+            Product::query()->increment('old_price', $request->price);
+        }else if($request->type==1)
+        {
+            Product::query()->decrement('new_price', $request->price);
+            Product::query()->decrement('old_price', $request->price);
+        }
+       
         return redirect()->back()->with('success','All Products Prices are updated!');
     }
 }

@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Subscribers;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,11 @@ class HomeController extends Controller
     {
         if(auth()->user()->role == UserTypeEnum::Admin->value || auth()->user()->role == UserTypeEnum::AdminUser->value)
         {
+            if(auth()->user()->is_block==1)
+            {
+                Auth::logout();
+                return redirect()->route('login')->with('account_block','Sorry! Your account has been blocked from admin.');
+            }
             return redirect()->route('admin.dashboard')->with('success','Successfully loggedIn!');
         }else if(auth()->user()->role == 'customer')
         {

@@ -12,7 +12,7 @@
                             {{-- <p>Free shipping on all domestic orders with coupon code
                                 <span>"Earrings0920"</span>
                             </p> --}}
-                            <marquee behavior="scroll" direction="left">This is advertising line.</marquee>
+                            <marquee behavior="scroll" direction="left"><b>{{ SettingsHelper::info()->advertising }}</b></marquee>
                         </div>
                     </div>
                 </div>

@@ -68,6 +68,7 @@ class WebsiteController extends Controller
             ->firstOrFail();
         $relatedProducts = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
             ->status(0)
+            ->where('sub_category_id',$product->sub_category_id)
             ->where('slug', '!=', $slug)
             ->take(12)
             ->orderByDesc('id')
