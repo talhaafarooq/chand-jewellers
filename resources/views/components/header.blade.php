@@ -6,17 +6,17 @@
     <div class="header-top_area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="ht-left_area">
                         <div class="welcome_text" style="padding-bottom: 0px;">
                             {{-- <p>Free shipping on all domestic orders with coupon code
                                 <span>"Earrings0920"</span>
                             </p> --}}
-                            <marquee behavior="scroll" direction="left"><b>{{ SettingsHelper::info()->advertising }}</b></marquee>
+                            <marquee behavior="scroll" direction="left"><b><i>{{ SettingsHelper::info()->advertising }}</i></b></marquee>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                {{-- <div class="col-lg-6">
                     <div class="ht-right_area">
                         <div class="ht-menu">
                             <ul>
@@ -34,7 +34,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -105,6 +105,17 @@
                                 <li><a href="{{ route('website.shop') }}">Shop</a></li>
                                 <li><a href="{{ route('website.about') }}">About Us</a></li>
                                 <li><a href="{{ route('website.contact') }}">Contact</a></li>
+                                <li><a href="javascript:void(0)">Account</a>
+                                    <ul class="hm-dropdown">
+                                        @if (Auth::check())
+                                        <li class="active"><a href="{{ route('website.my-account.index') }}">My Account</a></li>
+                                        <li><a href="{{ route('user.logout') }}">Logout</a></li>
+                                        @else
+                                        <li class="active"><a href="{{ route('register') }}">Register</a></li>
+                                        <li><a href="{{ route('login') }}">Login</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
                             </ul>
                         </nav>
                     </div>
