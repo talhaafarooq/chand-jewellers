@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hiraola-sidebar_categories">
+                    {{-- <div class="hiraola-sidebar_categories">
                         <div class="hiraola-categories_title">
                             <h5>Brand</h5>
                         </div>
@@ -92,7 +92,7 @@
                                 <a href="javascript:void(0)">Weight 4(17)</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <div class="category-module hiraola-sidebar_categories">
                         <div class="category-module_heading">
                             <h5>Categories</h5>
@@ -124,13 +124,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-banner_area">
+                {{-- <div class="sidebar-banner_area">
                     <div class="banner-item img-hover_effect">
                         <a href="javascript:void(0)">
                             <img src="{{ URL::asset('website') }}/assets/images/banner/1_1.jpg" alt="Hiraola's Shop Banner Image">
                         </a>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="shop-toolbar">
@@ -138,7 +138,7 @@
                         <a class="active grid-3" data-target="gridview-3" data-toggle="tooltip" data-placement="top" title="Grid View"><i class="fa fa-th"></i></a>
                         <a class="list" data-target="listview" data-toggle="tooltip" data-placement="top" title="List View"><i class="fa fa-th-list"></i></a>
                     </div>
-                    <div class="product-item-selection_area">
+                    {{-- <div class="product-item-selection_area">
                         <div class="product-short">
                             <label class="select-label">Short By:</label>
                             <select class="nice-select">
@@ -153,7 +153,7 @@
                                 <option value="5">Model (Z - A)</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="shop-product-wrap grid gridview-3 row">
                     <div class="col-lg-4">
