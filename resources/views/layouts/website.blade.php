@@ -95,7 +95,7 @@
     <script src="{{ URL::asset('website') }}/assets/js/main.js"></script>
     <!-- <script src="{{ URL::asset('website') }}/assets/js/main.min.js"></script> -->
     <x-toast-message />
-    @section('scripts')
+    @yield('scripts')
 </body>
 
 </html>
