@@ -15,6 +15,7 @@ return new class extends Migration
             $table->decimal('qty')->default(0);
             $table->decimal('price')->default(0);
             $table->decimal('total')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

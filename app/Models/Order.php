@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Enums\OrderStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $fillable = array(
         'fname', 'lname', 'company', 'address1', 'address2', 'city', 'state', 'zipcode','country',
         'email', 'phone1', 'phone2', 'notes', 'user_id', 'status', 'order_no', 'tracking_no', 'tracking_company'

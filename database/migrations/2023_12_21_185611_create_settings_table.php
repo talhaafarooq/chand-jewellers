@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->string('cod')->nullable();
             $table->string('advertising',2000)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

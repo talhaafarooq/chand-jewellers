@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Conner\Tagging\Taggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, Taggable;
+    use HasFactory, Taggable, SoftDeletes;
     protected $fillable = array(
         'code', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price', 'category_id', 'sub_category_id', 'highlights', 'description',
         'polish', 'weight', 'karat', 'qty', 'status', 'sku'

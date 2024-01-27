@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->string('message');
             $table->integer('rating')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('cell_no')->nullable();
             $table->text('message');
             $table->boolean('complete')->default(0)->comment('0=InComplete,1=Complete');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

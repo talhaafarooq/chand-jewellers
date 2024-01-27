@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('order_no')->default(0);
             $table->string('tracking_no')->nullable();
             $table->string('tracking_company')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -29,6 +29,7 @@ return new class extends Migration
             $table->boolean('status')->default(0);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

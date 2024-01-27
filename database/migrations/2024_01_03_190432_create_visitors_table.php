@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('isp');
             $table->string('ip_address');
             $table->integer('visit')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

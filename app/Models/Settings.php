@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Settings extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $fillable = array(
         'name', 'email', 'phone1', 'phone2', 'city', 'state', 'zipcode', 'address1', 'address2', 'about_us', 'facebook', 'instagram1',
-        'instagram2', 'youtube', 'whatsapp', 'tiktok1', 'tiktok2', 'snack1', 'snack2', 'header_logo', 'footer_logo', 'map', 'currency', 
+        'instagram2', 'youtube', 'whatsapp', 'tiktok1', 'tiktok2', 'snack1', 'snack2', 'header_logo', 'footer_logo', 'map', 'currency',
         'shipping','advance_charges', 'website','cod','advertising'
     );
 

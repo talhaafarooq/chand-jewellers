@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('image')->nullable();
             $table->foreignId('category_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
