@@ -1,3 +1,4 @@
+@if(isset($products) && count($products))
 @foreach ($products as $product)
 <div class="col-lg-4">
     <div class="slide-item">
@@ -95,5 +96,10 @@
     </div>
 </div>
 @endforeach
-
 {!! $products->render('pagination::custom') !!}
+@else
+    <div class="col-4 offset-4">
+        <center class="mt-5"><h3>No Products...</h3></center>
+    </div>
+@endif
+

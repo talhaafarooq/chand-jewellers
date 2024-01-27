@@ -44,13 +44,16 @@
                                 <ul class="module-list_item">
                                     @foreach ($categoriesWithSubcategories as $category)
                                         <li>
-                                            <a href="javascript:void(0)">{{ $category->name }}
+                                            <a href="javascript:void(0)" class="category"
+                                                category_slug="{{ $category->slug }}">{{ $category->name }}
                                                 ({{ $category->totalProducts }})</a>
                                             <ul class="module-sub-list_item">
                                                 <li>
                                                     @foreach ($category->subCategories as $subCategory)
-                                                        <a href="javascript:void(0)">{{ $subCategory->name }}
-                                                            ({{ $subCategory->totalProducts }})</a>
+                                                        <a href="javascript:void(0)" class="subcategory"
+                                                            sub_category_slug="{{ $subCategory->slug }}">{{ $subCategory->name }}
+                                                            ({{ $subCategory->totalProducts }})
+                                                        </a>
                                                     @endforeach
                                                 </li>
                                             </ul>
@@ -72,12 +75,12 @@
                     </div>
                     <div class="row" id="show_loader">
                         <div class="col-12 text-center">
-                            <div class="spinner-border text-dark mt-5" role="status">
+                            <div class="spinner-border text-dark mt-3" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                     </div>
-                    <div class="shop-product-wrap grid gridview-3 row">
+                    <div class="shop-product-wrap grid gridview-3 row d-none">
                         @include('website.products-list')
                     </div>
                     <div class="row">
@@ -97,19 +100,11 @@
 @endsection
 @section('scripts')
     <script type="text/javascript">
-        $(window).on('hashchange', function() {
-            if (window.location.hash) {
-                var page = window.location.hash.replace('#', '');
-                if (page == Number.NaN || page <= 0) {
-                    return false;
-                } else {
-                    getData(page);
-                }
-            }
-        });
-
         $(document).ready(function() {
-            $('#show_loader').html(null);
+            $('#show_loader').addClass('d-none');
+            $('.shop-product-wrap').removeClass('d-none');
+
+            // Pagination
             $(document).on('click', '.hiraola-pagination-box a', function(event) {
                 $('li').removeClass('active');
                 $(this).parent('li').addClass('active');
@@ -120,21 +115,71 @@
 
                 getData(page);
             });
-        });
 
-        function getData(page) {
-            $.ajax({
-                    url: '?page=' + page,
-                    type: "get",
-                    datatype: "html",
-                })
-                .done(function(data) {
-                    $(".shop-product-wrap").empty().html(data);
-                    location.hash = page;
-                })
-                .fail(function(jqXHR, ajaxOptions, thrownError) {
-                    alert('No response from server');
-                });
-        }
+            // Search Category or Sub-Category Wise Products
+            $(document).on('click', '.category, .subcategory', function() {
+                var slug = $(this).attr('category_slug') || $(this).attr('sub_category_slug');
+                $('#show_loader').removeClass('d-none');
+                $('.shop-product-wrap').addClass('d-none');
+
+                if (slug) {
+                    var url = "{{ URL::to('/shop') }}" + "?";
+                    if ($(this).hasClass('category')) {
+                        url += "category_slug=" + slug;
+                    } else {
+                        url += "sub_category_slug=" + slug;
+                    }
+
+                    $.ajax({
+                        url: url,
+                        method: 'GET',
+                        success: function(response) {
+                            if (response.trim() !== "") { // Check if response is not empty
+                                $(".shop-product-wrap").empty().html(response);
+                            } else {
+                                $(".shop-product-wrap").empty().html(
+                                    `<div class="col-lg-12 col-md-12 col-sm-12"><center class="mt-5">No Products...</center></div>`
+                                    );
+                            }
+
+                            $('#show_loader').addClass('d-none');
+                            $('.shop-product-wrap').removeClass('d-none');
+                        },
+                        error: function(error) {
+                            console.error(error);
+                        }
+                    });
+                }
+            });
+
+
+            // Pagination Function
+            function getData(page) {
+                $.ajax({
+                        url: '?page=' + page,
+                        type: "get",
+                        datatype: "html",
+                    })
+                    .done(function(data) {
+                        $(".shop-product-wrap").empty().html(data);
+                        location.hash = page;
+                    })
+                    .fail(function(jqXHR, ajaxOptions, thrownError) {
+                        alert('No response from server');
+                    });
+            }
+
+            // Hashchange Event
+            $(window).on('hashchange', function() {
+                if (window.location.hash) {
+                    var page = window.location.hash.replace('#', '');
+                    if (page == Number.NaN || page <= 0) {
+                        return false;
+                    } else {
+                        getData(page);
+                    }
+                }
+            });
+        });
     </script>
 @endsection
