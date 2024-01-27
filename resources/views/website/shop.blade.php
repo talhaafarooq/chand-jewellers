@@ -1,5 +1,12 @@
 @extends('layouts.website')
 @section('title', 'Chand Jewellers - Shop')
+@section('head')
+    <style>
+        .price-filter .price-slider-amount .label-input input{
+            width: 137px !important;
+        }
+    </style>
+@endsection
 @section('content')
     <!-- Begin Hiraola's Breadcrumb Area -->
     <div class="breadcrumb-area">
@@ -30,7 +37,7 @@
                                 <div class="price-slider-amount">
                                     <div class="label-input">
                                         <label>price : </label>
-                                        <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                                        <input type="text" id="amount" name="price" placeholder="Rs.1000 - Rs.500000" />
                                     </div>
                                     <!-- <button type="button">Filter</button> -->
                                 </div>
@@ -97,9 +104,13 @@
         </div>
     </div>
     <!-- Hiraola's Content Wrapper Area End Here -->
+    <input type="hidden" id="catslug">
+    <input type="hidden" id="subcatslug">
+    <input type="hidden" id="prices" value="1000-500000">
 @endsection
 @section('scripts')
     <script type="text/javascript">
+        var shopUrl = "{{ url('/shop') }}";
         $(document).ready(function() {
             $('#show_loader').addClass('d-none');
             $('.shop-product-wrap').removeClass('d-none');
@@ -126,20 +137,26 @@
                     var url = "{{ URL::to('/shop') }}" + "?";
                     if ($(this).hasClass('category')) {
                         url += "category_slug=" + slug;
+                        $('#catslug').val(slug);
                     } else {
                         url += "sub_category_slug=" + slug;
+                        $('#subcatslug').val(slug);
                     }
 
                     $.ajax({
                         url: url,
                         method: 'GET',
+                        data:{
+                            start_price: $('#prices').val().split('-')[0],
+                            end_price: $('#prices').val().split('-')[1]
+                        },
                         success: function(response) {
                             if (response.trim() !== "") { // Check if response is not empty
                                 $(".shop-product-wrap").empty().html(response);
                             } else {
                                 $(".shop-product-wrap").empty().html(
                                     `<div class="col-lg-12 col-md-12 col-sm-12"><center class="mt-5">No Products...</center></div>`
-                                    );
+                                );
                             }
 
                             $('#show_loader').addClass('d-none');
@@ -151,7 +168,6 @@
                     });
                 }
             });
-
 
             // Pagination Function
             function getData(page) {

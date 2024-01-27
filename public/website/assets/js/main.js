@@ -924,7 +924,7 @@
         ],
     });
     /*----------------------------------
-	/* 	Instafeed active 
+	/* 	Instafeed active
 ------------------------------------*/
     if ($('#Instafeed').length) {
         var feed = new Instafeed({
@@ -1184,20 +1184,56 @@
     $(function () {
         sliderrange.slider({
             range: true,
-            min: 20,
-            max: 100,
-            values: [0, 100],
+            min: 1000,
+            max: 500000,
+            values: [1000, 500000],
             slide: function (event, ui) {
-                amountprice.val('$' + ui.values[0] + ' - $' + ui.values[1]);
+                amountprice.val('Rs.' + ui.values[0] + ' - Rs.' + ui.values[1]);
+                $('#prices').val(ui.values[0] + '-' + ui.values[1]);
+                sendDataToServer(ui.values[0], ui.values[1]);
             },
         });
         amountprice.val(
-            '$' +
+            'Rs.' +
                 sliderrange.slider('values', 0) +
-                ' - $' +
+                ' - Rs.' +
                 sliderrange.slider('values', 1)
         );
+        $('#prices').val(sliderrange.slider('values', 0) + '-' + sliderrange.slider('values', 1));
     });
+
+    // Function to send data to the server using AJAX
+    function sendDataToServer(minPrice, maxPrice) {
+        $('#show_loader').removeClass('d-none');
+        $('.shop-product-wrap').addClass('d-none');
+        // Your AJAX logic here
+        $.ajax({
+            url: shopUrl,
+            type: 'GET',
+            data: {
+                min_price: minPrice,
+                max_price: maxPrice,
+            },
+            success: function (response) {
+                if (response.trim() !== "") { // Check if response is not empty
+                    $(".shop-product-wrap").empty().html(response);
+                } else {
+                    $(".shop-product-wrap").empty().html(
+                        `<div class="col-lg-12 col-md-12 col-sm-12"><center class="mt-5">No Products...</center></div>`
+                    );
+                }
+
+                $('#show_loader').addClass('d-none');
+                $('.shop-product-wrap').removeClass('d-none');
+            },
+            error: function (error) {
+                console.error(error);
+            },
+        });
+    }
+
+
+
     /*----------------------------------------*/
     /*  Hiraola's Slick Carousel
  /*----------------------------------------*/

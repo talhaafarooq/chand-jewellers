@@ -17,6 +17,14 @@ class ShopController extends Controller
 
         $products = Product::orderByDesc('id');
 
+        // Use whereBetween only if both start_price and end_price are provided
+        if ($request->filled(['start_price', 'end_price'])) {
+            $products->where(function ($query) use ($request) {
+                $query->whereBetween('new_price', [$request->start_price, $request->end_price])
+                    ->orWhereBetween('old_price', [$request->start_price, $request->end_price]);
+            });
+        }
+
         if ($request->has('category_slug')) {
             $products->whereHas('category', function ($categoryQuery) use ($request) {
                 $categoryQuery->where('slug', $request->category_slug);
@@ -29,7 +37,7 @@ class ShopController extends Controller
             });
         }
 
-        $products = $products->paginate(1);
+        $products = $products->paginate(12);
 
         if ($request->ajax()) {
             return view('website.products-list', compact('products'));

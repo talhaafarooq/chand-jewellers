@@ -11,12 +11,12 @@ class WishlistController extends Controller
 {
     public function wishlist()
     {
-        $wishlistProducts = Wishlist::with('product:id,name,front_img,new_price')->where('user_id',auth()->user()->id)->get();
+        $wishlistProducts = Wishlist::with('product:id,name,slug,front_img,new_price')->where('user_id',auth()->user()->id)->get();
         return view('website.wishlist',compact('wishlistProducts'));
     }
 
-    public function addToWishlist($productId){
-        $product = Product::findOrFail($productId);
+    public function addToWishlist($productSlug){
+        $product = Product::whereSlug($productSlug)->firstOrFail();
         $checkWistlistExist = Wishlist::where('product_id',$product->id)->where('user_id',auth()->user()->id)->exists();
         if(!$checkWistlistExist)
         {
