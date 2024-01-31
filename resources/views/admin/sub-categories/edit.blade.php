@@ -28,6 +28,7 @@
                                             'class' => 'form-control',
                                             'placeholder' => 'Name',
                                             'autofocus' => 'autofocus',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('name')
                                             <font color="red">{{ $message }}</font>
@@ -42,7 +43,7 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                         {!! Form::label('category', 'Category') !!}
-                                        {!! Form::select('category', $categoriesList, $edit->category_id, ['id' => 'category', 'class' => 'form-control select2']) !!}
+                                        {!! Form::select('category', $categoriesList, $edit->category_id, ['id' => 'category', 'class' => 'form-control select2','required'=>'required']) !!}
                                         @error('category')
                                             <font color="red">{{ $message }}</font>
                                         @enderror

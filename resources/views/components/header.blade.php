@@ -13,7 +13,8 @@
                                 <span>"Earrings0920"</span>
                             </p> --}}
                             <marquee behavior="scroll" direction="left">
-                                <b><i>{{ SettingsHelper::info()->advertising }}</i></b></marquee>
+                                <b><i>{{ SettingsHelper::info()->advertising }}</i></b>
+                            </marquee>
                         </div>
                     </div>
                 </div>
@@ -47,7 +48,8 @@
                         <div class="header-logo">
                             <a href="{{ route('website.home') }}">
                                 {{-- <img src="{{URL::asset('website/assets/images/menu/logo/4.png')}}" alt="Header Logo"> --}}
-                                <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="100px" alt="Header Logo">
+                                <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="100px"
+                                    alt="Header Logo">
                             </a>
                         </div>
                         <div class="header-contact_area">
@@ -98,7 +100,8 @@
                         <a href="{{ route('website.home') }}">
                             {{-- <img src="{{ URL::asset('website/assets/images/menu/logo/2.png') }}"
                                 alt="Hiraola's Header Logo"> --}}
-                            <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="100px" alt="Header Logo">
+                            <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="100px"
+                                alt="Header Logo">
                         </a>
                     </div>
                 </div>
@@ -113,8 +116,15 @@
                                 <li><a href="javascript:void(0)">Account</a>
                                     <ul class="hm-dropdown">
                                         @if (Auth::check())
-                                            <li class="active"><a href="{{ route('website.my-account.index') }}">My
-                                                    Account</a></li>
+                                            @if (Auth::user()->role == 'admin')
+                                                <li class="active"><a href="{{ route('admin.dashboard') }}">Switch To
+                                                        Portal</a></li>
+                                            @else
+                                                <li class="active"><a href="{{ route('website.my-account.index') }}">My
+                                                        Account
+                                                    </a>
+                                                </li>
+                                            @endif
                                             <li><a href="{{ route('user.logout') }}">Logout</a></li>
                                         @else
                                             <li class="active"><a href="{{ route('register') }}">Register</a></li>
@@ -135,7 +145,8 @@
                 <div class="col-lg-2 col-md-4 col-sm-4">
                     <div class="header-logo">
                         <a href="{{ route('website.home') }}">
-                            <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="70px" alt="Header Logo">
+                            <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="70px"
+                                alt="Header Logo">
                         </a>
                     </div>
                 </div>
