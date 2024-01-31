@@ -12,7 +12,8 @@
                             {{-- <p>Free shipping on all domestic orders with coupon code
                                 <span>"Earrings0920"</span>
                             </p> --}}
-                            <marquee behavior="scroll" direction="left"><b><i>{{ SettingsHelper::info()->advertising }}</i></b></marquee>
+                            <marquee behavior="scroll" direction="left">
+                                <b><i>{{ SettingsHelper::info()->advertising }}</i></b></marquee>
                         </div>
                     </div>
                 </div>
@@ -43,20 +44,21 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="header-middle_wrap">
+                        <div class="header-logo">
+                            <a href="{{ route('website.home') }}">
+                                {{-- <img src="{{URL::asset('website/assets/images/menu/logo/4.png')}}" alt="Header Logo"> --}}
+                                <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="100px" alt="Header Logo">
+                            </a>
+                        </div>
                         <div class="header-contact_area">
                             <div class="contact-box">
-                                <span>Location</span>
-                                <p>Street 12345 – USA</p>
+                                <span>PhoneNo</span>
+                                <p>{{ SettingsHelper::info()->phone1 }}</p>
                             </div>
-                            {{-- <div class="contact-box">
+                            <div class="contact-box">
                                 <span>Location</span>
-                                <p>Street 12345 – USA</p>
-                            </div> --}}
-                        </div>
-                        <div class="header-logo">
-                            <a href="index.html">
-                                <img src="{{URL::asset('website/assets/images/menu/logo/4.png')}}" alt="Hiraola's Header Logo">
-                            </a>
+                                <p>{{ SettingsHelper::info()->address1 }}</p>
+                            </div>
                         </div>
                         <div class="header-right_area">
                             <ul>
@@ -71,7 +73,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#mobileMenu" class="mobile-menu_btn toolbar-btn color--white d-lg-none d-block">
+                                    <a href="#mobileMenu"
+                                        class="mobile-menu_btn toolbar-btn color--white d-lg-none d-block">
                                         <i class="ion-navicon"></i>
                                     </a>
                                 </li>
@@ -93,7 +96,9 @@
                 <div class="col-md-4 col-sm-4 d-lg-none d-block">
                     <div class="header-logo">
                         <a href="{{ route('website.home') }}">
-                            <img src="{{URL::asset('website/assets/images/menu/logo/2.png')}}" alt="Hiraola's Header Logo">
+                            {{-- <img src="{{ URL::asset('website/assets/images/menu/logo/2.png') }}"
+                                alt="Hiraola's Header Logo"> --}}
+                            <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="100px" alt="Header Logo">
                         </a>
                     </div>
                 </div>
@@ -108,11 +113,12 @@
                                 <li><a href="javascript:void(0)">Account</a>
                                     <ul class="hm-dropdown">
                                         @if (Auth::check())
-                                        <li class="active"><a href="{{ route('website.my-account.index') }}">My Account</a></li>
-                                        <li><a href="{{ route('user.logout') }}">Logout</a></li>
+                                            <li class="active"><a href="{{ route('website.my-account.index') }}">My
+                                                    Account</a></li>
+                                            <li><a href="{{ route('user.logout') }}">Logout</a></li>
                                         @else
-                                        <li class="active"><a href="{{ route('register') }}">Register</a></li>
-                                        <li><a href="{{ route('login') }}">Login</a></li>
+                                            <li class="active"><a href="{{ route('register') }}">Register</a></li>
+                                            <li><a href="{{ route('login') }}">Login</a></li>
                                         @endif
                                     </ul>
                                 </li>
@@ -128,8 +134,8 @@
             <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm-4">
                     <div class="header-logo">
-                        <a href="index.html">
-                            <img src="{{URL::asset('website/assets/images/menu/logo/2.png')}}" alt="Hiraola's Header Logo">
+                        <a href="{{ route('website.home') }}">
+                            <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="70px" alt="Header Logo">
                         </a>
                     </div>
                 </div>
@@ -159,7 +165,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#mobileMenu" class="mobile-menu_btn toolbar-btn color--white d-lg-none d-block">
+                                <a href="#mobileMenu"
+                                    class="mobile-menu_btn toolbar-btn color--white d-lg-none d-block">
                                     <i class="ion-navicon"></i>
                                 </a>
                             </li>
@@ -183,18 +190,23 @@
                 </div>
                 <ul class="minicart-list">
                     @php $i=0; @endphp
-                    @foreach($cartItems as $value)
-                        @if($i<3)
-                        <li class="minicart-product">
-                            <a class="product-item_remove" href="{{ route('website.remove-cart',$value->attributes['slug']) }}"><i class="ion-android-close"></i></a>
-                            <div class="product-item_img">
-                                <img src="{{ URL::asset('storage/'.$value->attributes['image']) }}" alt="Hiraola's Product Image">
-                            </div>
-                            <div class="product-item_content">
-                                <a class="product-item_title" href="{{ route('website.product.details',$value->attributes['slug']) }}">{{ $value->name }}</a>
-                                <span class="product-item_quantity">{{ $value->quantity }} x {{ SettingsHelper::info()->currency.number_format($value->price) }}</span>
-                            </div>
-                        </li>
+                    @foreach ($cartItems as $value)
+                        @if ($i < 3)
+                            <li class="minicart-product">
+                                <a class="product-item_remove"
+                                    href="{{ route('website.remove-cart', $value->attributes['slug']) }}"><i
+                                        class="ion-android-close"></i></a>
+                                <div class="product-item_img">
+                                    <img src="{{ URL::asset('storage/' . $value->attributes['image']) }}"
+                                        alt="Hiraola's Product Image">
+                                </div>
+                                <div class="product-item_content">
+                                    <a class="product-item_title"
+                                        href="{{ route('website.product.details', $value->attributes['slug']) }}">{{ $value->name }}</a>
+                                    <span class="product-item_quantity">{{ $value->quantity }} x
+                                        {{ SettingsHelper::info()->currency . number_format($value->price) }}</span>
+                                </div>
+                            </li>
                         @endif
                         @php $i++; @endphp
                     @endforeach
@@ -202,13 +214,15 @@
             </div>
             <div class="minicart-item_total">
                 <span>Subtotal</span>
-                <span class="ammount">{{ SettingsHelper::info()->currency.Cart::getSubTotal() }}</span>
+                <span class="ammount">{{ SettingsHelper::info()->currency . Cart::getSubTotal() }}</span>
             </div>
             <div class="minicart-btn_area">
-                <a href="{{ route('website.cart') }}" class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Minicart</a>
+                <a href="{{ route('website.cart') }}"
+                    class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Minicart</a>
             </div>
             <div class="minicart-btn_area">
-                <a href="{{ route('website.checkout') }}" class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Checkout</a>
+                <a href="{{ route('website.checkout') }}"
+                    class="hiraola-btn hiraola-btn_dark hiraola-btn_fullwidth">Checkout</a>
             </div>
         </div>
     </div>
@@ -239,10 +253,11 @@
                 </div>
                 <nav class="offcanvas-navigation">
                     <ul class="mobile-menu">
-                        <li class="menu-item-has-children active"><a href="#"><span class="mm-text">Home</span></a>
+                        <li class="menu-item-has-children active"><a href="#"><span
+                                    class="mm-text">Home</span></a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="index.html">
+                                    <a href="{{ route('website.home') }}">
                                         <span class="mm-text">Home One</span>
                                     </a>
                                 </li>
@@ -542,8 +557,8 @@
                         <li class="menu-item-has-children active">
                             <a href="#">
                                 <span class="mm-text">User
-                                Setting
-                            </span>
+                                    Setting
+                                </span>
                             </a>
                             <ul class="sub-menu">
                                 <li>
@@ -558,7 +573,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item-has-children"><a href="#"><span class="mm-text">Currency</span></a>
+                        <li class="menu-item-has-children"><a href="#"><span
+                                    class="mm-text">Currency</span></a>
                             <ul class="sub-menu">
                                 <li>
                                     <a href="javascript:void(0)">
@@ -572,7 +588,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item-has-children"><a href="#"><span class="mm-text">Language</span></a>
+                        <li class="menu-item-has-children"><a href="#"><span
+                                    class="mm-text">Language</span></a>
                             <ul class="sub-menu">
                                 <li>
                                     <a href="javascript:void(0)">

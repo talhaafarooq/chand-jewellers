@@ -8,15 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone_no')->nullable();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->decimal('shipping_charges')->default(0);
         });
     }
 
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone_no');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('shipping_charges');
         });
     }
 };

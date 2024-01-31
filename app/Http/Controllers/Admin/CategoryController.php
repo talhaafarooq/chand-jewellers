@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Http\Request;
+use Str;
 
 class CategoryController extends Controller
 {
@@ -38,7 +39,7 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        $category = $this->repo->store(Category::class, $request->only('name'));
+        $category = Category::create($request->only('name'));
         if ($request->hasFile('image')) {
             $fileName = FileHelper::uploadFile($request->file('image'), 'categories');
             $category->image = $fileName;
@@ -55,8 +56,8 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, $id)
     {
-        $category1 = $this->repo->show(Category::class, $id);
-        $category = $this->repo->show(Category::class, $id);
+        $category1 = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $category->update($request->only('name'));
         if ($request->hasFile('image')) {
             FileHelper::removeFile($category1->image);

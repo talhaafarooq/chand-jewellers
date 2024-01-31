@@ -15,7 +15,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255|min:1|string',
-            'image' => 'required_if:action,create|mimes:png,jpg,jpeg'
+            'image' => 'sometimes|mimes:png,jpg,jpeg'
         ];
     }
 }

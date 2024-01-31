@@ -13,7 +13,7 @@
         <section class="content-header"></section>
 
         <section class="content">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12"></div>
                     <div class="col-lg-6 col-md-6 col-sm-12">

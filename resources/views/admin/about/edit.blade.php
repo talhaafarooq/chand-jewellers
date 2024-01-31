@@ -21,6 +21,7 @@
                             ]) !!}
                             <div class="card-body">
                                 <div class="row">
+                                    @include('errors')
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         {!! Form::label('image', 'Image') !!}
                                         <input type="file" name="image" id="image" class="form-control">

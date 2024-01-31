@@ -6,8 +6,8 @@
                 <div class="col-lg-4">
                     <div class="footer-widgets_info">
                         <div class="footer-widgets_logo">
-                            <a href="#">
-                                <img src="{{ URL::asset('website') }}/assets/images/footer/logo/1.png" alt="Hiraola's Footer Logo">
+                            <a href="{{ route('website.home') }}">
+                                <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="150px" alt="Footer Logo">
                             </a>
                         </div>
 
@@ -138,7 +138,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="payment">
-                            <a href="#">
+                            <a href="{{ route('website.home') }}">
                                 <img src="{{ URL::asset('website') }}/assets/images/footer/payment/1.png" alt="Hiraola's Payment Method">
                             </a>
                         </div>

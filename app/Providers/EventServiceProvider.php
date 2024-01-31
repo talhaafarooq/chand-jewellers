@@ -8,9 +8,11 @@ use App\Listeners\SendMailFired;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
+use App\Models\User;
 use App\Observers\CategoryObserver;
 use App\Observers\ProductObserver;
 use App\Observers\SubCategoryObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -40,6 +42,7 @@ class EventServiceProvider extends ServiceProvider
         Category::observe(CategoryObserver::class);
         SubCategory::observe(SubCategoryObserver::class);
         Product::observe(ProductObserver::class);
+        User::observe(UserObserver::class);
     }
 
     /**

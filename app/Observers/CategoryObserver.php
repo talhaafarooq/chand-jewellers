@@ -4,9 +4,15 @@ namespace App\Observers;
 
 use App\helpers\FileHelper;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class CategoryObserver
 {
+    public function creating(Category $category)
+    {
+        $category->slug = Str::slug($category->name);
+    }
+
     public function deleting(Category $category)
     {
         FileHelper::removeFile($category->image);

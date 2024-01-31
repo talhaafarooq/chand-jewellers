@@ -28,6 +28,7 @@
                                             'class' => 'form-control',
                                             'placeholder' => 'Name',
                                             'autofocus' => 'autofocus',
+                                            'required'=>'required'
                                         ]) !!}
                                         @error('name')
                                             <font color="red">{{ $message }}</font>

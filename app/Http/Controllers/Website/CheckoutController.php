@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Enums\OrderStatusEnum;
 use App\Enums\RoleEnum;
+use App\helpers\SettingsHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderCreateAccountRequest;
 use App\Mail\OrderConfirmMail;
@@ -77,6 +78,7 @@ class CheckoutController extends Controller
             $order->notes = $request->order_note;
             $order->user_id = $userId;
             $order->order_no = $orderNo;
+            $order->shipping_charges = SettingsHelper::info()->shipping;
             $order->status = OrderStatusEnum::Received;
             $order->save();
 
@@ -92,8 +94,8 @@ class CheckoutController extends Controller
             }
 
             $orderWithUser = Order::select('id', 'order_no', 'user_id')->with('user:id,first_name,last_name')->find($order->id);
-            Mail::to("talhafarooq522446@gmail.com")->send(new OrderConfirmMail($orderWithUser));
-            // Mail::to($request->email)->send(new OrderConfirmMail($orderWithUser));
+            // Mail::to("talhafarooq522446@gmail.com")->send(new OrderConfirmMail($orderWithUser));
+            Mail::to($request->email)->send(new OrderConfirmMail($orderWithUser));
 
             Cart::clear();
             DB::commit();

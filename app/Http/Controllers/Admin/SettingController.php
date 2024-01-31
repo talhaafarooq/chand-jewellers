@@ -32,16 +32,17 @@ class SettingController extends Controller
         $settings1 = $this->repo->show(Settings::class, 1);
         $settings = $this->repo->show(Settings::class, 1);
         $settings->update($request->all());
+        return 1;
         if ($request->hasFile('header_logo')) {
             FileHelper::removeFile($settings1->header_logo);
             $fileName = FileHelper::uploadFile($request->file('header_logo'), 'settings');
-            $settings->header_logo = time() . $fileName;
+            $settings->header_logo = rand(000000,999999) . $fileName;
             $settings->save();
         }
         if ($request->hasFile('footer_logo')) {
             FileHelper::removeFile($settings1->footer_logo);
             $fileName = FileHelper::uploadFile($request->file('footer_logo'), 'settings');
-            $settings->footer_logo = time() . $fileName;
+            $settings->footer_logo = rand(000000,999999) . $fileName;
             $settings->save();
         }
         return redirect()->route('admin.settings.index')->with('success', 'Settings updated successfully.');

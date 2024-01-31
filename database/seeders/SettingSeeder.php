@@ -35,7 +35,7 @@ class SettingSeeder extends Seeder
             'shipping'=>'500',
             'advance_charges'=>'500',
             'cod'=>'500',
-            'advertising'=>'500',
+            'advertising'=>'This is advertising campaign',
         ]);
     }
 }
