@@ -8,7 +8,7 @@
                     <h3 style="text-align: left;">{{ $subcategory->name }}</h3>
                     <div class="hiraola-product_slider" id="new-products">
                         @forelse ($products as $product)
-                        <div class="slide-item">
+                        <div class="slide-item mt-3">
                             <div class="single_product">
                                 <div class="product-img">
                                     <a href="{{ route('website.product.details', $product->slug) }}">
