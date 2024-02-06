@@ -43,6 +43,7 @@ Route::as('website.')->group(function () {
     Route::match(['get', 'post'], '/send-contact-message', [WebsiteController::class, 'sendContactMessage'])->name('send-contact-message');
     Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
     Route::post('/subscribe', [WebsiteController::class, 'subscribeWebsite'])->name('subscribe');
+    Route::get('/products', [WebsiteController::class, 'products']);
 
     // Track Order
     Route::get('/track-order', [WebsiteController::class, 'trackOrder'])->name('track-order');

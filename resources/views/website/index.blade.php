@@ -284,15 +284,15 @@
                             <div class="row">
                                 @foreach ($subcategoriesWithTotalProducts as $subCategory)
                                 <div class="col-lg-3 col-md-3 col-sm-12">
-                                    <a href="">
+                                    <a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}">
                                         <div class="hiraola-recent-post">
                                             <div class="hiraola-recent-post-thumb">
-                                                <a href="blog-details-left-sidebar.html">
+                                                <a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}">
                                                     <img class="img-full" src="{{ URL::asset('storage/'.$subCategory->image) }}" style="height: 72px!important;" alt="SubCategory">
                                                 </a>
                                             </div>
                                             <div class="hiraola-recent-post-des">
-                                                <span style="margin-top:10px"><a href="blog-details-left-sidebar.html" style="font-size: 17px;text-align: left;">{{ $subCategory->name }}</a></span>
+                                                <span style="margin-top:10px"><a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}" style="font-size: 17px;text-align: left;">{{ $subCategory->name }}</a></span>
                                                 <span class="hiraola-post-date" style="text-align: left;">{{ $subCategory->totalProducts }} Products</span>
                                             </div>
                                         </div>

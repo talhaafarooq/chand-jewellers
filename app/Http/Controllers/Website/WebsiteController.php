@@ -172,4 +172,19 @@ class WebsiteController extends Controller
     {
         return view('auth.passwords.email');
     }
+
+    public function products(Request $request)
+    {
+        $products = array();
+        if($request->has('subcategory'))
+        {
+            $subcategory = SubCategory::where('slug',$request->get('subcategory'))->firstOrFail();
+            $products = Product::where('sub_category_id', $subcategory->id)
+                ->inRandomOrder()
+                ->status(0)
+                ->orderByDesc('id')
+                ->get();
+        }
+        return view('website.category-subcategory-products',compact('subcategory','products'));
+    }
 }
