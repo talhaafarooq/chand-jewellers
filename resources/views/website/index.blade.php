@@ -278,7 +278,7 @@
                         <h4>Categories</h4>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-5">
                     <div class="hiraola-blog-sidebar-wrapper">
                         <div class="hiraola-blog-sidebar">
                             <div class="row">
