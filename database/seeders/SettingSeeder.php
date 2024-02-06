@@ -36,6 +36,8 @@ class SettingSeeder extends Seeder
             'advance_charges'=>'500',
             'cod'=>'500',
             'advertising'=>'This is advertising campaign',
+            'header_logo'=>'settings/logo.png',
+            'footer_logo'=>'settings/logo.png',
         ]);
     }
 }

@@ -111,6 +111,7 @@
                             <ul>
                                 <li class="dropdown-holder"><a href="{{ route('website.home') }}">Home</a></li>
                                 <li><a href="{{ route('website.shop') }}">Shop</a></li>
+                                <li><a href="{{ route('website.track-order') }}">Track Order</a></li>
                                 <li><a href="{{ route('website.about') }}">About Us</a></li>
                                 <li><a href="{{ route('website.contact') }}">Contact</a></li>
                                 <li><a href="javascript:void(0)">Account</a>
@@ -156,6 +157,7 @@
                             <ul>
                                 <li class="dropdown-holder"><a href="{{ route('website.home') }}">Home</a></li>
                                 <li><a href="{{ route('website.shop') }}">Shop</a></li>
+                                <li><a href="{{ route('website.track-order') }}">Track Order</a></li>
                                 <li><a href="{{ route('website.about') }}">About Us</a></li>
                                 <li><a href="{{ route('website.contact') }}">Contact</a></li>
                             </ul>

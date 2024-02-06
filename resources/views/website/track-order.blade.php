@@ -1,10 +1,7 @@
 @extends('layouts.website')
-@section('title', 'Chand Jewellers - Thanks')
+@section('title', 'Chand Jewellers - Track Order')
 @section('head')
     <style>
-        .float-right {
-            float: right;
-        }
         .breadcrumb-area {
             background: black;
             min-height: 225px;
@@ -12,29 +9,41 @@
         }
     </style>
 @endsection
+
 @section('content')
-    <!-- Begin Hiraola's Breadcrumb Area -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="breadcrumb-content">
-                <h2>Thanks</h2>
+                <h2>Track Order</h2>
                 <ul>
                     <li><a href="{{ route('website.home') }}">Home</a></li>
-                    <li class="active">Thanks</li>
+                    <li class="active">Track Order</li>
                 </ul>
             </div>
         </div>
     </div>
-    <!-- Hiraola's Breadcrumb Area End Here -->
-    <!-- Begin Hiraola's Checkout Area -->
-    <div class="checkout-area">
-        <div class="container">
-            <form action="{{ route('website.order.submit') }}" method="POST">
-                @csrf
+
+        <!-- Begin Hiraola's Track Order Area -->
+        <div class="about-us-area mb-5">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 offset-lg-2 col-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="overview-content">
+                            <h2>Track <span>Order</span></h2>
+                            <form action="{{ route('website.track-order') }}" method="get">
+                                @csrf
+                                <input type="text" name="orderno" id="orderno" class="form-control" placeholder="Enter Order No" value="{{ $orderNo }}">
+                                <button type="submit" class="hiraola-compare_btn mt-2">Track Order</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @isset($order)
+                <div class="row mt-4">
+                    <div class="col-lg-6 offset-lg-3 col-12">
                         <div class="your-order">
-                            <h3>Your order <span class="float-right">#{{ $order->order_no }}</span></h3>
+                            <h3>Your order <span style="float: right;">#{{ $order->order_no }}</span></h3>
+                            <h5>Status <span style="float: right;" class="text-capitalize text-primary">{{ $order->status }}</span></h5>
                             <div class="your-order-table table-responsive">
                                 <table class="table">
                                     <thead>
@@ -79,26 +88,26 @@
                             </div>
                             <div class="payment-method">
                                 <div class="payment-accordion">
-                                    <div id="accordion">
-                                        {{-- <div class="card">
-                                        <div class="card-header" id="#payment-1">
+                                    @if ($status=='dispatched')
+                                    <div class="card">
+                                        <div class="card-header">
                                             <h5 class="panel-title">
-                                                <a href="javascript:void(0)" class="" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
-                                                    Direct Bank Transfer.
+                                                <a href="javascript:void(0)">
+                                                    Tracking No: <span style="float: right;color:black;">{{ $trackingNo }}</span>
                                                 </a>
                                             </h5>
                                         </div>
-                                        <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Make your payment directly into our bank account. Please use your Order
-                                                    ID as the payment
-                                                    reference. Your order won’t be shipped until the funds have cleared in
-                                                    our account.</p>
-                                            </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="panel-title">
+                                                <a href="javascript:void(0)">
+                                                    Tracking Company: <span style="float: right;color:black;">{{ $trackingCompany }}</span>
+                                                </a>
+                                            </h5>
                                         </div>
-                                    </div> --}}
+                                    </div>
+                                    @endif
                                         <div class="card">
                                             <div class="card-header" id="#payment-2">
                                                 <h5 class="panel-title">
@@ -146,8 +155,8 @@
                         </div>
                     </div>
                 </div>
-            </form>
+                @endisset
+            </div>
         </div>
-    </div>
-    <!-- Hiraola's Checkout Area End Here -->
+        <!-- Hiraola's Track Order Area End Here -->
 @endsection

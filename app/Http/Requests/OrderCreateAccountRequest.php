@@ -26,7 +26,7 @@ class OrderCreateAccountRequest extends FormRequest
             'email' => 'required|min:1|max:255|email|unique:users,email',
             'phone1' => 'required|min:1|max:255|string',
             'phone2' => 'sometimes|min:1|max:255|string',
-            'order_note' => 'nullable|min:1|max:500|string',
+            'order_note' => 'nullable|min:1|max:1000|string',
             'create_account' => 'nullable'
         ];
     }

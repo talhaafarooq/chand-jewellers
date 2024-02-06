@@ -28,8 +28,8 @@
         <header>
             <div class="row align-items-center gy-3">
                 <div class="col-sm-7 text-center text-sm-start">
-                    <img id="logo" src="{{ URL::asset('dashboard/invoice') }}/logo.png" title="Koice"
-                        alt="Koice" />
+                    <img id="logo" src="{{ URL::asset('storage/'.SettingsHelper::info()->header_logo) }}" title="Koice"
+                        alt="ChandJewellerLogo" width="100px" />
                 </div>
                 <div class="col-sm-5 text-center text-sm-end">
                     <h4 class="text-7 mb-0">Invoice</h4>
@@ -41,8 +41,8 @@
         <!-- Main Content -->
         <main>
             <div class="row">
-                <div class="col-sm-6"><strong>Date:</strong> {{ date('d/m/Y') }}</div>
-                <div class="col-sm-6 text-sm-end"> <strong>Invoice No:</strong> {{ date('dmy') }}</div>
+                <div class="col-sm-6"><strong>Date:</strong> {{ $order->created_at->format('d/m/Y') }}</div>
+                <div class="col-sm-6 text-sm-end"> <strong>Invoice No:</strong> {{ $order->order_no }}</div>
 
             </div>
             <hr>
@@ -69,22 +69,18 @@
                     <thead>
                         <tr class="bg-light">
                             <td class="col-4"><strong>Product</strong></td>
-                            <td class="col-2"><strong>Carrat</strong></td>
-                            <td class="col-2 text-center"><strong>Weight</strong></td>
-                            <td class="col-1 text-center"><strong>Rate</strong></td>
-                            <td class="col-2 text-end"><strong>Qty</strong></td>
+                            <td class="col-2"><strong>Qty</strong></td>
                             <td class="col-2 text-end"><strong>Amount</strong></td>
+                            <td class="col-2 text-end"><strong>Total</strong></td>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($order->orderDetails as $order)
                         <tr>
                             <td class="col-4">{{ $order->product->name }}</td>
-                            <td class="col-2 text-1">{{ $order->karats }}</td>
-                            <td class="col-2 text-center">{{ $order->weight }}</td>
-                            <td class="col-1 text-center">{{ SettingsHelper::info()->currency.number_format($order->price,2) }}</td>
-                            <td class="col-2 text-end">{{ $order->qty }}</td>
-                            <td class="col-2 text-end">{{ SettingsHelper::info()->currency.number_format($order->total,2) }}</td>
+                            <td class="col-2">&emsp;{{ $order->qty }}</td>
+                            <td class="col-2 text-end">{{ $order->price }}&emsp;</td>
+                            <td class="col-2 text-end">{{ $order->qty*$order->price }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -94,15 +90,15 @@
                 <table class="table border border-top-0 mb-0">
                     <tr class="bg-light">
                         <td class="text-end"><strong>Sub Total:</strong></td>
-                        <td class="col-sm-2 text-end">{{ SettingsHelper::info()->currency.number_format($subTotal,2) }}</td>
+                        <td class="col-sm-2 text-end">{{ SettingsHelper::info()->currency.number_format($subTotal) }}</td>
                     </tr>
                     <tr class="bg-light">
-                        <td class="text-end"><strong>Tax:</strong></td>
-                        <td class="col-sm-2 text-end">{{ SettingsHelper::info()->currency.number_format(SettingsHelper::info()->shipping,2) }}</td>
+                        <td class="text-end"><strong>Shipping Charges:</strong></td>
+                        <td class="col-sm-2 text-end">{{ SettingsHelper::info()->currency.number_format(SettingsHelper::info()->shipping) }}</td>
                     </tr>
                     <tr class="bg-light">
                         <td class="text-end"><strong>Total:</strong></td>
-                        <td class="col-sm-2 text-end">{{ SettingsHelper::info()->currency.number_format(SettingsHelper::info()->shipping+$subTotal,2) }}</td>
+                        <td class="col-sm-2 text-end">{{ SettingsHelper::info()->currency.number_format(SettingsHelper::info()->shipping+$subTotal) }}</td>
                     </tr>
                 </table>
             </div>

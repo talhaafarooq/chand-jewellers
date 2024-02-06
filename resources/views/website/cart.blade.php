@@ -5,6 +5,11 @@
         .cart-total-section{
             margin-top: -60px!important;
         }
+        .breadcrumb-area {
+            background: black;
+            min-height: 225px;
+            position: relative;
+        }
     </style>
 @endsection
 @section('content')

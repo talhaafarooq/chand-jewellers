@@ -86,22 +86,25 @@ class OrderController extends Controller
             if($request->status == 'dispatched')
             {
                 foreach($edit->orderDetails as $orderDetail){
-                    $orderDetail->product->alert_qty = $orderDetail->product->alert_qty - $orderDetail->qty;
+                    $orderDetail->product->qty = $orderDetail->product->qty - $orderDetail->qty;
                     $orderDetail->product->save();
                 }
-                event(new SendEmailEvent("talhafarooq522446@gmail.com", "Order Dispatch", $data, "emails/OrderDispatch"));
+                // event(new SendEmailEvent("talhafarooq522446@gmail.com", "Order Dispatch", $data, "emails/OrderDispatch"));
+                event(new SendEmailEvent($edit->email, "Order Dispatch", $data, "emails/OrderDispatch"));
             }
             if($request->status == 'cancelled')
             {
                 foreach($edit->orderDetails as $orderDetail){
-                    $orderDetail->product->alert_qty = $orderDetail->product->alert_qty + $orderDetail->qty;
+                    $orderDetail->product->qty = $orderDetail->product->qty + $orderDetail->qty;
                     $orderDetail->product->save();
                 }
-                event(new SendEmailEvent("talhafarooq522446@gmail.com", "Order Cancel", $data, "emails/OrderCancel"));
+                // event(new SendEmailEvent("talhafarooq522446@gmail.com", "Order Cancel", $data, "emails/OrderCancel"));
+                event(new SendEmailEvent($edit->email, "Order Cancel", $data, "emails/OrderCancel"));
             }
             if($request->status == 'delivered')
             {
-                event(new SendEmailEvent("talhafarooq522446@gmail.com", "Order Delivered", $data, "emails/OrderDeliver"));
+                // event(new SendEmailEvent("talhafarooq522446@gmail.com", "Order Delivered", $data, "emails/OrderDeliver"));
+                event(new SendEmailEvent($edit->email, "Order Delivered", $data, "emails/OrderDeliver"));
             }
 
 

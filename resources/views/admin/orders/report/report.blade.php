@@ -33,8 +33,8 @@
         <header>
             <div class="row align-items-center gy-3">
                 <div class="col-sm-7 text-center text-sm-start">
-                    <img id="logo" src="{{ URL::asset('dashboard/invoice') }}/logo.png" title="Koice"
-                        alt="Koice" />
+                    <img id="logo" src="{{ URL::asset('storage/'.SettingsHelper::info()->header_logo) }}" title="Koice"
+                        alt="ChandJewellerLogo" width="100px" />
                 </div>
                 <div class="col-sm-5 text-center text-sm-end">
                     <h4 class="text-7 mb-0">Report</h4>

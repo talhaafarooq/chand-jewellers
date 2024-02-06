@@ -44,6 +44,9 @@ Route::as('website.')->group(function () {
     Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
     Route::post('/subscribe', [WebsiteController::class, 'subscribeWebsite'])->name('subscribe');
 
+    // Track Order
+    Route::get('/track-order', [WebsiteController::class, 'trackOrder'])->name('track-order');
+
     Route::get('/product/{slug}', [WebsiteController::class, 'productDetails'])->name('product.details')->where('slug', '[a-zA-Z0-9-]+');
     Route::match(['get', 'post'], '/submit-feedback', [WebsiteController::class, 'submitFeedback'])->name('submit-feedback');
     Route::get('/buynow/{slug}', [WebsiteController::class, 'buyNow']);

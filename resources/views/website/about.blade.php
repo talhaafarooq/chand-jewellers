@@ -1,18 +1,15 @@
 @extends('layouts.website')
 @section('title', 'Chand Jewellers - About Us')
+@section('head')
+    <style>
+        .breadcrumb-area {
+            background: black;
+            min-height: 225px;
+            position: relative;
+        }
+    </style>
+@endsection
 @section('content')
-    {{-- <section class="blog about-blog">
-        <div class="container">
-            <div class="blog-bradcrum">
-                <span><a href="{{ route('website.home') }}">Home</a></span>
-                <span class="devider">/</span>
-                <span><a href="#">About Us</a></span>
-            </div>
-            <div class="blog-heading about-heading">
-                <h1 class="heading">About Us</h1>
-            </div>
-        </div>
-    </section> --}}
     <div class="breadcrumb-area">
         <div class="container">
             <div class="breadcrumb-content">

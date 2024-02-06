@@ -64,11 +64,6 @@ class ProductController extends Controller
             $product->tag($tags);
 
             if ($request->hasFile('front_img')) {
-                // $file = $request->file('front_img');
-                // $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-
-                // $imagePath = public_path('/products/' . $fileName);
-                // Image::make($file)->resize(280, 280)->save($imagePath);
                 $fileName = FileHelper::uploadFile($request->file('front_img'), 'products');
                 $product->front_img = $fileName;
                 $product->save();
@@ -142,8 +137,8 @@ class ProductController extends Controller
             }
             if ($request->hasFile('images')) {
                 // Remove old product images from storage and database
-                if (isset($edit->images)) {
-                    $edit->images->each(function ($image) {
+                if (isset($edit->productImages)) {
+                    $edit->productImages->each(function ($image) {
                         FileHelper::removeFile($image->image);
                         $image->delete();
                     });

@@ -4,18 +4,20 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
-use App\Http\Requests\FeedbackRequest;
 use App\Models\AboutUs;
+use App\Models\Category;
 use App\Models\ContactUs;
 use App\Models\Feedback;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\SubCategory;
 use App\Models\Subscribers;
 use Illuminate\Http\Request;
 use Cart;
 
 class WebsiteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $newArrivalProducts = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
             ->status(0)
@@ -28,13 +30,44 @@ class WebsiteController extends Controller
             ->take(12)
             ->orderByDesc('id')
             ->get();
-        return view('website.index', compact('newArrivalProducts','randomProducts'));
+        $firstCategory = Category::first('id');
+        $productByCategories = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
+            ->where('category_id', $firstCategory->id)
+            ->inRandomOrder()
+            ->status(0)
+            ->take(12)
+            ->orderByDesc('id')
+            ->get();
+        $categoriesWithSubcategories = Category::with(['subCategories' => function ($query) {
+            $query->withCount('products as totalProducts');
+        }])->withCount('products as totalProducts')->get();
+        if ($request->has('category') && $request->category!=null) {
+            $category = Category::where('slug',$request->get('category'))->firstOrFail();
+            $productByCategories = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
+                ->where('category_id', $category->id)
+                ->inRandomOrder()
+                ->status(0)
+                ->take(12)
+                ->orderByDesc('id')
+                ->get();
+        }
+        if ($request->has('subcategory') && $request->subcategory!=null) {
+            $subCategory = SubCategory::where('slug',$request->get('subcategory'))->firstOrFail();
+            $productByCategories = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
+                ->where('sub_category_id', $subCategory->id)
+                ->inRandomOrder()
+                ->status(0)
+                ->take(12)
+                ->orderByDesc('id')
+                ->get();
+        }
+        return view('website.index', compact('newArrivalProducts', 'randomProducts', 'productByCategories', 'categoriesWithSubcategories'));
     }
 
     public function aboutUs()
     {
         $aboutUs = AboutUs::findOrFail(1);
-        return view('website.about',compact('aboutUs'));
+        return view('website.about', compact('aboutUs'));
     }
 
     public function contactUs()
@@ -74,9 +107,10 @@ class WebsiteController extends Controller
             ->where('slug', $slug)
             ->where('status', 0)
             ->firstOrFail();
+            // return $product;
         $relatedProducts = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
             ->status(0)
-            ->where('sub_category_id',$product->sub_category_id)
+            ->where('sub_category_id', $product->sub_category_id)
             ->where('slug', '!=', $slug)
             ->take(12)
             ->orderByDesc('id')
@@ -108,8 +142,7 @@ class WebsiteController extends Controller
     public function buyNow($slug)
     {
         $product = Product::where('slug', $slug)->status(0)->first();
-        if($product)
-        {
+        if ($product) {
             Cart::add([
                 'id' => $product->id,
                 'name' => $product->name,
@@ -120,8 +153,28 @@ class WebsiteController extends Controller
                     'slug' => $product->slug,
                 )
             ]);
-            return redirect()->route('website.checkout')->with('success','Item added to cart successfully!');
+            return redirect()->route('website.checkout')->with('success', 'Item added to cart successfully!');
         }
         abort(404);
+    }
+
+    public function trackOrder(Request $request)
+    {
+        $order = null;
+        $orderNo = null;
+        $subTotal = null;
+        $status = null;
+        $trackingNo = null;
+        $trackingCompany = null;
+        if($request->has('orderno'))
+        {
+            $order = Order::with('orderDetails.product')->where('order_no',$request->orderno)->firstOrFail();
+            $subTotal = $order->orderDetails->sum('price');
+            $orderNo = $request->orderno;
+            $status = $order->status->value;
+            $trackingNo = $order->tracking_no;
+            $trackingCompany = $order->tracking_company;
+        }
+        return view('website.track-order',compact('order','subTotal','orderNo','status','trackingNo','trackingCompany'));
     }
 }

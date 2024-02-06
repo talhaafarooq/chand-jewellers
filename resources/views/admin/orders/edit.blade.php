@@ -86,7 +86,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                             <label for="zipcode">ZipCode</label>
                                             <input type="text" name="zipcode" id="zipcode" class="form-control"
-                                                value="{{ $edit->zipcode }}" required>
+                                                value="{{ $edit->zipcode }}">
                                             @error('zipcode')
                                                 <font color="red">{{ $message }}</font>
                                             @enderror

@@ -5,6 +5,11 @@
         .float-right {
             float: right;
         }
+        .breadcrumb-area {
+            background: black;
+            min-height: 225px;
+            position: relative;
+        }
     </style>
 @endsection
 @section('content')

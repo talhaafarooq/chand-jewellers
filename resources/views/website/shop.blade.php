@@ -5,6 +5,11 @@
         .price-filter .price-slider-amount .label-input input{
             width: 137px !important;
         }
+        .breadcrumb-area {
+            background: black;
+            min-height: 225px;
+            position: relative;
+        }
     </style>
 @endsection
 @section('content')

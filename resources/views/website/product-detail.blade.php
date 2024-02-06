@@ -23,6 +23,11 @@
         .comment-section::-webkit-scrollbar-thumb {
             background-color: #888;
         }
+        .breadcrumb-area {
+            background: black;
+            min-height: 225px;
+            position: relative;
+        }
     </style>
 @endsection
 @section('content')
@@ -87,7 +92,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <span class="reference">{!! $product->description !!}</span>
+                            <span class="reference">{!! $product->highlights !!}</span>
                             <div class="rating-box">
                                 <ul>
                                     <li><i class="fa fa-star-of-david"></i></li>
@@ -188,8 +193,8 @@
                         <div class="tab-content hiraola-tab_content">
                             <div id="description" class="tab-pane active show" role="tabpanel">
                                 <div class="product-description">
-                                    @isset($product->details)
-                                        {!! $product->details !!}
+                                    @isset($product->description)
+                                        {!! $product->description !!}
                                     @else
                                         <h5>No Product Details...</h5>
                                     @endisset

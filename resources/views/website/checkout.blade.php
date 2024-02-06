@@ -5,6 +5,11 @@
         input{
             color: black;
         }
+        .breadcrumb-area {
+            background: black;
+            min-height: 225px;
+            position: relative;
+        }
     </style>
 @endsection
 @section('content')
@@ -75,7 +80,7 @@
                     <div class="col-lg-6 col-12">
                         <div class="checkbox-form">
                             <h3>Billing Details</h3>
-                            <div class="row">                                
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>First Name <span class="required">*</span></label>
@@ -189,7 +194,7 @@
                                         @enderror
                                     </div>
                                 </div> --}}
-                                
+
                                 {{-- <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Address 2 (optional)</label>
