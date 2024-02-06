@@ -7,7 +7,7 @@
                     <div class="footer-widgets_info">
                         <div class="footer-widgets_logo">
                             <a href="{{ route('website.home') }}">
-                                <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="150px" alt="Footer Logo">
+                                <img src="{{ URL::asset('storage/'.SettingsHelper::info()->footer_logo) }}" width="150px" alt="Footer Logo">
                             </a>
                         </div>
 
