@@ -5,11 +5,12 @@
     <!-- Tags Creation Input -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
     <!-- SummerNote Text Editor -->
-    <link rel="stylesheet" href="{{ URL::asset('dashboard/summernote/summernote-bs4.min.css') }}" >
+    <link rel="stylesheet" href="{{ URL::asset('dashboard/summernote/summernote-bs4.min.css') }}">
     <style>
         #details::placeholder {
             padding-left: 10px;
         }
+
         .bootstrap-tagsinput .tag {
             margin-right: 2px;
             color: #ffffff;
@@ -17,6 +18,7 @@
             padding: 3px 7px;
             border-radius: 3px;
         }
+
         .bootstrap-tagsinput {
             width: 100%;
         }
@@ -62,8 +64,8 @@
                                             'id' => 'name',
                                             'class' => 'form-control',
                                             'placeholder' => 'Product Name',
-                                            'required'=>'required',
-                                            'autofocus' => 'autofocus'
+                                            'required' => 'required',
+                                            'autofocus' => 'autofocus',
                                         ]) !!}
                                         @error('name')
                                             <font color="red">{{ $message }}</font>
@@ -75,7 +77,7 @@
                                             'id' => 'qty',
                                             'class' => 'form-control',
                                             'placeholder' => 'Quantity',
-                                            'required'=>'required'
+                                            'required' => 'required',
                                         ]) !!}
                                         @error('qty')
                                             <font color="red">{{ $message }}</font>
@@ -83,21 +85,27 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('front_img', 'Front Image') !!}
-                                        <input type="file" name="front_img" id="front_img" class="form-control" accept=".jpg, .jpeg, .png" required>
+                                        <input type="file" name="front_img" id="front_img" class="form-control"
+                                            accept=".jpg, .jpeg, .png" required>
                                         @error('front_img')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('back_img', 'Back Image') !!}
-                                        <input type="file" name="back_img" id="back_img" class="form-control" accept=".jpg, .jpeg, .png" required>
+                                        <input type="file" name="back_img" id="back_img" class="form-control"
+                                            accept=".jpg, .jpeg, .png" required>
                                         @error('back_img')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('category', 'Category') !!}
-                                        {!! Form::select('category', $categoriesList, old('category'), ['id' => 'category', 'class' => 'form-control' ,'required'=>'required']) !!}
+                                        {!! Form::select('category', $categoriesList, old('category'), [
+                                            'id' => 'category',
+                                            'class' => 'form-control',
+                                            'required' => 'required',
+                                        ]) !!}
                                         @error('category')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -107,7 +115,7 @@
                                         {!! Form::select('sub_category', ['' => 'Select Sub Category'], null, [
                                             'id' => 'sub_category',
                                             'class' => 'form-control',
-                                            'required'=>'required'
+                                            'required' => 'required',
                                         ]) !!}
                                         @error('sub_category')
                                             <font color="red">{{ $message }}</font>
@@ -119,7 +127,7 @@
                                             'id' => 'new_price',
                                             'class' => 'form-control',
                                             'placeholder' => 'New Price',
-                                            'required'=>'required'
+                                            'required' => 'required',
                                         ]) !!}
                                         @error('new_price')
                                             <font color="red">{{ $message }}</font>
@@ -182,7 +190,8 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('images', 'Images') !!}
-                                        <input type="file" name="images[]" id="images" class="form-control"  accept=".jpg, .jpeg, .png" required multiple>
+                                        <input type="file" name="images[]" id="images" class="form-control"
+                                            accept=".jpg, .jpeg, .png" required multiple>
                                         @error('images')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -192,7 +201,7 @@
                                         {!! Form::select('status', ['1' => 'Active', '0' => 'InActive'], old('status'), [
                                             'id' => 'status',
                                             'class' => 'form-control select2',
-                                            'required'=>'required'
+                                            'required' => 'required',
                                         ]) !!}
                                         @error('status')
                                             <font color="red">{{ $message }}</font>
@@ -203,8 +212,8 @@
                                         {!! Form::text('tags', old('tags'), [
                                             'id' => 'tags',
                                             'class' => 'form-control',
-                                            'required'=>'required',
-                                            'data-role'=>"tagsinput"
+                                            'required' => 'required',
+                                            'data-role' => 'tagsinput',
                                         ]) !!}
                                         @error('tags')
                                             <font color="red">{{ $message }}</font>
@@ -216,7 +225,7 @@
                                             'id' => 'highlights',
                                             'class' => 'form-control summernote-editor',
                                             'placeholder' => 'Write short description here...',
-                                            'required'=>'required'
+                                            'required' => 'required',
                                         ]) !!}
                                         @error('highlights')
                                             <font color="red">{{ $message }}</font>
@@ -236,7 +245,8 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary pl-5 pr-5" name="action" value="create">Submit</button>
+                                <button type="submit" class="btn btn-primary pl-5 pr-5" name="action"
+                                    value="create">Submit</button>
                             </div>
                             {!! Form::close() !!}
                         </div>
@@ -254,23 +264,24 @@
     <script type="text/javascript">
         // --------------------- SummerNote Editor Start Here ------------------------
         $(document).ready(function() {
-          $('.summernote-editor').summernote({
-            height: '200',
-            toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-                ['view', ['fullscreen', 'codeview']],
-            ],
-            disableResizeEditor: true,
-            callbacks: {
-                onInit: function() {
-                    // Remove the image button from the toolbar
-                    $('#summernote-editor').next('.note-editor').find('.note-icon-picture').remove();
+            $('.summernote-editor').summernote({
+                height: '200',
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['view', ['fullscreen', 'codeview']],
+                ],
+                disableResizeEditor: true,
+                callbacks: {
+                    onInit: function() {
+                        // Remove the image button from the toolbar
+                        $('#summernote-editor').next('.note-editor').find('.note-icon-picture')
+                    .remove();
+                    }
                 }
-            }
-          });
+            });
         });
         // --------------------- SummerNote End Here ------------------------
 
@@ -323,12 +334,12 @@
                             var option = null;
                             if (response.length > 0) {
                                 $.each(response, function(index, data) {
-                                    if(index==0){
+                                    if (index == 0) {
                                         option =
-                                        `<option value="${data.id}" selected>${data.name}</option>`;
-                                    }else{
+                                            `<option value="${data.id}" selected>${data.name}</option>`;
+                                    } else {
                                         option +=
-                                        `<option value="${data.id}">${data.name}</option>`;
+                                            `<option value="${data.id}">${data.name}</option>`;
                                     }
                                 });
                                 $('#sub_category').html(option);

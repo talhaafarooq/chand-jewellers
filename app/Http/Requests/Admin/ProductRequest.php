@@ -24,7 +24,7 @@ class ProductRequest extends FormRequest
             // 'net_weight'=>'required|numeric',
             // 'polish_weight'=>'required|numeric',
             // 'karats'=>'required|numeric',
-            'highlights'=>'required|max:500',
+            'highlights'=>'required',
             'description'=>'required'
         ];
     }

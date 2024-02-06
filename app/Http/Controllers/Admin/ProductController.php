@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\helpers\FileHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryRequest;
 use App\Http\Requests\Admin\PriceRequest;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Category;
@@ -12,9 +11,9 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+// use Intervention\Image\Facades\Image as Image;
 
 class ProductController extends Controller
 {
@@ -24,9 +23,9 @@ class ProductController extends Controller
     {
         $this->repo = $baseRepo;
         // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
-        $this->middleware('check.permissions:view-products', ['only' => ['index','outOfStockProducts']]);
+        $this->middleware('check.permissions:view-products', ['only' => ['index', 'outOfStockProducts']]);
         $this->middleware('check.permissions:create-product', ['only' => ['create', 'store']]);
-        $this->middleware('check.permissions:update-product', ['only' => ['edit', 'update','changePrices']]);
+        $this->middleware('check.permissions:update-product', ['only' => ['edit', 'update', 'changePrices']]);
         $this->middleware('check.permissions:delete-product', ['only' => 'destroy']);
     }
 
@@ -58,12 +57,18 @@ class ProductController extends Controller
                 'qty' => $request->qty,
                 'highlights' => $request->highlights,
                 'description' => $request->description,
-                'created_by'=>auth()->user()->id
+                'created_by' => auth()->user()->id
             ];
             $tags = explode(",", $request->tags);
             $product = $this->repo->store(Product::class, $data);
             $product->tag($tags);
+
             if ($request->hasFile('front_img')) {
+                // $file = $request->file('front_img');
+                // $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+
+                // $imagePath = public_path('/products/' . $fileName);
+                // Image::make($file)->resize(280, 280)->save($imagePath);
                 $fileName = FileHelper::uploadFile($request->file('front_img'), 'products');
                 $product->front_img = $fileName;
                 $product->save();
@@ -85,8 +90,7 @@ class ProductController extends Controller
 
             DB::commit();
             return redirect()->route('admin.products.index')->with('success', 'Product added successfully.');
-        }catch(Exception $ex)
-        {
+        } catch (Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('failure', $ex->getMessage());
         }
@@ -97,7 +101,7 @@ class ProductController extends Controller
         $edit = $this->repo->show(Product::class, $id);
         $categoriesList = Category::pluck('name', 'id');
         $tags = $edit->tags->pluck('name')->toArray(); // Extract only the tag names as an array
-        return view('admin.products.edit', compact('edit','categoriesList','tags'));
+        return view('admin.products.edit', compact('edit', 'categoriesList', 'tags'));
     }
 
     public function update(ProductRequest $request, $id)
@@ -115,7 +119,7 @@ class ProductController extends Controller
                 'qty' => $request->qty,
                 'highlights' => $request->highlights,
                 'description' => $request->description,
-                'updated_by'=>auth()->user()->id
+                'updated_by' => auth()->user()->id
             ];
             $tags = explode(",", $request->tags);
             $edit1 = $this->repo->show(Product::class, $id);
@@ -138,8 +142,7 @@ class ProductController extends Controller
             }
             if ($request->hasFile('images')) {
                 // Remove old product images from storage and database
-                if(isset($edit->images))
-                {
+                if (isset($edit->images)) {
                     $edit->images->each(function ($image) {
                         FileHelper::removeFile($image->image);
                         $image->delete();
@@ -156,8 +159,7 @@ class ProductController extends Controller
 
             DB::commit();
             return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
-        }catch(Exception $ex)
-        {
+        } catch (Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('failure', $ex->getMessage());
         }
@@ -171,7 +173,7 @@ class ProductController extends Controller
 
     public function outOfStockProducts()
     {
-        $totalOutOfStocksProducts = Product::where('qty','<',0)->paginate(10);
+        $totalOutOfStocksProducts = Product::where('qty', '<', 0)->paginate(10);
         return view('admin.products.out-of-stocks-products', compact('totalOutOfStocksProducts'));
     }
 
@@ -182,16 +184,14 @@ class ProductController extends Controller
 
     public function updatePrices(PriceRequest $request)
     {
-        if($request->type==0)
-        {
+        if ($request->type == 0) {
             Product::query()->increment('new_price', $request->price);
             Product::query()->increment('old_price', $request->price);
-        }else if($request->type==1)
-        {
+        } else if ($request->type == 1) {
             Product::query()->decrement('new_price', $request->price);
             Product::query()->decrement('old_price', $request->price);
         }
-       
-        return redirect()->back()->with('success','All Products Prices are updated!');
+
+        return redirect()->back()->with('success', 'All Products Prices are updated!');
     }
 }

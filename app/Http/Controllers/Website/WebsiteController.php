@@ -22,7 +22,13 @@ class WebsiteController extends Controller
             ->take(12)
             ->orderByDesc('id')
             ->get();
-        return view('website.index', compact('newArrivalProducts'));
+        $randomProducts = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
+            ->inRandomOrder()
+            ->status(0)
+            ->take(12)
+            ->orderByDesc('id')
+            ->get();
+        return view('website.index', compact('newArrivalProducts','randomProducts'));
     }
 
     public function aboutUs()
