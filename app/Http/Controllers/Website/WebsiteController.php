@@ -30,17 +30,7 @@ class WebsiteController extends Controller
             ->take(12)
             ->orderByDesc('id')
             ->get();
-        $firstCategory = Category::first('id');
-        $productByCategories = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
-            ->where('category_id', $firstCategory->id)
-            ->inRandomOrder()
-            ->status(0)
-            ->take(12)
-            ->orderByDesc('id')
-            ->get();
-        $categoriesWithSubcategories = Category::with(['subCategories' => function ($query) {
-            $query->withCount('products as totalProducts');
-        }])->withCount('products as totalProducts')->get();
+        $subcategoriesWithTotalProducts = SubCategory::withCount('products as totalProducts')->get();
         if ($request->has('category') && $request->category!=null) {
             $category = Category::where('slug',$request->get('category'))->firstOrFail();
             $productByCategories = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
@@ -61,7 +51,7 @@ class WebsiteController extends Controller
                 ->orderByDesc('id')
                 ->get();
         }
-        return view('website.index', compact('newArrivalProducts', 'randomProducts', 'productByCategories', 'categoriesWithSubcategories'));
+        return view('website.index', compact('newArrivalProducts', 'randomProducts','subcategoriesWithTotalProducts'));
     }
 
     public function aboutUs()
@@ -176,5 +166,10 @@ class WebsiteController extends Controller
             $trackingCompany = $order->tracking_company;
         }
         return view('website.track-order',compact('order','subTotal','orderNo','status','trackingNo','trackingCompany'));
+    }
+
+    public function forgotPassword()
+    {
+        return view('auth.passwords.email');
     }
 }

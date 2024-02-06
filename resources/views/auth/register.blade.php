@@ -1,5 +1,15 @@
 @extends('layouts.website')
 @section('title', 'Chand Jewellers - Register')
+
+@section('head')
+    <style>
+        .breadcrumb-area {
+            background: black;
+            min-height: 225px;
+            position: relative;
+        }
+    </style>
+@endsection
 @section('content')
 <!-- Begin Hiraola's Breadcrumb Area -->
     <div class="breadcrumb-area">

@@ -202,8 +202,8 @@
                                             <ul>
                                                 <li><a class="hiraola-add_cart"
                                                         href="{{ route('website.add-to-cart', ['slug' => $product->slug, 'qty' => 1]) }}"
-                                                        data-bs-toggle="tooltip" data-placement="top"
-                                                        title="Add To Cart"><i class="ion-bag"></i></a>
+                                                        data-bs-toggle="tooltip" data-placement="top" title="Add To Cart"><i
+                                                            class="ion-bag"></i></a>
                                                 </li>
                                                 <li><a class="hiraola-add_compare"
                                                         href="{{ route('website.product.details', $product->slug) }}"
@@ -271,113 +271,36 @@
     <!-- Hiraola's Product Tab Area Three End Here -->
     <!-- Begin Hiraola's Product Tab Area Three -->
     <div class="hiraola-product_area">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="hiraola-section_title">
-                        <h4>By Categories</h4>
+                        <h4>Categories</h4>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-12">
-                    <div class="hiraola-sidebar-catagories_area">
-                        <div class="category-module hiraola-sidebar_categories">
-                            <div class="category-module_heading">
-                                <h5>Categories</h5>
-                            </div>
-                            <div class="module-body">
-                                <ul class="module-list_item">
-                                    @foreach ($categoriesWithSubcategories as $category)
-                                        <li>
-                                            <a href="{{ URL::to('/?category='.$category->slug) }}" class="category"
-                                              style="text-align: left;">{{ $category->name }}
-                                                ({{ $category->totalProducts }})</a>
-                                            <ul class="module-sub-list_item">
-                                                <li>
-                                                    @foreach ($category->subCategories as $subCategory)
-                                                        <a href="{{ URL::to('/?subcategory='.$subCategory->slug) }}" class="subcategory"
-                                                            sub_category_slug="{{ $subCategory->slug }}" style="text-align: left;">{{ $subCategory->name }}
-                                                            ({{ $subCategory->totalProducts }})
-                                                        </a>
-                                                    @endforeach
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="hiraola-blog-sidebar-wrapper">
+                        <div class="hiraola-blog-sidebar">
+                            <div class="row">
+                                @foreach ($subcategoriesWithTotalProducts as $subCategory)
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <a href="">
+                                        <div class="hiraola-recent-post">
+                                            <div class="hiraola-recent-post-thumb">
+                                                <a href="blog-details-left-sidebar.html">
+                                                    <img class="img-full" src="{{ URL::asset('storage/'.$subCategory->image) }}" style="height: 72px!important;" alt="SubCategory">
+                                                </a>
+                                            </div>
+                                            <div class="hiraola-recent-post-des">
+                                                <span style="margin-top:10px"><a href="blog-details-left-sidebar.html" style="font-size: 17px;text-align: left;">{{ $subCategory->name }}</a></span>
+                                                <span class="hiraola-post-date" style="text-align: left;">{{ $subCategory->totalProducts }} Products</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-10 col-md-10 col-sm-12">
-                    <div class="hiraola-product_slider" id="category-products">
-                        @foreach ($productByCategories as $product)
-                            <!-- Begin Hiraola's Slide Item Area -->
-                            <div class="slide-item">
-                                <div class="single_product">
-                                    <div class="product-img">
-                                        <a href="{{ route('website.product.details', $product->slug) }}">
-                                            <img class="primary-img"
-                                                src="{{ URL::asset('storage/' . $product->front_img) }}"
-                                                alt="Hiraola's Product Image">
-                                            <img class="secondary-img"
-                                                src="{{ URL::asset('storage/' . $product->back_img) }}"
-                                                alt="Hiraola's Product Image">
-                                        </a>
-                                        {{-- <span class="sticker">New</span> --}}
-                                        <div class="add-actions">
-                                            <ul>
-                                                <li><a class="hiraola-add_cart"
-                                                        href="{{ route('website.add-to-cart', ['slug' => $product->slug, 'qty' => 1]) }}"
-                                                        data-bs-toggle="tooltip" data-placement="top"
-                                                        title="Add To Cart"><i class="ion-bag"></i></a>
-                                                </li>
-                                                <li><a class="hiraola-add_compare"
-                                                        href="{{ route('website.product.details', $product->slug) }}"
-                                                        data-bs-toggle="tooltip" data-placement="top"
-                                                        title="View Product"><i class="ion-eye"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="hiraola-product_content mt-3">
-                                        <div class="product-desc_info">
-                                            <h6>
-                                                <a class="product-name"
-                                                    href="{{ route('website.product.details', $product->slug) }}">{{ $product->name }}</a>
-                                            </h6>
-                                            <div class="price-box">
-                                                <span
-                                                    class="new-price">{{ SettingsHelper::info()->currency . $product->new_price }}</span>
-                                                @if (isset($product->old_price) && $product->old_price != 0)
-                                                    <span
-                                                        class="old-price">{{ SettingsHelper::info()->currency . $product->old_price }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="additional-add_action">
-                                                <ul>
-                                                    <li><a class="hiraola-add_compare"
-                                                            href="{{ route('website.add-to-wishlist', $product->slug) }}"
-                                                            data-bs-toggle="tooltip" data-placement="top"
-                                                            title="Add To Wishlist"><i
-                                                                class="ion-android-favorite-outline"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="rating-box">
-                                                <ul>
-                                                    <li><i class="fa fa-star-of-david"></i></li>
-                                                    <li><i class="fa fa-star-of-david"></i></li>
-                                                    <li><i class="fa fa-star-of-david"></i></li>
-                                                    <li><i class="fa fa-star-of-david"></i></li>
-                                                    <li><i class="fa fa-star-of-david"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Hiraola's Slide Item Area End Here -->
-                        @endforeach
                     </div>
                 </div>
             </div>
