@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
+use App\Mail\SendForgotPasswordMail;
 use App\Models\AboutUs;
 use App\Models\Category;
 use App\Models\ContactUs;
@@ -12,8 +13,13 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\Subscribers;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Cart;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 
 class WebsiteController extends Controller
 {
@@ -31,8 +37,8 @@ class WebsiteController extends Controller
             ->orderByDesc('id')
             ->get();
         $subcategoriesWithTotalProducts = SubCategory::withCount('products as totalProducts')->get();
-        if ($request->has('category') && $request->category!=null) {
-            $category = Category::where('slug',$request->get('category'))->firstOrFail();
+        if ($request->has('category') && $request->category != null) {
+            $category = Category::where('slug', $request->get('category'))->firstOrFail();
             $productByCategories = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
                 ->where('category_id', $category->id)
                 ->inRandomOrder()
@@ -41,8 +47,8 @@ class WebsiteController extends Controller
                 ->orderByDesc('id')
                 ->get();
         }
-        if ($request->has('subcategory') && $request->subcategory!=null) {
-            $subCategory = SubCategory::where('slug',$request->get('subcategory'))->firstOrFail();
+        if ($request->has('subcategory') && $request->subcategory != null) {
+            $subCategory = SubCategory::where('slug', $request->get('subcategory'))->firstOrFail();
             $productByCategories = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
                 ->where('sub_category_id', $subCategory->id)
                 ->inRandomOrder()
@@ -51,7 +57,7 @@ class WebsiteController extends Controller
                 ->orderByDesc('id')
                 ->get();
         }
-        return view('website.index', compact('newArrivalProducts', 'randomProducts','subcategoriesWithTotalProducts'));
+        return view('website.index', compact('newArrivalProducts', 'randomProducts', 'subcategoriesWithTotalProducts'));
     }
 
     public function aboutUs()
@@ -97,7 +103,7 @@ class WebsiteController extends Controller
             ->where('slug', $slug)
             ->where('status', 0)
             ->firstOrFail();
-            // return $product;
+
         $relatedProducts = Product::select('id', 'name', 'slug', 'front_img', 'back_img', 'old_price', 'new_price')
             ->status(0)
             ->where('sub_category_id', $product->sub_category_id)
@@ -156,16 +162,29 @@ class WebsiteController extends Controller
         $status = null;
         $trackingNo = null;
         $trackingCompany = null;
-        if($request->has('orderno'))
-        {
-            $order = Order::with('orderDetails.product')->where('order_no',$request->orderno)->firstOrFail();
+        if ($request->has('orderno')) {
+            $order = Order::with('orderDetails.product')->where('order_no', $request->orderno)->firstOrFail();
             $subTotal = $order->orderDetails->sum('price');
             $orderNo = $request->orderno;
             $status = $order->status->value;
             $trackingNo = $order->tracking_no;
             $trackingCompany = $order->tracking_company;
         }
-        return view('website.track-order',compact('order','subTotal','orderNo','status','trackingNo','trackingCompany'));
+        return view('website.track-order', compact('order', 'subTotal', 'orderNo', 'status', 'trackingNo', 'trackingCompany'));
+    }
+
+    public function products(Request $request)
+    {
+        $products = array();
+        if ($request->has('subcategory')) {
+            $subcategory = SubCategory::where('slug', $request->get('subcategory'))->firstOrFail();
+            $products = Product::where('sub_category_id', $subcategory->id)
+                ->inRandomOrder()
+                ->status(0)
+                ->orderByDesc('id')
+                ->get();
+        }
+        return view('website.category-subcategory-products', compact('subcategory', 'products'));
     }
 
     public function forgotPassword()
@@ -173,18 +192,77 @@ class WebsiteController extends Controller
         return view('auth.passwords.email');
     }
 
-    public function products(Request $request)
+    public function verifyEmail(Request $request)
     {
-        $products = array();
-        if($request->has('subcategory'))
-        {
-            $subcategory = SubCategory::where('slug',$request->get('subcategory'))->firstOrFail();
-            $products = Product::where('sub_category_id', $subcategory->id)
-                ->inRandomOrder()
-                ->status(0)
-                ->orderByDesc('id')
-                ->get();
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email'
+        ]);
+
+        try {
+            $user = User::where('email', $request->email)->firstOrFail();
+            $code = rand(000000, 999999);
+
+            // Mail::to($user->email)->send(new SendForgotPasswordMail($user, $code)); // Replace with actual mailing logic
+            Mail::to('talhafarooq522446@gmail.com')->send(new SendForgotPasswordMail($user, $code)); // Replace with actual mailing logic
+            DB::table('password_resets')->insert([
+                'email' => $user->email,
+                'token' => $code
+            ]);
+
+            return response()->json([
+                'message' => 'Email successfully sent. Please check your email for instructions.',
+                'status' => true
+            ]);
+        } catch (ValidationException $exception) {
+            return response()->json([
+                'message' => $exception->validator->getMessageBag()->toArray(),
+                'status' => false
+            ]);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => 'Email not sent. Please try again later.',
+                'status' => false
+            ]);
         }
-        return view('website.category-subcategory-products',compact('subcategory','products'));
+    }
+
+    public function verifyCode(Request $request)
+    {
+        $this->validate($request, [
+            'code' => 'required|string|min:1|max:255|exists:password_resets,token'
+        ],[
+            'code.exists'=>'The entered code is invalid.'
+        ]);
+
+        $checkCode = DB::table('password_resets')->where('token', $request->code)->first();
+        if ($checkCode) {
+            return response()->json(['message' => '', 'status' => true]);
+        } else {
+            return response()->json(['message' => 'Entered code is invalid', 'status' => false]);
+        }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|string|min:8|max:16',
+            'confirm_password' => 'required|string|min:8|max:16|same:password'
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            DB::table('password_resets')->where('email', $request->email)->delete();
+            User::where('email', $request->email)->update([
+                'password' => bcrypt($request->password)
+            ]);
+
+            DB::commit();
+            return response()->json(['message' => 'Password Successfully updated!', 'status' => true]);
+        } catch (Exception $ex) {
+            DB::rollback();
+            return response()->json(['message' => 'Something went wrong!', 'status' => false]);
+        }
     }
 }

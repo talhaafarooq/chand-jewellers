@@ -49,6 +49,9 @@ Route::as('website.')->group(function () {
     Route::get('/track-order', [WebsiteController::class, 'trackOrder'])->name('track-order');
     // Forgot Password
     Route::get('/forgot-password', [WebsiteController::class, 'forgotPassword']);
+    Route::post('/verify-email', [WebsiteController::class, 'verifyEmail']);
+    Route::post('/verify-code', [WebsiteController::class, 'verifyCode']);
+    Route::post('/update-password', [WebsiteController::class, 'updatePassword']);
 
     Route::get('/product/{slug}', [WebsiteController::class, 'productDetails'])->name('product.details')->where('slug', '[a-zA-Z0-9-]+');
     Route::match(['get', 'post'], '/submit-feedback', [WebsiteController::class, 'submitFeedback'])->name('submit-feedback');

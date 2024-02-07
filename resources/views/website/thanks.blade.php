@@ -5,11 +5,6 @@
         .float-right {
             float: right;
         }
-        .breadcrumb-area {
-            background: black;
-            min-height: 225px;
-            position: relative;
-        }
     </style>
 @endsection
 @section('content')
@@ -38,8 +33,10 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="cart-product-name" style="text-align: left;font-weight:bold;">Product</th>
-                                            <th class="cart-product-total" style="text-align: left;font-weight:bold;">Total</th>
+                                            <th class="cart-product-name" style="text-align: left;font-weight:bold;">Product
+                                            </th>
+                                            <th class="cart-product-total" style="text-align: left;font-weight:bold;">Total
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -108,7 +105,8 @@
                                                     </a>
                                                     {{-- <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->currency }} {{ number_format(SettingsHelper::info()->advance_charges) }} Required in advance for order
                                                         confirmation</p> --}}
-                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->cod }}</p>
+                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->cod }}
+                                                    </p>
                                                 </h5>
                                             </div>
                                             {{-- <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
@@ -138,7 +136,8 @@
                                     </div> --}}
                                     </div>
                                     <div class="order-button-payment">
-                                        <input value="Go To Home" type="button" onclick="location.href='{{ route('website.home') }}'">
+                                        <input value="Go To Home" type="button"
+                                            onclick="location.href='{{ route('website.home') }}'">
                                     </div>
                                 </div>
                             </div>

@@ -23,11 +23,6 @@
         .comment-section::-webkit-scrollbar-thumb {
             background-color: #888;
         }
-        .breadcrumb-area {
-            background: black;
-            min-height: 225px;
-            position: relative;
-        }
     </style>
 @endsection
 @section('content')
@@ -108,10 +103,10 @@
                                     {{-- <li>Product Code: <a href="javascript:void(0);">{{ $product->code }}</a></li> --}}
                                     {{-- <li>Reward Points: <a href="javascript:void(0);">600</a></li> --}}
                                     <li>Availability:
-                                        @if ($product->qty<=0)
-                                        <a href="javascript:void(0);" class="text-danger"><b>Out Of Stock</b></a>
+                                        @if ($product->qty <= 0)
+                                            <a href="javascript:void(0);" class="text-danger"><b>Out Of Stock</b></a>
                                         @else
-                                        <a href="javascript:void(0);" class="text-success"><b>In Stock</b></a>
+                                            <a href="javascript:void(0);" class="text-success"><b>In Stock</b></a>
                                         @endif
                                     </li>
                                 </ul>
@@ -146,7 +141,8 @@
                                             onclick="document.getElementById('cartForm').submit();">Add To Cart</a>
                                     </li>
                                     <li>
-                                        <a class="qty-cart_btn" href="{{ URL::to('buynow/' . $product->slug) }}">Buy Now</a>
+                                        <a class="qty-cart_btn" href="{{ URL::to('buynow/' . $product->slug) }}">Buy
+                                            Now</a>
                                     </li>
                                     <li><a class="qty-wishlist_btn"
                                             href="{{ route('website.add-to-wishlist', $product->slug) }}"
@@ -262,7 +258,8 @@
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
                                                                                     <option value="4">4</option>
-                                                                                    <option value="5" selected>5</option>
+                                                                                    <option value="5" selected>5
+                                                                                    </option>
                                                                                 </select>
                                                                             </span>
                                                                         </div>
@@ -703,74 +700,80 @@
                 <div class="col-lg-12">
                     <div class="hiraola-product_slider-3">
                         @foreach ($relatedProducts as $relatedProduct)
-                        <div class="slide-item">
-                            <div class="single_product">
-                                <div class="product-img">
-                                    <a href="{{ route('website.product.details', $product->slug) }}">
-                                        <img class="primary-img" src="{{ URL::asset('storage/' . $product->front_img) }}"
-                                            alt="Hiraola's Product Image">
-                                        <img class="secondary-img" src="{{ URL::asset('storage/' . $product->back_img) }}"
-                                            alt="Hiraola's Product Image">
-                                    </a>
-                                    <span class="sticker">New</span>
-                                    <div class="add-actions">
-                                        <ul>
-                                            <li><a class="hiraola-add_cart" href="{{ route('website.add-to-cart',['slug'=>$product->slug,'qty'=>1]) }}" data-bs-toggle="tooltip"
-                                                    data-placement="top" title="Add To Cart"><i class="ion-bag"></i></a>
-                                            </li>
-                                            <li><a class="hiraola-add_compare"
-                                                href="{{ route('website.add-to-wishlist', $product->slug) }}"
-                                                data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i
-                                                    class="ion-android-favorite-outline"></i></a>
-                                        </li>
-                                            {{-- <li><a class="hiraola-add_compare" href="compare.html" data-bs-toggle="tooltip"
+                            <div class="slide-item">
+                                <div class="single_product">
+                                    <div class="product-img">
+                                        <a href="{{ route('website.product.details', $product->slug) }}">
+                                            <img class="primary-img"
+                                                src="{{ URL::asset('storage/' . $product->front_img) }}"
+                                                alt="Hiraola's Product Image">
+                                            <img class="secondary-img"
+                                                src="{{ URL::asset('storage/' . $product->back_img) }}"
+                                                alt="Hiraola's Product Image">
+                                        </a>
+                                        <span class="sticker">New</span>
+                                        <div class="add-actions">
+                                            <ul>
+                                                <li><a class="hiraola-add_cart"
+                                                        href="{{ route('website.add-to-cart', ['slug' => $product->slug, 'qty' => 1]) }}"
+                                                        data-bs-toggle="tooltip" data-placement="top"
+                                                        title="Add To Cart"><i class="ion-bag"></i></a>
+                                                </li>
+                                                <li><a class="hiraola-add_compare"
+                                                        href="{{ route('website.add-to-wishlist', $product->slug) }}"
+                                                        data-bs-toggle="tooltip" data-placement="top"
+                                                        title="Add To Wishlist"><i
+                                                            class="ion-android-favorite-outline"></i></a>
+                                                </li>
+                                                {{-- <li><a class="hiraola-add_compare" href="compare.html" data-bs-toggle="tooltip"
                                                     data-placement="top" title="Compare This Product"><i
                                                         class="ion-ios-shuffle-strong"></i></a></li> --}}
-                                            {{-- <li class="quick-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="Quick View"><i
+                                                {{-- <li class="quick-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="Quick View"><i
                                         class="ion-eye"></i></a></li> --}}
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="hiraola-product_content">
-                                    <div class="product-desc_info">
-                                        <h6><a class="product-name"
-                                                href="{{ route('website.product.details', $product->slug) }}">{{ implode(' ', str_split($product->name, 23)) }}...</a>
-                                        </h6>
-                                        <div class="price-box">
-                                            <span
-                                                class="new-price">{{ SettingsHelper::info()->currency . $product->new_price }}</span>
-                                            @if (isset($product->old_price) && $product->old_price != 0)
-                                                <span
-                                                    class="old-price">{{ SettingsHelper::info()->currency . $product->old_price }}</span>
-                                            @endif
+                                            </ul>
                                         </div>
-                                        <div class="additional-add_action">
-                                            <ul>
-                                                {{-- <li><a class="hiraola-add_cart"
+                                    </div>
+                                    <div class="hiraola-product_content">
+                                        <div class="product-desc_info">
+                                            <h6><a class="product-name"
+                                                    href="{{ route('website.product.details', $product->slug) }}">{{ implode(' ', str_split($product->name, 23)) }}...</a>
+                                            </h6>
+                                            <div class="price-box">
+                                                <span
+                                                    class="new-price">{{ SettingsHelper::info()->currency . $product->new_price }}</span>
+                                                @if (isset($product->old_price) && $product->old_price != 0)
+                                                    <span
+                                                        class="old-price">{{ SettingsHelper::info()->currency . $product->old_price }}</span>
+                                                @endif
+                                            </div>
+                                            <div class="additional-add_action">
+                                                <ul>
+                                                    {{-- <li><a class="hiraola-add_cart"
                                                     href="{{ route('website.add-to-cart', ['slug' => $product->slug, 'qty' => 1]) }}"
                                                     data-bs-toggle="tooltip" data-placement="top" title="Add To Cart">Add To
                                                     Cart</a></li> --}}
-                                                <li><a class="hiraola-add_compare"
-                                                        href="{{ route('website.add-to-wishlist', $product->slug) }}"
-                                                        data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i
-                                                            class="ion-android-favorite-outline"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="rating-box">
-                                            <ul>
-                                                <li><i class="fa fa-star-of-david"></i></li>
-                                                <li><i class="fa fa-star-of-david"></i></li>
-                                                <li><i class="fa fa-star-of-david"></i></li>
-                                                <li><i class="fa fa-star-of-david"></i></li>
-                                                <li><i class="fa fa-star-of-david"></i></li>
-                                                {{-- <li class="silver-color"><i class="fa fa-star-of-david"></i></li> --}}
-                                            </ul>
+                                                    <li><a class="hiraola-add_compare"
+                                                            href="{{ route('website.add-to-wishlist', $product->slug) }}"
+                                                            data-bs-toggle="tooltip" data-placement="top"
+                                                            title="Add To Wishlist"><i
+                                                                class="ion-android-favorite-outline"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="rating-box">
+                                                <ul>
+                                                    <li><i class="fa fa-star-of-david"></i></li>
+                                                    <li><i class="fa fa-star-of-david"></i></li>
+                                                    <li><i class="fa fa-star-of-david"></i></li>
+                                                    <li><i class="fa fa-star-of-david"></i></li>
+                                                    <li><i class="fa fa-star-of-david"></i></li>
+                                                    {{-- <li class="silver-color"><i class="fa fa-star-of-david"></i></li> --}}
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

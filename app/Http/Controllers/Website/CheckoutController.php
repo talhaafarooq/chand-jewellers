@@ -95,7 +95,7 @@ class CheckoutController extends Controller
 
             $orderWithUser = Order::select('id', 'order_no', 'user_id')->with('user:id,first_name,last_name')->find($order->id);
             // Mail::to("talhafarooq522446@gmail.com")->send(new OrderConfirmMail($orderWithUser));
-            // Mail::to($request->email)->send(new OrderConfirmMail($orderWithUser));
+            Mail::to($request->email)->send(new OrderConfirmMail($orderWithUser));
 
             Cart::clear();
             DB::commit();

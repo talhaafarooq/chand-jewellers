@@ -111,7 +111,7 @@
         <div class="container">
             <div class="footer-bottom_nav">
                 <div class="row">
-                    <div class="col-lg-12">
+                    {{-- <div class="col-lg-12">
                         <div class="footer-links">
                             <ul>
                                 <li><a href="#">Online Shopping</a></li>
@@ -135,14 +135,14 @@
                                 <li><a href="#">Policy Shipping</a></li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="col-lg-12">
+                    </div> --}}
+                    {{-- <div class="col-lg-12">
                         <div class="payment">
                             <a href="{{ route('website.home') }}">
                                 <img src="{{ URL::asset('website') }}/assets/images/footer/payment/1.png" alt="Hiraola's Payment Method">
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-lg-12">
                         <div class="copyright">
                             <span>Copyright &copy; {{ date('Y') }} <a href="{{ route('website.home') }}">{{ SettingsHelper::info()->name }}.</a> All rights reserved.</span>

@@ -2,13 +2,8 @@
 @section('title', 'Chand Jewellers - Checkout')
 @section('head')
     <style>
-        input{
+        input {
             color: black;
-        }
-        .breadcrumb-area {
-            background: black;
-            min-height: 225px;
-            position: relative;
         }
     </style>
 @endsection
@@ -83,7 +78,8 @@
                                     <div class="checkout-form-list">
                                         <label>First Name <span class="required">*</span></label>
                                         <input name="first_name" id="first_name" type="text" placeholder="John"
-                                            value="{{ auth::user() ? auth()->user()->first_name: old('first_name') }}" required>
+                                            value="{{ auth::user() ? auth()->user()->first_name : old('first_name') }}"
+                                            required>
                                         @error('first_name')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -93,7 +89,8 @@
                                     <div class="checkout-form-list">
                                         <label>Last Name <span class="required">*</span></label>
                                         <input name="last_name" id="last_name" type="text" placeholder="Doe"
-                                            value="{{ auth::user() ? auth()->user()->last_name: old('last_name') }}" required>
+                                            value="{{ auth::user() ? auth()->user()->last_name : old('last_name') }}"
+                                            required>
                                         @error('last_name')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -103,7 +100,7 @@
                                     <div class="checkout-form-list">
                                         <label>Cell No 1<span class="required">*</span></label>
                                         <input type="text" name="phone1" id="phone1"
-                                            value="{{ auth::user() ? auth()->user()->phone_no: old('phone1') }}" required>
+                                            value="{{ auth::user() ? auth()->user()->phone_no : old('phone1') }}" required>
                                         @error('phone1')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -112,8 +109,7 @@
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Cell No 2 (optional)</label>
-                                        <input type="text" name="phone2" id="phone2"
-                                            value="{{ old('phone2') }}">
+                                        <input type="text" name="phone2" id="phone2" value="{{ old('phone2') }}">
                                         @error('phone2')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -123,7 +119,8 @@
                                     <div class="checkout-form-list">
                                         <label>Email Address <span class="required">*</span></label>
                                         <input placeholder="example@example.com" type="email" name="email"
-                                            id="email" value="{{ auth::user() ? auth()->user()->email: old('email') }}" required>
+                                            id="email" value="{{ auth::user() ? auth()->user()->email : old('email') }}"
+                                            required>
                                         @error('email')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -149,7 +146,8 @@
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Complete Address<span class="required">*</span></label>
-                                        <input name="address1" id="address1" type="text" value="{{ auth::user() ? auth()->user()->address: old('address1') }}" required>
+                                        <input name="address1" id="address1" type="text"
+                                            value="{{ auth::user() ? auth()->user()->address : old('address1') }}" required>
                                         @error('address1')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
@@ -200,21 +198,22 @@
                                     </div>
                                 </div> --}}
                                 @if (auth()->guest())
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list create-acc">
-                                        <input id="cbox" type="checkbox" name="create_account" value="1">
-                                        <label>Create an account?</label>
+                                    <div class="col-md-12">
+                                        <div class="checkout-form-list create-acc">
+                                            <input id="cbox" type="checkbox" name="create_account" value="1">
+                                            <label>Create an account?</label>
+                                        </div>
+                                        <div id="cbox-info" class="checkout-form-list create-account">
+                                            <p>Create an account by entering the information below. If you are a regular
+                                                customer please login at the top of the page.</p>
+                                            <label>Account password <span class="required">*</span></label>
+                                            <input placeholder="password" type="password" name="password"
+                                                id="password">
+                                            @error('password')
+                                                <font color="red">{{ $message }}</font>
+                                            @enderror
+                                        </div>
                                     </div>
-                                    <div id="cbox-info" class="checkout-form-list create-account">
-                                        <p>Create an account by entering the information below. If you are a regular
-                                            customer please login at the top of the page.</p>
-                                        <label>Account password <span class="required">*</span></label>
-                                        <input placeholder="password" type="password" name="password" id="password">
-                                        @error('password')
-                                            <font color="red">{{ $message }}</font>
-                                        @enderror
-                                    </div>
-                                </div>
                                 @endif
                             </div>
                             <div class="different-address">
@@ -318,8 +317,10 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="cart-product-name" style="text-align: left;font-weight:bold;">Product</th>
-                                            <th class="cart-product-total" style="text-align: left;font-weight:bold;">Total</th>
+                                            <th class="cart-product-name" style="text-align: left;font-weight:bold;">
+                                                Product</th>
+                                            <th class="cart-product-total" style="text-align: left;font-weight:bold;">
+                                                Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -394,7 +395,8 @@
                                                     </a>
                                                     {{-- <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->currency }} {{ number_format(SettingsHelper::info()->advance_charges) }} Required in advance for order
                                                         confirmation</p> --}}
-                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->cod }}</p>
+                                                    <p class="text-black"><b>Note:</b> {{ SettingsHelper::info()->cod }}
+                                                    </p>
                                                 </h5>
                                             </div>
                                             {{-- <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">

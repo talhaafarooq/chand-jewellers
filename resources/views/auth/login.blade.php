@@ -7,11 +7,6 @@
             font-size: 12px;
             font-weight: 500;
         }
-        .breadcrumb-area {
-            background: black;
-            min-height: 225px;
-            position: relative;
-        }
     </style>
 @endsection
 @section('content')
@@ -65,7 +60,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="forgotton-password_info">
-                                        <a href="{{ URL::to('/forgot-password') }}" class="text-primary"> &emsp;Forgot password?</a>
+                                        <a href="{{ URL::to('/forgot-password') }}" class="text-primary"> &emsp;Forgot
+                                            password?</a>
                                     </div>
                                 </div>
                                 <div class="col-12">

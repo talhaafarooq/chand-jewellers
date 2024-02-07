@@ -1,14 +1,5 @@
 @extends('layouts.website')
 @section('title', 'Chand Jewellers - Contact Us')
-@section('head')
-    <style>
-        .breadcrumb-area {
-            background: black;
-            min-height: 225px;
-            position: relative;
-        }
-    </style>
-@endsection
 @section('content')
     <!-- Begin Hiraola's Breadcrumb Area -->
     <div class="container">
@@ -24,11 +15,11 @@
     <div class="contact-main-page" style="padding-top: 30px !important;">
         <div class="container">
             @if (Session::has('successs'))
-            <div class="row">
-                <div class="col-12">
-                    <div class="alert alert-success">{{ Session::get('successs') }}</div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-success">{{ Session::get('successs') }}</div>
+                    </div>
                 </div>
-            </div>
             @endif
             <div class="row">
                 <div class="col-lg-5 offset-lg-1 col-md-12 order-1 order-lg-2">
