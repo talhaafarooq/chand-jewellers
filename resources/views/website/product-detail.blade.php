@@ -32,21 +32,18 @@
 @endsection
 @section('content')
     <!-- Begin Hiraola's Breadcrumb Area -->
-    <div class="breadcrumb-area">
-        <div class="container">
-            <div class="breadcrumb-content">
-                <h2 class="text-capitalize">{{ $product->name }}</h2>
-                <ul>
-                    <li><a href="{{ route('website.home') }}">Home</a></li>
-                    <li class="active">Single Product</li>
-                </ul>
-            </div>
-        </div>
+    <div class="container">
+        <nav>
+            <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <li><a href="{{ route('website.home') }}">Home</a></li>
+                <li class="current"><a href="#" class="text-capitalize">{{ $product->name }}</a></li>
+            </ol>
+        </nav>
     </div>
     <!-- Hiraola's Breadcrumb Area End Here -->
 
     <!-- Begin Hiraola's Single Product Area -->
-    <div class="sp-area">
+    <div class="sp-area" style="padding-top: 30px !important;">
         <div class="container">
             <div class="sp-nav">
                 <div class="row">

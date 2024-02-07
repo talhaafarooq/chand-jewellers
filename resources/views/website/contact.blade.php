@@ -11,20 +11,17 @@
 @endsection
 @section('content')
     <!-- Begin Hiraola's Breadcrumb Area -->
-    <div class="breadcrumb-area">
-        <div class="container">
-            <div class="breadcrumb-content">
-                <h2>Contact Us</h2>
-                <ul>
-                    <li><a href="{{ route('website.home') }}">Home</a></li>
-                    <li class="active">Contact</li>
-                </ul>
-            </div>
-        </div>
+    <div class="container">
+        <nav>
+            <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <li><a href="{{ route('website.home') }}">Home</a></li>
+                <li class="current"><a href="#">Contact Us</a></li>
+            </ol>
+        </nav>
     </div>
     <!-- Hiraola's Breadcrumb Area End Here -->
     <!-- Begin Contact Main Page Area -->
-    <div class="contact-main-page">
+    <div class="contact-main-page" style="padding-top: 30px !important;">
         <div class="container">
             @if (Session::has('successs'))
             <div class="row">

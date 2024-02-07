@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="{{ URL::asset('website') }}/assets/css/style.css">
     <!-- Contact Btns CSS -->
     <link rel="stylesheet" href="{{ URL::asset('website') }}/assets/css/contact-btns.css">
+    <!-- Custom Breadcrum CSS -->
+    <link rel="stylesheet" href="{{ URL::asset('website') }}/assets/css/breadcrumb.css">
     @yield('head')
 </head>
 

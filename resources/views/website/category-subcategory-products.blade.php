@@ -1,7 +1,15 @@
 @extends('layouts.website')
 @section('title', 'Chand Jewellers - Products')
 @section('content')
-    <div class="hiraola-product_area mb-5">
+<div class="container">
+    <nav>
+        <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <li><a href="{{ route('website.home') }}">Home</a></li>
+            <li class="current"><a href="#">Sub-Category Products</a></li>
+        </ol>
+    </nav>
+</div>
+    <div class="hiraola-product_area mb-5" style="padding-top: 30px !important;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">

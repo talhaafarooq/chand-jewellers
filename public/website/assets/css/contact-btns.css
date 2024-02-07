@@ -7,7 +7,7 @@
 
 .contact-buttons a {
     display: block;
-    background-color: #25d366; /* WhatsApp color */
+    background-color: #b76e79;
     color: #fff;
     text-align: center;
     font-size: 20px;
@@ -21,11 +21,13 @@
 }
 
 .contact-buttons a:first-child {
-    background-color: #34b7f1; /* Phone color */
+    background-color: #cda557; /* Phone color */
+    color:white;
 }
 
 .contact-buttons a:hover {
-    background-color: #128C7E; /* WhatsApp hover color */
+    background-color: #b76e79; /* WhatsApp hover color */
+    color:white;
 }
 
 .contact-buttons a i {

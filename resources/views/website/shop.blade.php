@@ -2,28 +2,23 @@
 @section('title', 'Chand Jewellers - Shop')
 @section('head')
     <style>
-        .price-filter .price-slider-amount .label-input input{
+        .price-filter .price-slider-amount .label-input input {
             width: 137px !important;
         }
-        .breadcrumb-area {
-            background: black;
-            min-height: 225px;
-            position: relative;
+
+        .hiraola-content_wrapper {
+            padding-top: 0px !important;
         }
     </style>
 @endsection
 @section('content')
-    <!-- Begin Hiraola's Breadcrumb Area -->
-    <div class="breadcrumb-area">
-        <div class="container">
-            <div class="breadcrumb-content">
-                <h2>Shop</h2>
-                <ul>
-                    <li><a href="{{ route('website.home') }}">Home</a></li>
-                    <li class="active">Shop</li>
-                </ul>
-            </div>
-        </div>
+    <div class="container">
+        <nav>
+            <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <li><a href="{{ route('website.home') }}">Home</a></li>
+                <li class="current"><a href="#">Shop</a></li>
+            </ol>
+        </nav>
     </div>
     <!-- Hiraola's Breadcrumb Area End Here -->
 
@@ -42,7 +37,8 @@
                                 <div class="price-slider-amount">
                                     <div class="label-input">
                                         <label>price : </label>
-                                        <input type="text" id="amount" name="price" placeholder="Rs.1000 - Rs.500000" />
+                                        <input type="text" id="amount" name="price"
+                                            placeholder="Rs.1000 - Rs.500000" />
                                     </div>
                                     <!-- <button type="button">Filter</button> -->
                                 </div>
@@ -151,7 +147,7 @@
                     $.ajax({
                         url: url,
                         method: 'GET',
-                        data:{
+                        data: {
                             start_price: $('#prices').val().split('-')[0],
                             end_price: $('#prices').val().split('-')[1]
                         },

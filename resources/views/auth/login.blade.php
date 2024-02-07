@@ -16,20 +16,17 @@
 @endsection
 @section('content')
     <!-- Begin Hiraola's Breadcrumb Area -->
-    <div class="breadcrumb-area">
-        <div class="container">
-            <div class="breadcrumb-content">
-                <h2>Login</h2>
-                <ul>
-                    <li><a href="{{ route('website.home') }}">Home</a></li>
-                    <li class="active">Login Account</li>
-                </ul>
-            </div>
-        </div>
+    <div class="container">
+        <nav>
+            <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <li><a href="{{ route('website.home') }}">Home</a></li>
+                <li class="current"><a href="#">Login Account</a></li>
+            </ol>
+        </nav>
     </div>
     <!-- Hiraola's Breadcrumb Area End Here -->
     <!-- Begin Hiraola's Login Register Area -->
-    <div class="hiraola-login-register_area">
+    <div class="hiraola-login-register_area" style="padding-top: 30px !important;">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3 col-xs-12">

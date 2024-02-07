@@ -11,20 +11,17 @@
 @endsection
 
 @section('content')
-    <div class="breadcrumb-area">
-        <div class="container">
-            <div class="breadcrumb-content">
-                <h2>Track Order</h2>
-                <ul>
-                    <li><a href="{{ route('website.home') }}">Home</a></li>
-                    <li class="active">Track Order</li>
-                </ul>
-            </div>
-        </div>
+    <div class="container">
+        <nav>
+            <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <li><a href="{{ route('website.home') }}">Home</a></li>
+                <li class="current"><a href="#">Track Order</a></li>
+            </ol>
+        </nav>
     </div>
 
         <!-- Begin Hiraola's Track Order Area -->
-        <div class="about-us-area mb-5">
+        <div class="about-us-area mb-5" style="padding-top: 30px !important;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">

@@ -14,16 +14,15 @@
 @endsection
 @section('content')
     <!-- Begin Hiraola's Breadcrumb Area -->
-    <div class="breadcrumb-area">
-        <div class="container">
-            <div class="breadcrumb-content">
-                <h2>Thanks</h2>
-                <ul>
-                    <li><a href="{{ route('website.home') }}">Home</a></li>
-                    <li class="active">Thanks</li>
-                </ul>
-            </div>
-        </div>
+    <div class="container">
+        <nav>
+            <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <li><a href="{{ route('website.home') }}">Home</a></li>
+                <li><a href="{{ route('website.cart') }}">Cart</a></li>
+                <li><a href="{{ route('website.checkout') }}">Checkout</a></li>
+                <li class="current"><a href="#" class="text-capitalize">Thanks</a></li>
+            </ol>
+        </nav>
     </div>
     <!-- Hiraola's Breadcrumb Area End Here -->
     <!-- Begin Hiraola's Checkout Area -->

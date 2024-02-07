@@ -15,20 +15,17 @@
 @section('content')
 
         <!-- Begin Hiraola's Breadcrumb Area -->
-        <div class="breadcrumb-area">
-            <div class="container">
-                <div class="breadcrumb-content">
-                    <h2>My Account</h2>
-                    <ul>
-                        <li><a href="{{ route('website.home') }}">Home</a></li>
-                        <li class="active">My Account</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="container">
+            <nav>
+                <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                    <li><a href="{{ route('website.home') }}">Home</a></li>
+                    <li class="current"><a href="#">My Account</a></li>
+                </ol>
+            </nav>
         </div>
         <!-- Hiraola's Breadcrumb Area End Here -->
         <!-- Begin Hiraola's Page Content Area -->
-        <main class="page-content">
+        <main class="page-content" style="padding-top: 30px !important;">
             <!-- Begin Hiraola's Account Page Area -->
             <div class="account-page-area">
                 <div class="container">

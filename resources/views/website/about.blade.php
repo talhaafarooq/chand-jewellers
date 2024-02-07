@@ -10,26 +10,23 @@
     </style>
 @endsection
 @section('content')
-    <div class="breadcrumb-area">
-        <div class="container">
-            <div class="breadcrumb-content">
-                <h2>About Us</h2>
-                <ul>
-                    <li><a href="{{ route('website.home') }}">Home</a></li>
-                    <li class="active">About Us</li>
-                </ul>
-            </div>
-        </div>
+    <div class="container">
+        <nav>
+            <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <li><a href="{{ route('website.home') }}">Home</a></li>
+                <li class="current"><a href="#">About Us</a></li>
+            </ol>
+        </nav>
     </div>
 
         <!-- Begin Hiraola's About Us Area -->
-        <div class="about-us-area">
+        <div class="about-us-area" style="padding-top: 10px;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-7 d-flex align-items-center">
                         <div class="overview-content">
                             <h2>Welcome To <span>{{ SettingsHelper::info()->name }}</span></h2>
-                            <p class="short_desc">{{ $aboutUs->about }}</p>
+                            <p class="short_desc">{!! $aboutUs->about !!}</p>
                             <div class="hiraola-about-us_btn-area">
                                 <a class="about-us_btn" href="{{ route('website.shop') }}">Shop Now</a>
                             </div>
@@ -48,7 +45,7 @@
         <!-- Hiraola's About Us Area End Here -->
 
         <!-- Begin Hiraola's Project Countdown Area -->
-        <div class="project-count-area">
+        {{-- <div class="project-count-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -97,7 +94,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <br /><br /><br /><br />
         <!-- Hiraola's Project Countdown Area End Here -->
 
