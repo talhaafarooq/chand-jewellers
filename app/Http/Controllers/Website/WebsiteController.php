@@ -202,8 +202,8 @@ class WebsiteController extends Controller
             $user = User::where('email', $request->email)->firstOrFail();
             $code = rand(000000, 999999);
 
-            // Mail::to($user->email)->send(new SendForgotPasswordMail($user, $code)); // Replace with actual mailing logic
-            Mail::to('talhafarooq522446@gmail.com')->send(new SendForgotPasswordMail($user, $code)); // Replace with actual mailing logic
+            Mail::to($user->email)->send(new SendForgotPasswordMail($user, $code)); // Replace with actual mailing logic
+            // Mail::to('talhafarooq522446@gmail.com')->send(new SendForgotPasswordMail($user, $code)); // Replace with actual mailing logic
             DB::table('password_resets')->insert([
                 'email' => $user->email,
                 'token' => $code
