@@ -49,12 +49,12 @@
                                                 @forelse ($categories as $category)
                                                 <tr>
                                                     <td>{{ $category->name }}</td>
-                                                    @canAny(['edit-category','delete-category'])
+                                                    @canAny(['update-category','delete-category'])
                                                     <td>
                                                         @can('delete-category')
                                                         <button type="button" name="{{ $category->id }}" class="btn btn-danger btn-sm remove-category"><i class="fa fa-times"></i></button>
                                                         @endcan
-                                                        @can('edit-category')
+                                                        @can('update-category')
                                                         <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil text-white"></i></a>
                                                         @endcan
                                                     </td>

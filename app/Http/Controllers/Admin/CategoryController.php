@@ -21,7 +21,7 @@ class CategoryController extends Controller
         // $this->middleware('permission:view-categories|create-category|edit-category|delete-category', ['only' => ['index','show']]);
         $this->middleware('check.permissions:view-categories', ['only' => 'index']);
         $this->middleware('check.permissions:create-category', ['only' => ['create', 'store']]);
-        $this->middleware('check.permissions:edit-category', ['only' => ['edit', 'update']]);
+        $this->middleware('check.permissions:update-category', ['only' => ['edit', 'update']]);
         $this->middleware('check.permissions:delete-category', ['only' => 'destroy']);
     }
 

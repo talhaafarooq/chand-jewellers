@@ -288,7 +288,7 @@
                                         <div class="hiraola-recent-post">
                                             <div class="hiraola-recent-post-thumb">
                                                 <a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}">
-                                                    <img class="img-full" src="{{ URL::asset('storage/'.$subCategory->image) }}" style="height: 72px!important;" alt="SubCategory">
+                                                    <img class="img-full" src="{{ URL::asset($subCategory->image) }}" style="height: 72px!important;" alt="SubCategory">
                                                 </a>
                                             </div>
                                             <div class="hiraola-recent-post-des">

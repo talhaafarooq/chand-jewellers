@@ -2,16 +2,13 @@
 @section('title','Chand Jewellers - Error 404')
 @section('content')
 <!-- Begin Hiraola's Breadcrumb Area -->
-<div class="breadcrumb-area">
-    <div class="container">
-        <div class="breadcrumb-content">
-            <h2>Other</h2>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Error 404</li>
-            </ul>
-        </div>
-    </div>
+<div class="container">
+    <nav>
+        <ol class="cd-breadcrumb" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <li><a href="{{ route('website.home') }}">Home</a></li>
+            <li class="current"><a href="#">Error - 404</a></li>
+        </ol>
+    </nav>
 </div>
 <!-- Hiraola's Breadcrumb Area End Here -->
 <!-- Begin Hiraola's Error 404 Page Area -->
