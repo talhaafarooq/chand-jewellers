@@ -36,7 +36,7 @@
                                                     href="{{ route('website.remove-wishlist-item', $product->product_id) }}"><i
                                                         class="fa fa-trash" title="Remove"></i></a></td>
                                             <td class="hiraola-product-thumbnail"><a href="javascript:void(0)"><img
-                                                        src="{{ URL::asset('storage/' . $product->product->front_img) }}"
+                                                        src="{{ URL::asset($product->product->front_img) }}"
                                                         width="100px" alt="{{ $product->name }} Thumbnail"></a>
                                             </td>
                                             <td class="hiraola-product-name"><a

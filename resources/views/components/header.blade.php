@@ -48,7 +48,7 @@
                         <div class="header-logo">
                             <a href="{{ route('website.home') }}">
                                 {{-- <img src="{{URL::asset('website/assets/images/menu/logo/4.png')}}" alt="Header Logo"> --}}
-                                <img src="{{ URL::asset('website/assets/images/logo.png') }}" width="100px"
+                                <img src="{{ URL::asset(SettingsHelper::info()->header_logo) }}" width="100px"
                                     alt="Header Logo">
                             </a>
                         </div>
@@ -100,7 +100,7 @@
                         <a href="{{ route('website.home') }}">
                             {{-- <img src="{{ URL::asset('website/assets/images/menu/logo/2.png') }}"
                                 alt="Hiraola's Header Logo"> --}}
-                            <img src="{{ URL::asset('storage/'.SettingsHelper::info()->header_logo) }}" width="100px"
+                            <img src="{{ URL::asset(SettingsHelper::info()->header_logo) }}" width="100px"
                                 alt="Header Logo">
                         </a>
                     </div>
@@ -146,7 +146,7 @@
                 <div class="col-lg-2 col-md-4 col-sm-4">
                     <div class="header-logo">
                         <a href="{{ route('website.home') }}">
-                            <img src="{{ URL::asset('storage/'.SettingsHelper::info()->header_logo) }}" width="70px"
+                            <img src="{{ URL::asset(SettingsHelper::info()->header_logo) }}" width="70px"
                                 alt="Header Logo">
                         </a>
                     </div>
@@ -229,7 +229,7 @@
                                     href="{{ route('website.remove-cart', $value->attributes['slug']) }}"><i
                                         class="ion-android-close"></i></a>
                                 <div class="product-item_img">
-                                    <img src="{{ URL::asset('storage/' . $value->attributes['image']) }}"
+                                    <img src="{{ URL::asset($value->attributes['image']) }}"
                                         alt="Hiraola's Product Image">
                                 </div>
                                 <div class="product-item_content">

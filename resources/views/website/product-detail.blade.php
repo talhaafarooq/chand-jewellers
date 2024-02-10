@@ -45,24 +45,24 @@
                     <div class="col-lg-5 col-md-5">
                         <div class="sp-img_area">
                             <div class="zoompro-border">
-                                <img class="zoompro" src="{{ URL::asset('storage/' . $product->productImages[0]->image) }}"
-                                    data-zoom-image="{{ URL::asset('storage/' . $product->productImages[0]->image) }}"
+                                <img class="zoompro" src="{{ URL::asset($product->productImages[0]->image) }}"
+                                    data-zoom-image="{{ URL::asset($product->productImages[0]->image) }}"
                                     alt="{{ $product->name }} Image" />
                             </div>
                             <div id="gallery" class="sp-img_slider">
                                 @foreach ($product->productImages as $productImage)
                                     @if ($loop->first)
-                                        <a class="active" data-image="{{ URL::asset('storage/' . $productImage->image) }}"
-                                            data-zoom-image="{{ URL::asset('storage/' . $productImage->image) }}"
+                                        <a class="active" data-image="{{ URL::asset($productImage->image) }}"
+                                            data-zoom-image="{{ URL::asset($productImage->image) }}"
                                             style="width: 76px;height:76px!important;">
-                                            <img src="{{ URL::asset('storage/' . $productImage->image) }}"
+                                            <img src="{{ URL::asset($productImage->image) }}"
                                                 alt="{{ $product->name }} Image">
                                         </a>
                                     @else
-                                        <a data-image="{{ URL::asset('storage/' . $productImage->image) }}"
-                                            data-zoom-image="{{ URL::asset('storage/' . $productImage->image) }}"
+                                        <a data-image="{{ URL::asset($productImage->image) }}"
+                                            data-zoom-image="{{ URL::asset($productImage->image) }}"
                                             style="width: 76px;height:76px!important;">
-                                            <img src="{{ URL::asset('storage/' . $productImage->image) }}"
+                                            <img src="{{ URL::asset($productImage->image) }}"
                                                 alt="{{ $product->name }} Image">
                                         </a>
                                     @endif
@@ -705,10 +705,10 @@
                                     <div class="product-img">
                                         <a href="{{ route('website.product.details', $product->slug) }}">
                                             <img class="primary-img"
-                                                src="{{ URL::asset('storage/' . $product->front_img) }}"
+                                                src="{{ URL::asset($product->front_img) }}"
                                                 alt="Hiraola's Product Image">
                                             <img class="secondary-img"
-                                                src="{{ URL::asset('storage/' . $product->back_img) }}"
+                                                src="{{ URL::asset($product->back_img) }}"
                                                 alt="Hiraola's Product Image">
                                         </a>
                                         <span class="sticker">New</span>

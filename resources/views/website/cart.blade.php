@@ -48,7 +48,7 @@
                                                     value="{{ $product->attributes['slug'] }}">
                                             </td>
                                             <td class="hiraola-product-thumbnail"><a href="javascript:void(0)"><img
-                                                        src="{{ URL::asset('storage/' . $product->attributes['image']) }}"
+                                                        src="{{ URL::asset($product->attributes['image']) }}"
                                                         width="100px" alt="{{ $product->name }} Thumbnail"></a></td>
                                             <td class="hiraola-product-name"><a
                                                     href="javascript:void(0)">{{ $product->name }}</a></td>

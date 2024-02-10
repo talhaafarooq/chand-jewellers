@@ -26,7 +26,7 @@
                 <div class="col-lg-6 col-md-5">
                     <div class="overview-img text-center img-hover_effect">
                         <a href="#">
-                            <img class="img-full" src="{{ URL::asset('storage/' . $aboutUs->image) }}" alt="About Us Image">
+                            <img class="img-full" src="{{ URL::asset($aboutUs->image) }}" alt="About Us Image">
                         </a>
                     </div>
                 </div>

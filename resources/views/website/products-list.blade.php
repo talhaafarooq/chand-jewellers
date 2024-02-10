@@ -6,9 +6,9 @@
                 <div class="single_product">
                     <div class="product-img">
                         <a href="{{ route('website.product.details', $product->slug) }}">
-                            <img class="primary-img" src="{{ URL::asset('storage/' . $product->front_img) }}"
+                            <img class="primary-img" src="{{ URL::asset($product->front_img) }}"
                                 alt="Hiraola's Product Image">
-                            <img class="secondary-img" src="{{ URL::asset('storage/' . $product->back_img) }}"
+                            <img class="secondary-img" src="{{ URL::asset($product->back_img) }}"
                                 alt="Hiraola's Product Image">
                         </a>
                         <span class="sticker">New</span>
@@ -65,10 +65,10 @@
                     <div class="product-img">
                         <a href="{{ route('website.product.details', $product->slug) }}">
                             <img class="primary-img"
-                                src="{{ URL::asset('storage/' . $product->front_img) }}"
+                                src="{{ URL::asset($product->front_img) }}"
                                 alt="Hiraola's Product Image">
                             <img class="secondary-img"
-                                src="{{ URL::asset('storage/' . $product->back_img) }}"
+                                src="{{ URL::asset($product->back_img) }}"
                                 alt="Hiraola's Product Image">
                         </a>
                         {{-- <span class="sticker">New</span> --}}
@@ -140,9 +140,9 @@
                 <div class="single_product">
                     <div class="product-img">
                         <a href="{{ route('website.product.details', $product->slug) }}">
-                            <img class="primary-img" src="{{ URL::asset('storage/' . $product->front_img) }}"
+                            <img class="primary-img" src="{{ URL::asset($product->front_img) }}"
                                 alt="Hiraola's Product Image">
-                            <img class="secondary-img" src="{{ URL::asset('storage/' . $product->back_img) }}"
+                            <img class="secondary-img" src="{{ URL::asset($product->back_img) }}"
                                 alt="Hiraola's Product Image">
                         </a>
                     </div>

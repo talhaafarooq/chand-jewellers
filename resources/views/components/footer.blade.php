@@ -7,7 +7,7 @@
                     <div class="footer-widgets_info">
                         <div class="footer-widgets_logo">
                             <a href="{{ route('website.home') }}">
-                                <img src="{{ URL::asset('storage/'.SettingsHelper::info()->footer_logo) }}" width="150px" alt="Footer Logo">
+                                <img src="{{ URL::asset(SettingsHelper::info()->footer_logo) }}" width="150px" alt="Footer Logo">
                             </a>
                         </div>
 
@@ -49,10 +49,11 @@
                                 </div>
                                 <div class="footer-widgets">
                                     <ul>
-                                        <li><a href="#">Prices drop</a></li>
-                                        <li><a href="#">New products</a></li>
-                                        <li><a href="#">Best sales</a></li>
-                                        <li><a href="#">Contact us</a></li>
+                                        <li><a href="{{ route('website.home') }}">Home</a></li>
+                                        <li><a href="{{ route('website.about') }}">About Us</a></li>
+                                        <li><a href="{{ route('website.shop') }}">Shop</a></li>
+                                        <li><a href="{{ route('website.track-order') }}">Track Order</a></li>
+                                        <li><a href="{{ route('website.contact') }}">Contact us</a></li>
                                     </ul>
                                 </div>
                             </div>
