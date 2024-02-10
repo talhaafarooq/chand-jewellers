@@ -12,7 +12,7 @@
                         </div>
 
                         <div class="widget-short_desc">
-                            <p>{{ SettingsHelper::info()->about_us }}</p>
+                            <p>{{ SettingsHelper::info()->footer_description }}</p>
                         </div>
                         <div class="hiraola-social_link">
                             <ul>
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="footer-widgets_title">
-                                    <h6>Product</h6>
+                                    <h6>Links</h6>
                                 </div>
                                 <div class="footer-widgets">
                                     <ul>

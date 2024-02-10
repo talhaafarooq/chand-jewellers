@@ -38,6 +38,7 @@ class SettingSeeder extends Seeder
             'advertising'=>'This is advertising campaign',
             'header_logo'=>'settings/logo.png',
             'footer_logo'=>'settings/logo.png',
+            'footer_description'=>'We are a team of designers and developers that create high quality HTML Template & Woocommerce, Shopify Theme.',
         ]);
     }
 }

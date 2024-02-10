@@ -254,7 +254,7 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div> --}}
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('cod', 'COD') !!}
                                         {!! Form::text('cod', null, [
                                             'id' => 'cod',
@@ -266,7 +266,7 @@
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
                                         {!! Form::label('advertising', 'Advertising Line') !!}
                                         {!! Form::text('advertising', null, [
                                             'id' => 'advertising',
@@ -275,6 +275,18 @@
                                             'required'=>'required'
                                         ]) !!}
                                         @error('advertising')
+                                            <font color="red">{{ $message }}</font>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                        {!! Form::label('footer_description', 'Footer Description') !!}
+                                        {!! Form::text('footer_description', null, [
+                                            'id' => 'footer_description',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Add the footer description.',
+                                            'required'=>'required'
+                                        ]) !!}
+                                        @error('footer_description')
                                             <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>

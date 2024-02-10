@@ -12,7 +12,7 @@ class Settings extends Model
     protected $fillable = array(
         'name', 'email', 'phone1', 'phone2', 'city', 'state', 'zipcode', 'address1', 'address2', 'about_us', 'facebook', 'instagram1',
         'instagram2', 'youtube', 'whatsapp', 'tiktok1', 'tiktok2', 'snack1', 'snack2', 'header_logo', 'footer_logo', 'map', 'currency',
-        'shipping','advance_charges', 'website','cod','advertising'
+        'shipping','advance_charges', 'website','cod','advertising','footer_description'
     );
 
     protected $casts = [
@@ -43,6 +43,7 @@ class Settings extends Model
         'advance_charges' => 'float',
         'website' => 'string',
         'cod' => 'string',
-        'advertising' => 'string'
+        'advertising' => 'string',
+        'footer_description'=> 'string',
     ];
 }
