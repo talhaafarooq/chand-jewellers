@@ -14,19 +14,19 @@ class OrderCreateAccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|min:1|max:255|string',
-            'last_name' => 'required|min:1|max:255|string',
-            'company' => 'sometimes|max:255|string',
-            'address1' => 'required|min:1|max:255|string',
-            'address2' => 'sometimes|max:255|string',
-            'city' => 'required|max:255|string',
-            'state' => 'required|max:255|string',
+            'first_name' => 'required|min:1|max:255',
+            'last_name' => 'required|min:1|max:255',
+            'company' => 'sometimes|max:255',
+            'address1' => 'required|min:1|max:255',
+            'address2' => 'sometimes|max:255',
+            'city' => 'required|max:255',
+            'state' => 'required|max:255',
             // 'zipcode' => 'required|min:1|max:255|string',
-            'country' => 'required|max:255|string',
+            'country' => 'required|max:255',
             'email' => 'required|max:255|email|unique:users,email',
-            'phone1' => 'required|max:255|string',
-            'phone2' => 'sometimes|max:255|string',
-            'order_note' => 'nullable|max:1000|string',
+            'phone1' => 'required|max:255',
+            'phone2' => 'sometimes|max:255',
+            'order_note' => 'nullable|max:1000',
             'create_account' => 'nullable'
         ];
     }
