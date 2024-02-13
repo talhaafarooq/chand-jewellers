@@ -44,8 +44,8 @@
                 <div class="row">
                     <div class="col-lg-5 col-md-5">
                         <div class="sp-img_area">
-                            <div class="zoompro-border" id="main-img">
-                                <img class="" src="{{ URL::asset($product->productImages[0]->image) }}"
+                            <div class="zoompro-border">
+                                <img class="zoompro" src="{{ URL::asset($product->productImages[0]->image) }}"
                                     data-zoom-image="{{ URL::asset($product->productImages[0]->image) }}"
                                     alt="{{ $product->name }} Image" />
                             </div>
@@ -782,14 +782,4 @@
     </div>
     <!-- Hiraola's Product Area Two End Here -->
     </div>
-@endsection
-@section('scripts')
-    <script>
-        $(document).ready(function(){
-            $('.slick-slide').click(function(){
-                var imageSrc = $(this).attr('data-image');
-                $('#main-img img').attr('src', imageSrc);
-            });
-        });
-    </script>
 @endsection
