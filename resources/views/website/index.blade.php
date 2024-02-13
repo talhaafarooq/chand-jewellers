@@ -76,7 +76,46 @@
         </div>
     </div> --}}
 
-    <!-- Begin Hiraola's Product Area -->
+    <!-- Categories Area Three -->
+    <div class="hiraola-product_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hiraola-section_title">
+                        <h4>Categories</h4>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-5">
+                    <div class="hiraola-blog-sidebar-wrapper">
+                        <div class="hiraola-blog-sidebar">
+                            <div class="row">
+                                @foreach ($subcategoriesWithTotalProducts as $subCategory)
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}">
+                                        <div class="hiraola-recent-post">
+                                            <div class="hiraola-recent-post-thumb">
+                                                <a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}">
+                                                    <img class="img-full" src="{{ URL::asset($subCategory->image) }}" style="height: 72px!important;" alt="SubCategory">
+                                                </a>
+                                            </div>
+                                            <div class="hiraola-recent-post-des">
+                                                <span style="margin-top:10px"><a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}" style="font-size: 17px;text-align: left;">{{ $subCategory->name }}</a></span>
+                                                <span class="hiraola-post-date" style="text-align: left;">{{ $subCategory->totalProducts }} Products</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Categories Three End Here -->
+
+    <!-- New Product Area -->
     <div class="hiraola-product_area">
         <div class="container">
             <div class="row">
@@ -171,9 +210,9 @@
             </div>
         </div>
     </div>
-    <!-- Hiraola's Product Area End Here -->
+    <!-- New Product Area End Here -->
 
-    <!-- Begin Hiraola's Product Tab Area Three -->
+    <!-- Trending Product Tab Area Three -->
     <div class="hiraola-product_area">
         <div class="container">
             <div class="row">
@@ -268,45 +307,7 @@
             </div>
         </div>
     </div>
-    <!-- Hiraola's Product Tab Area Three End Here -->
-    <!-- Begin Hiraola's Product Tab Area Three -->
-    <div class="hiraola-product_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="hiraola-section_title">
-                        <h4>Categories</h4>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 mb-5">
-                    <div class="hiraola-blog-sidebar-wrapper">
-                        <div class="hiraola-blog-sidebar">
-                            <div class="row">
-                                @foreach ($subcategoriesWithTotalProducts as $subCategory)
-                                <div class="col-lg-3 col-md-3 col-sm-12">
-                                    <a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}">
-                                        <div class="hiraola-recent-post">
-                                            <div class="hiraola-recent-post-thumb">
-                                                <a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}">
-                                                    <img class="img-full" src="{{ URL::asset($subCategory->image) }}" style="height: 72px!important;" alt="SubCategory">
-                                                </a>
-                                            </div>
-                                            <div class="hiraola-recent-post-des">
-                                                <span style="margin-top:10px"><a href="{{ URL::to('/products?subcategory='.$subCategory->slug) }}" style="font-size: 17px;text-align: left;">{{ $subCategory->name }}</a></span>
-                                                <span class="hiraola-post-date" style="text-align: left;">{{ $subCategory->totalProducts }} Products</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Hiraola's Product Tab Area Three End Here -->
+    <!-- Trending Product Tab Area Three End Here -->
 @endsection
 @section('scripts')
     <script>
